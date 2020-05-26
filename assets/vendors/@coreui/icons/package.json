@@ -1,0 +1,90 @@
+{
+  "_from": "@coreui/icons",
+  "_id": "@coreui/icons@0.4.1",
+  "_inBundle": false,
+  "_integrity": "sha512-k3U1zzJwwKIH+LgSBD1y+GTbB3Rqen567GyNHNKxHHTke6r67n/s3K2nxgD8vX53WirfXzsz+8+mRipnzkplCA==",
+  "_location": "/@coreui/icons",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@coreui/icons",
+    "name": "@coreui/icons",
+    "escapedName": "@coreui%2ficons",
+    "scope": "@coreui",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@coreui/icons/-/icons-0.4.1.tgz",
+  "_shasum": "c11faba60d13f3575e5fc0ce8b9ea119f0942fb1",
+  "_spec": "@coreui/icons",
+  "_where": "D:\\xampp\\htdocs\\belajar\\coreui-dashboard\\assets\\vendors\\@coreui",
+  "author": {
+    "name": "Łukasz Holeczek",
+    "url": "http://holeczek.pl"
+  },
+  "bugs": {
+    "url": "https://github.com/coreui/coreui-icons/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Jazzy Innovations sp. z o.o.",
+      "url": "https://jazzy.pro"
+    }
+  ],
+  "deprecated": false,
+  "description": "Free icons",
+  "devDependencies": {
+    "clean-css-cli": "^4.3.0",
+    "node-sass": "^4.12.0",
+    "nodemon": "^1.19.2",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^6.1.3",
+    "shelljs": "^0.8.3",
+    "stylelint": "^10.1.0",
+    "stylelint-config-recommended-scss": "^3.3.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-order": "^3.1.0",
+    "stylelint-scss": "^3.10.0"
+  },
+  "files": [
+    "css/",
+    "fonts/",
+    "ie7/",
+    "js/",
+    "png/",
+    "scss/",
+    "symbols/",
+    "svg"
+  ],
+  "homepage": "https://github.com/coreui/coreui-icons#readme",
+  "keywords": [
+    "Icons",
+    "Font",
+    "Face",
+    "Svg",
+    "Vector"
+  ],
+  "license": "MIT",
+  "name": "@coreui/icons",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coreui/coreui-icons.git"
+  },
+  "scripts": {
+    "css": "npm-run-all --parallel css-compile* --sequential css-prefix css-minify*",
+    "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 scss/free.scss css/free.css",
+    "css-minify": "cleancss --level 1 --source-map --source-map-inline-sources --output css/free.min.css css/free.css",
+    "css-prefix": "postcss --config build/postcss.config.js --replace \"css/*.css\" \"!css/*.min.css\"",
+    "dist": "npm-run-all --parallel css",
+    "watch-css": "nodemon --ignore dist/ -e scss -x \"npm run css\""
+  },
+  "style": "css/coreui-icons.css",
+  "version": "0.4.1"
+}
