@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2020 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="indonesia-rupiah-currency-symbol" unicode="&#xe800;" d="M775 598c-67 0-119-24-159-73l0 49c0 7-5 12-12 12l-76 0c-3 0-6-1-8-3-3-3-4-6-4-9l0-696c0-4 1-7 4-9 2-2 5-3 8-3h79c6 0 12 5 12 12v235c34-36 84-56 141-56 116 0 240 86 240 277 0 153-95 264-225 264z m-14-447c-80 0-146 79-146 176 0 97 66 176 146 176 81 0 146-79 146-176 0-97-65-176-146-176z m-407 299c64 54 89 107 89 187 0 57-21 106-58 139-45 40-107 58-204 58l-165 0c-9 0-16-7-16-16v-672c0-9 7-16 16-16h86c9 0 16 7 16 16v273h128l101-278c2-7 8-11 15-11h89c5 0 10 3 13 7 3 4 3 10 2 15l-112 298z m-29 177c0-67-53-110-135-110h-72v219l69 0c92-1 138-37 138-109z" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>

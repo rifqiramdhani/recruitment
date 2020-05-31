@@ -1,17 +1,54 @@
 <?php
+    session_start();
     define("BASE_URL", "http://localhost/skripsi/recruitment/");
 
+    function cek_login(){
+        if(!isset($_SESSION['login'])){
+            redirect('login');
+        }
+    }
+
+    //fungsi memasukan data kedalam session
+    function session_userdata($data)
+    {
+        foreach ($data as $key => $value) {
+            $_SESSION[$key] = $value;
+        }
+    }
+
+    //fungsi untuk pindah halaman dengan membawa pesan
+    function redirect($url, $message = false)
+    {
+        if($message)
+        {
+            $_SESSION['message'] = $message;
+        }
+        header('location: '. BASE_URL . $url);
+    }
+
+    //fungsi untuk cek pesan yang di bawa oleh fungsi redirect
+    function session_flashdata()
+    {
+        if (isset($_SESSION['message'])) :
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+        endif;
+    }
+
+    //fungsi untuk mengubah dari integer menjadi Rp, int
     function rupiah($nilai = 0)
     {
         $string = "Rp, " . number_format($nilai);
         return $string;
     }
 
+    //fungsi untuk mencegah serangan xss
     function cetak($str)
     {
         return htmlentities($str, ENT_QUOTES, 'UTF-8');
     }
 
+    //fungsii untuk mengubah tanggal menjadi tanggal indonesia
     function tgl_indo($tgl)
     {
         $ubah = gmdate($tgl, time() + 60 * 60 * 8);
