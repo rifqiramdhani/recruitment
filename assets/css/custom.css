@@ -848,3 +848,11 @@ input[type="radio"] {
 	border-radius: 0px!important;
 }
 	
+/* breadcrumb */
+.breadcrumb{
+	color: #73818f!important;
+}
+
+.breadcrumb-item.active{
+	color: #23282c!important;
+}

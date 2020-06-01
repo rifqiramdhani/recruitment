@@ -1,8 +1,7 @@
 <?php 
 
 require('../function/helper.php');
-
-//cek apakah user sudah login
+// cek apakah user sudah login
 if(isset($_SESSION['login'])) redirect('admin');
 
 ?>

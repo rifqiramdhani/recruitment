@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- smartwizard multistep form -->
     <link href="<?= BASE_URL . 'assets/css/smart_wizard_theme_arrows.min.css' ?> " rel="stylesheet" type="text/css" />
+    <!-- fontawesome -->
     <style>
         .ui-autocomplete-loading {
             background: white url(<?= BASE_URL . 'assets/img/ui-anim_basic_16x16.gif'; ?>) right center no-repeat;

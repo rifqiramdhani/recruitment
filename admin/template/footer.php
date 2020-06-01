@@ -3,32 +3,26 @@
         <span>&copy; 2020 Copyright PT Bonli Cipta Sejahtera</span>
     </div>
     <div class="ml-auto">
-        <span>Powered by</span>
-        <a href="#">Rifqi Ramdhani</a>
+        <span>Developed by</span>
+        <a href="#">Li</a>
     </div>
 </footer>
 
 <script src="<?= BASE_URL . 'assets/vendors/jquery/js/jquery.min.js'; ?>">
 </script>
-<script src="<?= BASE_URL . 'assets/vendors/popper.js/js/popper.min.js'; ?>"></script>
 <script src="<?= BASE_URL . 'assets/vendors/bootstrap/js/bootstrap.min.js'; ?>"></script>
 <script src="<?= BASE_URL . 'assets/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js'; ?>"></script>
 <script src="<?= BASE_URL . 'assets/vendors/pace-progress/js/pace.min.js' ?>"></script>
 <script src="<?= BASE_URL . 'assets/vendors/@coreui/coreui/js/coreui.min.js' ?>"></script>
-<!-- Plugins and scripts required by this view-->
-<script src="<?= BASE_URL . 'assets/vendors/chart.js/js/Chart.min.js'; ?>"></script>
-<script src="<?= BASE_URL . 'assets/js/charts.js'; ?>"></script>
 <!-- form validation -->
-
 <script src="<?= BASE_URL . 'assets/node_modules/bootstrap-validator/dist/validator.min.js'; ?>"></script>
 <!-- datatables -->
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <!-- custom js -->
 <script src="<?= BASE_URL . 'assets/js/custom.js'; ?>" type="text/javascript" charset="utf-8"></script>
-<!-- fontawesome -->
-<script src="https://kit.fontawesome.com/5e43405e99.js" crossorigin="anonymous"></script>
-<script src="<?= BASE_URL . 'assets/vendors/pace-progress/js/pace.min.js' ?>"></script>
+<!-- custom js -->
+<script src="<?= BASE_URL . 'assets/js/all.min.js'; ?>" type="text/javascript" charset="utf-8"></script>
 <!-- jquery ui -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- smartwizard multistep form -->
@@ -39,7 +33,52 @@
     // Setup datatables 
     $(document).ready(function() {
 
-        $('a[href="page/admin"]').css('color', 'green')
+        //hapus datakaryawan
+        $("#datakaryawan").on('click', '.remove', function() {
+            var id = $(this).data('id');
+            var nama_karyawan = $(this).data('nama');
+
+            Swal.fire({
+                title: 'Apakah yakin?',
+                text: "Ingin Menghapus Data " + nama_karyawan,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#db3325',
+                cancelButtonColor: '#f5a732',
+                confirmButtonText: "Hapus",
+                cancelButtonText: "Cancel",
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: '<?= BASE_URL. 'admin/index.php?page=karyawan&action=deletedata&id=' ?>' + id,
+                        type: 'DELETE',
+                        error: function() {
+                            alert('Something is wrong');
+                        },
+                        success: function(data) {
+                            $("#" + id).remove();
+                            Swal.fire({
+                                title: 'Data Karyawan',
+                                text: 'Data Berhasil Dihapus!',
+                                icon: 'success',
+                            })
+                        }
+                    });
+                }
+            })
+        })
+        // sweetalert
+        const flashdata = $('.flash-data').data('flashdata');
+        const title = $('.flash-data').data('title');
+        const type = $('.flash-data').data('type');
+
+        if (flashdata) {
+            Swal.fire({
+                title: title,
+                text: flashdata,
+                icon: type
+            })
+        }
 
         // Setup datatables
         $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings) {
@@ -54,108 +93,6 @@
             };
         };
 
-        var table = $("#datatableserver").dataTable({
-            initComplete: function() {
-                var api = this.api();
-                $('#datatableserver_filter input')
-                    .off('.DT')
-                    .on('input.DT', function() {
-                        api.search(this.value).draw();
-                    });
-            },
-            responsive: true,
-            oLanguage: {
-                sProcessing: '<div class="loader" id="loader-3"></div>'
-            },
-            processing: true,
-            serverSide: true,
-            ajax: {
-                "url": "",
-                "type": "POST"
-            },
-            columns: [{
-                    "data": "id",
-                    "orderable": false
-                },
-                {
-                    "data": "kode_buku"
-                },
-                {
-                    "data": "judul"
-                },
-                {
-                    "data": "penulis"
-                },
-                {
-                    "data": "penerbit"
-                },
-                {
-                    "data": "ISBN"
-                },
-                {
-                    "data": "nama_kategori"
-                },
-                {
-                    "data": "jumlah_buku"
-                },
-                {
-                    "data": "view"
-                }
-            ],
-            order: [
-                [1, 'asc']
-            ],
-            rowCallback: function(row, data, iDisplayIndex) {
-                var info = this.fnPagingInfo();
-                var page = info.iPage;
-                var length = info.iLength;
-                var index = page * length + (iDisplayIndex + 1);
-                $('td:eq(0)', row).html(index);
-            }
-
-        });
-
-        // end setup datatables
-
-        // get Edit Records
-        $('#datatableserver').on('click', '.edit_record', function() {
-            var kode = $(this).data('kode');
-            var judul = $(this).data('judul');
-            var penulis = $(this).data('penulis');
-            var isbn = $(this).data('isbn');
-            var kategori = $(this).data('kategori');
-            $('#ModalUpdate').modal('show');
-            $('[name="kode_buku"]').val(kode);
-            $('[name="judul"]').val(judul);
-            $('[name="penulis"]').val(penulis);
-            $('[name="kategori"]').val(kategori);
-            $('[name="isbn"]').val(isbn);
-        });
-        // End Edit Records
-
-        // get Hapus Records
-        $('#datatableserver').on('click', '.hapus_record', function() {
-            var kode = $(this).data('kode');
-            $('#ModalHapus').modal('show');
-            $('[name="kode_buku"]').val(kode);
-        });
-        // End Hapus Records
-
-        //get view record
-        $('#datatableserver').on('click', '.view_record', function() {
-            var kode = $(this).data('kode');
-            var judul = $(this).data('judul');
-            var penulis = $(this).data('penulis');
-            var isbn = $(this).data('isbn');
-            var kategori = $(this).data('kategori');
-            $('#ModalView').modal('show');
-            $('[name="kode_buku"]').val(kode);
-            $('[name="judul"]').val(judul);
-            $('[name="penulis"]').val(penulis);
-            $('[name="kategori"]').val(kategori);
-            $('[name="isbn"]').val(isbn);
-        });
-        // end view record
 
         //ajax autocomplete
         // autocomplete

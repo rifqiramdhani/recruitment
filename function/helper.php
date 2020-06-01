@@ -2,6 +2,7 @@
     session_start();
     define("BASE_URL", "http://localhost/skripsi/recruitment/");
 
+
     function cek_login(){
         if(!isset($_SESSION['login'])){
             redirect('login');
