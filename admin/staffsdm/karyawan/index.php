@@ -18,11 +18,11 @@ $query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan FROM `karyawan`
     endif;
     ?>
 
-    <div class="card card-accent-success" id="datakaryawan">
+    <div class="card card-accent-success">
         <div class="card-header"><strong>Data Karyawan</strong></div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered text-center" style="width:100%">
+                <table class="table table-striped table-bordered text-center" style="width:100%" id="datakaryawan">
                     <thead>
                         <tr>
                             <th>#</th>

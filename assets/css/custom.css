@@ -847,6 +847,10 @@ input[type="radio"] {
 .btn{
 	border-radius: 0px!important;
 }
+
+.btn-warning{
+	color: #fff!important;
+}
 	
 /* breadcrumb */
 .breadcrumb{

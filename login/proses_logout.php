@@ -1,5 +1,5 @@
 <?php
     session_start();
     session_destroy();
-    redirect('login');
+    header('location: index.php');
 ?>

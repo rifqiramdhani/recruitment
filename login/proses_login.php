@@ -1,5 +1,4 @@
 <?php
-session_start();
 require('../function/koneksi.php');
 require('../function/helper.php');
 
@@ -9,10 +8,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan FROM karyawan JOIN jabatan ON karyawan.id_jabatan = jabatan.id_jabatan WHERE email_karyawan = '$email'");
+        $query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan FROM karyawan JOIN jabatan ON karyawan.id_jabatan_fore = jabatan.id_jabatan WHERE email_karyawan = '$email'");
+
 
         if(mysqli_num_rows($query) > 0){
             $user = mysqli_fetch_assoc($query);
+            
 
             if(password_verify($password, $user['password_karyawan'])){
                 if($user['status_karyawan'] == 1){

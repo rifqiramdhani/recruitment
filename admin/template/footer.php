@@ -1,6 +1,6 @@
 <footer class="app-footer">
     <div>
-        <span>&copy; 2020 Copyright PT Bonli Cipta Sejahtera</span>
+        <span>&copy; 2020 Copyright <a href="https://bcs.co.id/">PT Bonli Cipta Sejahtera</a> </span>
     </div>
     <div class="ml-auto">
         <span>Developed by</span>
@@ -34,39 +34,38 @@
     $(document).ready(function() {
 
         //hapus datakaryawan
+        $("#datakaryawan").dataTable()
         $("#datakaryawan").on('click', '.remove', function() {
             var id = $(this).data('id');
-            var nama_karyawan = $(this).data('nama');
-
-            Swal.fire({
-                title: 'Apakah yakin?',
-                text: "Ingin Menghapus Data " + nama_karyawan,
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#db3325',
-                cancelButtonColor: '#f5a732',
-                confirmButtonText: "Hapus",
-                cancelButtonText: "Cancel",
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        url: '<?= BASE_URL. 'admin/index.php?page=karyawan&action=deletedata&id=' ?>' + id,
-                        type: 'DELETE',
-                        error: function() {
-                            alert('Something is wrong');
-                        },
-                        success: function(data) {
-                            $("#" + id).remove();
-                            Swal.fire({
-                                title: 'Data Karyawan',
-                                text: 'Data Berhasil Dihapus!',
-                                icon: 'success',
-                            })
-                        }
-                    });
-                }
-            })
+            var nama = $(this).data('nama');
+            hapusdata('Data karyawan', "?page=karyawan&action=deletedata&id=", id, nama)
         })
+
+        //hapus datalowongan
+        $("#datalowongan").dataTable()
+        $("#datalowongan").on('click', '.remove', function() {
+            var id = $(this).data('id');
+            var nama = $(this).data('nama');
+            hapusdata('Data lowongan', "?page=penerimaan&action=deletedata&id=", id, nama)
+        })
+
+        //hapus datakriteria
+        $("#datakriteria").on('click', '.remove', function() {
+            var id = $(this).data('id');
+            var nama = $(this).data('nama');
+            hapusdata('Data kriteria', "?page=kriteria&action=deletedata&id=", id, nama)
+            
+        })
+
+        //hapus datasubkriteria
+        $("#datasubkriteria").on('click', '.remove', function() {
+            var id = $(this).data('id');
+            var nama = $(this).data('nama');
+            hapusdata('Data subkriteria', "?page=subkriteria&action=deletedata&id=", id, nama)
+        })
+
+
+
         // sweetalert
         const flashdata = $('.flash-data').data('flashdata');
         const title = $('.flash-data').data('title');
