@@ -41,6 +41,14 @@
             hapusdata('Data karyawan', "?page=karyawan&action=deletedata&id=", id, nama)
         })
 
+        //hapus datacalonkaryawan
+        $("#datacalonkaryawan").dataTable()
+        $("#datacalonkaryawan").on('click', '.remove', function() {
+            var id = $(this).data('id');
+            var nama = $(this).data('nama');
+            hapusdata('Data calon karyawan', "?page=calon-karyawan&action=deletedata&id=", id, nama)
+        })
+
         //hapus datalowongan
         $("#datalowongan").dataTable()
         $("#datalowongan").on('click', '.remove', function() {
@@ -54,7 +62,13 @@
             var id = $(this).data('id');
             var nama = $(this).data('nama');
             hapusdata('Data kriteria', "?page=kriteria&action=deletedata&id=", id, nama)
-            
+        })
+
+        //hapus datadetailkriteria
+        $("#datadetailkriteria").on('click', '.remove', function() {
+            var id = $(this).data('id');
+            var nama = $(this).data('nama');
+            hapusdata('Data detail kriteria', "?page=detail-kriteria&action=deletedata&id=", id, nama)
         })
 
         //hapus datasubkriteria

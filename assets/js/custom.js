@@ -14,8 +14,11 @@ function hapusdata(title, url, id, nama) {
             $.ajax({
                 url: url + id,
                 type: 'DELETE',
-                error: function () {
-                    alert('Something is wrong');
+                error: function (xhr, textStatus, error) {
+                    console.log(xhr.responseText);
+                    console.log(xhr.statusText);
+                    console.log(textStatus);
+                    console.log(error);
                 },
                 success: function (data) {
                     $("#" + id).remove();

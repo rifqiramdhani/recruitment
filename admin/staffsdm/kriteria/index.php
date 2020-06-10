@@ -2,10 +2,10 @@
 
 $id_lowongan = isset($_GET['penerimaan']) ? $_GET['penerimaan'] : 'Data tidak ditemukan';
 
-$querylowongan = mysqli_query($koneksi, "SELECT * FROM lowongan WHERE id_lowongan = '$id_lowongan'");
+$querylowongan = mysqli_query($koneksi, "SELECT * FROM recruitment WHERE id_lowongan = '$id_lowongan'");
 $getlowongan = mysqli_fetch_assoc($querylowongan);
 
-$query = mysqli_query($koneksi, "SELECT * FROM `kriteria` JOIN kriteria_index ON kode_kriteria_fore = kode_kriteria WHERE id_lowongan_fore = '$id_lowongan' AND status_kriteria = 1");
+$query = mysqli_query($koneksi, "SELECT * FROM `kriteria` JOIN kriteria_detail ON kode_kriteria_fore = kode_kriteria WHERE id_lowongan_fore = '$id_lowongan' AND status_kriteria = 1");
 ?>
 
 <!-- <div class="flash-data" data-flashdata=""></div> -->

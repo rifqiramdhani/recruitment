@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['type'] = 'error';
     }
 
-    echo "<script>window.location.href = '?page=subkriteria&penerimaan=". $id_lowongan ."&kriteria=". $id_kriteria ."';</script>";
+    echo "<script>window.location.href = '?page=subkriteria&penerimaan=" . $id_lowongan . "&kriteria=" . $id_kriteria . "';</script>";
 }
 ?>
 
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group mx-auto">
                     <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Simpan</button>
-                    <a href="?page=kriteria&penerimaan=<?= $id_lowongan ?>" class="btn btn-warning"><i class="fas fa-reply"></i> Kembali</a>
+                    <a href="?page=subkriteria&penerimaan=<?= $id_lowongan ?>&kriteria=<?= $id_kriteria ?>" class="btn btn-warning"><i class="fas fa-reply"></i> Kembali</a>
                 </div>
             </form>
         </div>

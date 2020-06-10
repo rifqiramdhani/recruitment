@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $alamat_karyawan = htmlspecialchars($_POST['alamat_karyawan']);
     $jabatan = htmlspecialchars($_POST['jabatan']); //Karyawan Masa Percobaan
     $email_karyawan = htmlspecialchars($_POST['email_karyawan']);
-    $password_karyawan = password_hash(htmlspecialchars($_POST['password_karyawan']), PASSWORD_DEFAULT);
+    $password_karyawan = htmlspecialchars($_POST['password_karyawan']);
 
     if(empty($password_karyawan)){
         $sql = mysqli_query($koneksi, "UPDATE `karyawan` SET 
@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         `alamat_karyawan`='$alamat_karyawan'
         WHERE id_karyawan = '$id'");
     }else {
+        $encryptpass = password_hash($password_karyawan, PASSWORD_DEFAULT);
         $sql = mysqli_query($koneksi, "UPDATE `karyawan` SET 
         `id_jabatan_fore`='$jabatan',
         `email_karyawan`='$email_karyawan',
@@ -35,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         `telp_karyawan`='$telp_karyawan',
         `ttl_karyawan`='$ttl_karyawan',
         `alamat_karyawan`='$alamat_karyawan',
-        `password_karyawan`='$password_karyawan'
+        `password_karyawan`='$encryptpass'
         WHERE id_karyawan = '$id'");
     }
 

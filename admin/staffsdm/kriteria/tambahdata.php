@@ -1,5 +1,6 @@
 <?php
-$querykriteria = mysqli_query($koneksi, "SELECT * FROM kriteria_index");
+$id_lowongan = $_GET['penerimaan'];
+$querykriteria = mysqli_query($koneksi, "SELECT * FROM kriteria_detail");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_lowongan = $_GET['penerimaan'];
@@ -48,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form action="#" method="post" data-toggle="validator" role="form">
 
                 <div class="form-group has-feedback">
-                    <label for="kode_kriteria_fore">kode_kriteria_fore</label>
+                    <label for="kode_kriteria_fore">Kode</label>
                     <select class="form-control" name="kode_kriteria_fore" id="kode_kriteria_fore" required>
                         <option value="">-Pilih Kriteria</option>
                         <?php while ($getkriteria = mysqli_fetch_assoc($querykriteria)) : ?>
@@ -68,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Simpan</button>
-                    <a href="<?= BASE_URL . 'admin/index.php?page=penerimaan' ?>" class="btn btn-warning"><i class="fas fa-reply"></i> Kembali</a>
+                    <a href="?page=kriteria&penerimaan=<?= $id_lowongan ?>" class="btn btn-warning"><i class="fas fa-reply"></i> Kembali</a>
                 </div>
 
             </form>

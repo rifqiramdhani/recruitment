@@ -3,7 +3,7 @@
 $id_kriteria = isset($_GET['kriteria']) ? $_GET['kriteria'] : 'Data tidak ditemukan';
 $id_lowongan = isset($_GET['penerimaan']) ? $_GET['penerimaan'] : 'Data tidak ditemukan';
 
-$querykriteria = mysqli_query($koneksi, "SELECT * FROM `kriteria` JOIN kriteria_index ON kode_kriteria_fore = kode_kriteria WHERE id_kriteria = '$id_kriteria'");
+$querykriteria = mysqli_query($koneksi, "SELECT * FROM `kriteria` JOIN kriteria_detail ON kode_kriteria_fore = kode_kriteria WHERE id_kriteria = '$id_kriteria'");
 $getkriteria = mysqli_fetch_assoc($querykriteria);
 
 $query = mysqli_query($koneksi, "SELECT * FROM `subkriteria` WHERE id_kriteria_fore = '$id_kriteria' ORDER BY nama_subkriteria ASC");

@@ -860,3 +860,9 @@ input[type="radio"] {
 .breadcrumb-item.active{
 	color: #23282c!important;
 }
+
+/* sidebar */
+.sidebar .nav-link.active {
+    color: #fff;
+    background: #0000005e!important;
+}

@@ -1,6 +1,6 @@
 <?php
 $id = $_GET['id'];
-$query = mysqli_query($koneksi, "SELECT * FROM `lowongan` WHERE id_lowongan = '$id'");
+$query = mysqli_query($koneksi, "SELECT * FROM `recruitment` WHERE id_lowongan = '$id'");
 
 $getdata = mysqli_fetch_assoc($query);
 
@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $gaji_lowongan = htmlspecialchars($_POST['gaji_lowongan']);
     $waktu_lowongan = htmlspecialchars($_POST['waktu_lowongan']);
 
-    $sql = mysqli_query($koneksi, "UPDATE `lowongan` SET 
+    $sql = mysqli_query($koneksi, "UPDATE `recruitment` SET 
         `nama_lowongan`='$nama_lowongan',
         `gaji_lowongan`='$gaji_lowongan',
         `waktu_lowongan`='$waktu_lowongan'

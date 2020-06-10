@@ -9,11 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $gaji_lowongan = htmlspecialchars($_POST['gaji_lowongan']);
     $waktu_lowongan = htmlspecialchars($_POST['waktu_lowongan']);
 
-    $sql = mysqli_query($koneksi, "INSERT INTO `lowongan`(`nama_lowongan`, `gaji_lowongan`, `waktu_lowongan`) VALUES ('$nama_lowongan', '$gaji_lowongan', '$waktu_lowongan')");
+    $sql = mysqli_query($koneksi, "INSERT INTO `recruitment`(`nama_lowongan`, `gaji_lowongan`, `waktu_lowongan`) VALUES ('$nama_lowongan', '$gaji_lowongan', '$waktu_lowongan')");
 
     $kriteria = mysqli_query($koneksi, "SELECT * FROM `kriteria` LIMIT 11");
     $subkriteria = mysqli_query($koneksi, "SELECT * FROM `subkriteria` LIMIT 18");
-    $lowongan = mysqli_query($koneksi, "SELECT id_lowongan FROM `lowongan` ORDER BY id_lowongan DESC LIMIT 1");
+    $lowongan = mysqli_query($koneksi, "SELECT id_lowongan FROM `recruitment` ORDER BY id_lowongan DESC LIMIT 1");
 
     $getlowongan = mysqli_fetch_assoc($lowongan);
     $newid_lowongan = $getlowongan['id_lowongan'] ;

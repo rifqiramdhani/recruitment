@@ -1,5 +1,5 @@
 <?php
-$query = mysqli_query($koneksi, "SELECT * FROM `lowongan` WHERE status_lowongan = 1");
+$query = mysqli_query($koneksi, "SELECT * FROM `recruitment` WHERE status_lowongan = 1");
 
 ?>
 
