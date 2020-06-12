@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		<h3>Informasi Akun</h3>
 		<p>Email    : ' . $email . ' </p>
 		<p>Password : ' . $_POST['password'] . '</p>
-        <p>Silahkan klik link berikut untuk mengaktifkan email anda. <a href="' . BASE_URL . 'frontend/olahdata/aktivasi_calon_karyawan.php?email=' . $email . '&token=' . urlencode($token) . '">Aktif</a>.</p>';
+        <p>Silahkan klik link berikut untuk mengaktifkan email anda. <a href="' . BASE_URL . 'frontend/olahdata/aktivasi_calon_karyawan.php?email=' . $email . '&token=' . urlencode($token) . '&type=register">Aktif</a>.</p>';
         
         $mail->Body = $mailContent;
 

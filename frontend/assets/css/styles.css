@@ -589,3 +589,8 @@ i.icon-salary {
 .swal2-container.swal2-center.swal2-backdrop-show {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"!important;
 }
+
+.modal-content {
+    border-radius: 0px!important;
+    border: 1px solid #2529d8!important;
+}

@@ -9,9 +9,6 @@ if ($page) {
     require('frontend/index.php');
 }
 
-
-
-
 ?>
 
 
@@ -19,7 +16,7 @@ if ($page) {
 <div class="modal fade" id="modal_login" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <form action="frontend/olahdata/login.php" method="post" data-toggle="validator" role="form">
-            <div class="modal-content" style="font-family: Arial, Helvetica, sans-serif">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Form Login</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -59,7 +56,7 @@ if ($page) {
 <div class="modal fade" id="modal_lupa_password" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <form action="frontend/olahdata/lupa_password.php" method="post" data-toggle="validator" role="form">
-            <div class="modal-content" style="font-family: Arial, Helvetica, sans-serif">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Form Lupa Password</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -88,7 +85,7 @@ if ($page) {
 <div class="modal fade" id="modal_register" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <form action="frontend/olahdata/register.php" method="post" data-toggle="validator" role="form">
-            <div class="modal-content" style="font-family: Arial, Helvetica, sans-serif">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Form Register</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
