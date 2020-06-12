@@ -5,29 +5,36 @@ $query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan FROM `karyawan`
 $queryJabatan = mysqli_query($koneksi, "SELECT * FROM `jabatan`");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nama_lowongan = htmlspecialchars($_POST['nama_lowongan']);
-    $gaji_lowongan = htmlspecialchars($_POST['gaji_lowongan']);
-    $waktu_lowongan = htmlspecialchars($_POST['waktu_lowongan']);
+    $nama_recruitment = htmlspecialchars($_POST['nama_recruitment']);
+    $gaji_recruitment = htmlspecialchars($_POST['gaji_recruitment']);
+    $waktu_recruitment = htmlspecialchars($_POST['waktu_recruitment']);
 
-    $sql = mysqli_query($koneksi, "INSERT INTO `recruitment`(`nama_lowongan`, `gaji_lowongan`, `waktu_lowongan`) VALUES ('$nama_lowongan', '$gaji_lowongan', '$waktu_lowongan')");
+    $sql = mysqli_query($koneksi, "INSERT INTO `recruitment`(`nama_recruitment`, `gaji_recruitment`, `waktu_recruitment`) VALUES ('$nama_recruitment', '$gaji_recruitment', '$waktu_recruitment')");
 
     $kriteria = mysqli_query($koneksi, "SELECT * FROM `kriteria` LIMIT 11");
     $subkriteria = mysqli_query($koneksi, "SELECT * FROM `subkriteria` LIMIT 18");
-    $lowongan = mysqli_query($koneksi, "SELECT id_lowongan FROM `recruitment` ORDER BY id_lowongan DESC LIMIT 1");
+    $recruitment = mysqli_query($koneksi, "SELECT id_recruitment FROM `recruitment` ORDER BY id_recruitment DESC LIMIT 1");
 
-    $getlowongan = mysqli_fetch_assoc($lowongan);
-    $newid_lowongan = $getlowongan['id_lowongan'] ;
+    $getrecruitment = mysqli_fetch_assoc($recruitment);
+    //id baru recruitment
+    $newid_recruitment = $getrecruitment['id_recruitment'];
 
-    
-    while($getkriteria = mysqli_fetch_assoc($kriteria)){
+
+    //insert ke table desk_recruitment
+    mysqli_query($koneksi, "INSERT INTO `desk_recruitment`(`id_recruitment_fore`, `tipe`) VALUES ('$newid_recruitment', 'deskripsi')");
+
+    //insert ke table kriteria dengan id recruitment baru
+    while ($getkriteria = mysqli_fetch_assoc($kriteria)) {
         $kode_kriteria = $getkriteria['kode_kriteria_fore'];
         $bobot_kriteria = $getkriteria['bobot_kriteria'];
 
-        mysqli_query($koneksi, "INSERT INTO `kriteria`(`id_lowongan_fore`, `kode_kriteria_fore`, `bobot_kriteria`) VALUES ('$newid_lowongan', '$kode_kriteria', '$bobot_kriteria')");
+        mysqli_query($koneksi, "INSERT INTO `kriteria`(`id_recruitment_fore`, `kode_kriteria_fore`, `bobot_kriteria`) VALUES ('$newid_recruitment', '$kode_kriteria', '$bobot_kriteria')");
     }
-    
-    $newkriteria = mysqli_query($koneksi, "SELECT * FROM `kriteria` WHERE id_lowongan_fore = '$newid_lowongan'");
 
+    //id baru kriteria
+    $newkriteria = mysqli_query($koneksi, "SELECT * FROM `kriteria` WHERE id_recruitment_fore = '$newid_recruitment'");
+
+    //insert ke table subkriteria
     $plus = 1;
     while ($getnewkriteria = mysqli_fetch_assoc($newkriteria)) {
         if ($plus == 1) {
@@ -96,22 +103,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form action="#" method="post" data-toggle="validator" role="form">
 
                 <div class="form-group has-feedback">
-                    <label for="nama_lowongan">Nama</label>
-                    <input type="nama_lowongan" class="form-control" id="nama_lowongan" name="nama_lowongan" required>
+                    <label for="nama_recruitment">Nama</label>
+                    <input type="nama_recruitment" class="form-control" id="nama_recruitment" name="nama_recruitment" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>
 
                 <div class="form-group has-feedback">
-                    <label for="gaji_lowongan">Gaji</label>
-                    <input type="gaji_lowongan" class="form-control" id="gaji_lowongan" name="gaji_lowongan" required>
+                    <label for="gaji_recruitment">Gaji</label>
+                    <input type="gaji_recruitment" class="form-control" id="gaji_recruitment" name="gaji_recruitment" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>
 
                 <div class="form-group has-feedback">
-                    <label for="waktu_lowongan">Waktu</label>
-                    <select class="form-control" name="waktu_lowongan" id="waktu_lowogan" required>
+                    <label for="waktu_recruitment">Waktu</label>
+                    <select class="form-control" name="waktu_recruitment" id="waktu_recruitment" required>
                         <option value="">-Pilih Waktu</option>
                         <option value="FULL TIME">Full Time</option>
                         <option value="PART TIME">Part Time</option>

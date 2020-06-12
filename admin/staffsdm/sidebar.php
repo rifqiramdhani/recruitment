@@ -9,7 +9,7 @@
             </li>
             <li class="nav-title">Components</li>
             <li class="nav-item">
-                <a class="nav-link <?php if ($page == 'penerimaan' || $page == 'kriteria' || $page == 'subkriteria') echo 'active' ?>" href="<?= BASE_URL . 'admin/index.php?page=penerimaan'; ?>">
+                <a class="nav-link <?php if ($page == 'penerimaan' || $page == 'kriteria' || $page == 'subkriteria'|| $page == 'deskripsi') echo 'active' ?>" href="<?= BASE_URL . 'admin/index.php?page=penerimaan'; ?>">
                     <i class="nav-icon fas fa-search"></i> Penerimaan</a>
             </li>
             <li class="nav-item">

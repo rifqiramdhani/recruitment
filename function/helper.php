@@ -2,6 +2,16 @@
     session_start();
     define("BASE_URL", "http://localhost/skripsi/recruitment/");
 
+    function tampil_gaji($gaji)
+    {
+        $string1 = explode(' - ', $gaji);
+        $count = count($string1);
+        if ($count == 1) {
+            return number_format($string1[0]);
+        } else {
+            return number_format($string1[0]) . ' - ' . number_format($string1[1]);
+        }
+    }
 
     function cek_login(){
         if(!isset($_SESSION['login'])){

@@ -21,8 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     $data = [
                         'login' => true,
                         'email' => $email,
-                        'level' => strtolower(str_replace(' ', '', $user['nama_jabatan'])),
-                        'avatar' => $user['photo_karyawan']
+                        'level' => strtolower(str_replace(' ', '', $user['nama_jabatan']))
                     ];
 
                     //fungsi memasukkan data kedalam session

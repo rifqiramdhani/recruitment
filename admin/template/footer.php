@@ -29,10 +29,15 @@
 <script src="<?= BASE_URL . 'assets/js/jquery.smartWizard.min.js' ?>"></script>
 <!-- sweetaler 2 -->
 <script src="<?= BASE_URL . 'assets/js/sweetalert2.all.min.js' ?>"></script>
+<!-- custom file input -->
+<script src="<?= BASE_URL . 'assets/node_modules/bs-custom-file-input/dist/bs-custom-file-input.min.js' ?>"></script>
 <script>
     // Setup datatables 
     $(document).ready(function() {
 
+        //init custom file input
+        bsCustomFileInput.init()
+        
         //hapus datakaryawan
         $("#datakaryawan").dataTable()
         $("#datakaryawan").on('click', '.remove', function() {
@@ -54,7 +59,31 @@
         $("#datalowongan").on('click', '.remove', function() {
             var id = $(this).data('id');
             var nama = $(this).data('nama');
+            // console.log(id + nama)
             hapusdata('Data lowongan', "?page=penerimaan&action=deletedata&id=", id, nama)
+        })
+
+
+
+        //tampilhalaman lowongan
+        $("#datalowongan").on('click', '.tampilhalaman', function() {
+            var id = $(this).data('id');
+
+            $.ajax({
+                url: "?page=penerimaan&action=visible&id=" + id,
+                type: "post",
+                data: {
+                    'id_recruitment': id
+                },
+                success: function(response) {
+                    // var page = 'admin/index.php?page=penerimaan';
+                    // $(this).load(page);
+                    location.reload()
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                }
+            });
         })
 
         //hapus datakriteria
@@ -78,7 +107,48 @@
             hapusdata('Data subkriteria', "?page=subkriteria&action=deletedata&id=", id, nama)
         })
 
+        //hapus datapersyaratan
+        $("#datapersyaratan").on('click', '.remove', function() {
+            var id = $(this).data('id');
+            var nama = $(this).data('nama');
+            hapusdata('Data Persyaratan', "?page=deskripsi&action=deletedata&id=", id, nama)
+        })
 
+        //edit deskripsi
+        $("#savedeskripsi").click(function() {
+            var deskripsi = $('textarea').val()
+            var id_desk_recruitment = $('input[name="id_desk_recruitment"]').val()
+            var id_lowongan = $('input[name="id_lowongan"]').val()
+
+            $.ajax({
+                url: "?page=deskripsi&penerimaan=" + id_lowongan,
+                type: "post",
+                data: {
+                    'deskripsi': deskripsi,
+                    'id_desk_recruitment': id_desk_recruitment
+                },
+                success: function(response) {
+                    Swal.fire({
+                        title: 'Data Deskripsi',
+                        text: 'Data Berhasil Diperbaharui!',
+                        icon: 'success'
+                    })
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                }
+            });
+        })
+
+        //tambah persyaratan
+        var wrapper = $(".input_fields_wrap"); //Fields wrapper
+        var add_button = $("#tambahfield"); //Add button ID
+        var x = 1; //initlal text box count
+        $(add_button).click(function(e) { //on add input button click
+            e.preventDefault();
+            x++; //text box increment
+            $(wrapper).append('<div id="field' + x + '"><div class="form-group"><input type="text" class="form-control" id="deskripsi' + x + '" name="deskripsi[]" required></div></div>'); //add input box
+        });
 
         // sweetalert
         const flashdata = $('.flash-data').data('flashdata');

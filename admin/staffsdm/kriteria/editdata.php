@@ -2,7 +2,7 @@
 $id = $_GET['id'];
 $id_lowongan = $_GET['penerimaan'];
 
-$query = mysqli_query($koneksi, "SELECT kriteria.*, nama_kriteria FROM `kriteria` JOIN kriteria_detail ON kode_kriteria_fore = kode_kriteria WHERE id_kriteria = '$id' AND id_lowongan_fore = '$id_lowongan'");
+$query = mysqli_query($koneksi, "SELECT kriteria.*, nama_kriteria FROM `kriteria` JOIN kriteria_detail ON kode_kriteria_fore = kode_kriteria WHERE id_kriteria = '$id' AND id_recruitment_fore = '$id_lowongan'");
 
 $getdata = mysqli_fetch_assoc($query);
 

@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <span class="help-block with-errors"></span>
                 </div>
 
-                <div class="form-group mx-auto">
+                <div class="form-group">
                     <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Simpan</button>
                     <a href="?page=calon-karyawan" class="btn btn-warning"><i class="fas fa-reply"></i> Kembali</a>
                 </div>

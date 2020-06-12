@@ -7,14 +7,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $kode_kriteria_fore = $_POST['kode_kriteria_fore'];
     $bobot_kriteria = $_POST['bobot_kriteria'];
 
-    $querycek = mysqli_query($koneksi, "SELECT * FROM `kriteria` WHERE kode_kriteria_fore = '$kode_kriteria_fore' AND id_lowongan_fore = '$id_lowongan'");
+    $querycek = mysqli_query($koneksi, "SELECT * FROM `kriteria` WHERE kode_kriteria_fore = '$kode_kriteria_fore' AND id_recruitment_fore = '$id_lowongan'");
 
     if (mysqli_num_rows($querycek) > 0) {
         $getkriteria = mysqli_fetch_assoc($querycek);
         $status = $getkriteria['status_kriteria'];
 
         if ($status == 0) {
-            $sql = mysqli_query($koneksi, "UPDATE `kriteria` SET `status_kriteria`= 1, `bobot_kriteria`= '$bobot_kriteria' WHERE kode_kriteria_fore = '$kode_kriteria_fore' AND id_lowongan_fore = '$id_lowongan'");
+            $sql = mysqli_query($koneksi, "UPDATE `kriteria` SET `status_kriteria`= 1, `bobot_kriteria`= '$bobot_kriteria' WHERE kode_kriteria_fore = '$kode_kriteria_fore' AND id_recruitment_fore = '$id_lowongan'");
         } else {
             $_SESSION['message'] = 'Maaf data sudah ada';
             $_SESSION['title'] = 'Data Kriteria';
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<script>window.location.href = '?page=kriteria&penerimaan=" . $id_lowongan . "';</script>";
         }
     } else {
-        $sql = mysqli_query($koneksi, "INSERT INTO `kriteria`(`id_lowongan_fore`, `kode_kriteria_fore`, `bobot_kriteria`) VALUES ('$id_lowongan','$kode_kriteria_fore','$bobot_kriteria')");
+        $sql = mysqli_query($koneksi, "INSERT INTO `kriteria`(`id_recruitment_fore`, `kode_kriteria_fore`, `bobot_kriteria`) VALUES ('$id_lowongan','$kode_kriteria_fore','$bobot_kriteria')");
     }
 
     if (isset($sql)) {
