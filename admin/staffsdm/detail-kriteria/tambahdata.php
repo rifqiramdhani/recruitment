@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $kode_kriteria = strtoupper($_POST['kode_kriteria']);
     $nama_kriteria = ucfirst($_POST['nama_kriteria']);
 
-    $sql = mysqli_query($koneksi, "INSERT INTO `kriteria_detail`(`kode_kriteria`, `nama_kriteria`) VALUES ('$kode_kriteria','$nama_kriteria')");
+    $sql = mysqli_query($koneksi, "INSERT INTO `detail_kriteria_rekrutmen`(`id_dt_krt_rekt`, `nama_kriteria_rekrutmen`) VALUES ('$kode_kriteria','$nama_kriteria')");
 
     if ($sql) {
         $_SESSION['message'] = 'Data berhasil di tambahkan';
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Simpan</button>
-                    <a href="?page=kriteria-detail" class="btn btn-warning"><i class="fas fa-reply"></i> Kembali</a>
+                    <a href="?page=detail-kriteria" class="btn btn-warning"><i class="fas fa-reply"></i> Kembali</a>
                 </div>
 
             </form>

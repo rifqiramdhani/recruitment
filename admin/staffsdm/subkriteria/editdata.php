@@ -3,7 +3,7 @@ $id = $_GET['id'];
 $id_lowongan = $_GET['penerimaan'];
 $id_kriteria = $_GET['kriteria'];
 
-$query = mysqli_query($koneksi, "SELECT * FROM `subkriteria` WHERE id_subkriteria = '$id' AND id_kriteria_fore = '$id_kriteria'");
+$query = mysqli_query($koneksi, "SELECT * FROM `subkriteria_rekrutmen` WHERE id_subkriteria_rekrutmen = '$id' AND id_kriteria_rekrutmen = '$id_kriteria'");
 
 $getdata = mysqli_fetch_assoc($query);
 
@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama_subkriteria = htmlspecialchars($_POST['nama_subkriteria']);
     $bobot_subkriteria = htmlspecialchars($_POST['bobot_subkriteria']);
 
-    $sql = mysqli_query($koneksi, "UPDATE `subkriteria` SET `nama_subkriteria`= '$nama_subkriteria',`bobot_subkriteria` = '$bobot_subkriteria' WHERE id_subkriteria = '$id'");
+    $sql = mysqli_query($koneksi, "UPDATE `subkriteria_rekrutmen` SET `nama_subkriteria`='$nama_subkriteria',`bobot_subkriteria`='$bobot_subkriteria' WHERE id_subkriteria_rekrutmen = '$id'");
 
     if ($sql) {
         $_SESSION['message'] = 'Data berhasil diperbaharui';

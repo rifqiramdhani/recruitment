@@ -1,5 +1,5 @@
 <?php
-$query = mysqli_query($koneksi, "SELECT * FROM `kriteria_detail` ORDER BY kode_kriteria ASC");
+$query = mysqli_query($koneksi, "SELECT * FROM `detail_kriteria_rekrutmen` ORDER BY id_dt_krt_rekt ASC");
 ?>
 
 <!-- <div class="flash-data" data-flashdata=""></div> -->
@@ -32,12 +32,12 @@ $query = mysqli_query($koneksi, "SELECT * FROM `kriteria_detail` ORDER BY kode_k
                     </thead>
                     <tbody>
                         <?php while ($getdata = mysqli_fetch_assoc($query)) : ?>
-                            <tr id="<?= $getdata['kode_kriteria'] ?>">
-                                <td><?= $getdata['kode_kriteria'] ?></td>
-                                <td><?= $getdata['nama_kriteria'] ?></td>
+                            <tr id="<?= $getdata['id_dt_krt_rekt'] ?>">
+                                <td><?= $getdata['id_dt_krt_rekt'] ?></td>
+                                <td><?= $getdata['nama_kriteria_rekrutmen'] ?></td>
                                 <td>
-                                    <a href="?page=detail-kriteria&action=editdata&id=<?= $getdata['kode_kriteria'] ?>" class="btn btn-sm btn-primary text-white"><i class="fas fa-edit"></i></a>
-                                    <button type="button" class="btn btn-sm btn-danger remove" title="Hapus" data-id="<?= $getdata['kode_kriteria'] ?>" data-nama="<?= $getdata['nama_kriteria'] ?>"><i class="fas fa-trash"></i></button>
+                                    <a href="?page=detail-kriteria&action=editdata&id=<?= $getdata['id_dt_krt_rekt'] ?>" class="btn btn-sm btn-primary text-white"><i class="fas fa-edit"></i></a>
+                                    <button type="button" class="btn btn-sm btn-danger remove" title="Hapus" data-id="<?= $getdata['id_dt_krt_rekt'] ?>" data-nama="<?= $getdata['nama_kriteria_rekrutmen'] ?>"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                         <?php endwhile ?>

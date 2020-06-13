@@ -2,21 +2,21 @@
 
 $id_lowongan = isset($_GET['penerimaan']) ? $_GET['penerimaan'] : 'Data tidak ditemukan';
 
-$querylowongan = mysqli_query($koneksi, "SELECT * FROM recruitment WHERE id_recruitment = '$id_lowongan'");
+$querylowongan = mysqli_query($koneksi, "SELECT * FROM rekrutmen WHERE id_rekrutmen = '$id_lowongan'");
 $getlowongan = mysqli_fetch_assoc($querylowongan);
 
-$querydesk = mysqli_query($koneksi, "SELECT * FROM `desk_recruitment` WHERE tipe = 'deskripsi' AND id_recruitment_fore = '$id_lowongan'");
+$querydesk = mysqli_query($koneksi, "SELECT * FROM `desk_rekrutmen` WHERE tipe = 'deskripsi' AND id_rekrutmen = '$id_lowongan'");
 $getdesk = mysqli_fetch_assoc($querydesk);
 
-$querysyarat = mysqli_query($koneksi, "SELECT * FROM `desk_recruitment` WHERE tipe = 'persyaratan' AND id_recruitment_fore = '$id_lowongan'");
+$querysyarat = mysqli_query($koneksi, "SELECT * FROM `desk_rekrutmen` WHERE tipe = 'persyaratan' AND id_rekrutmen = '$id_lowongan'");
 
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id_desk_recruitment = $_POST['id_desk_recruitment'];
+    $id_desk_rekrutmen = $_POST['id_desk_rekrutmen'];
     $deskripsi = $_POST['deskripsi'];
 
-    $sql = mysqli_query($koneksi, "UPDATE `desk_recruitment` SET `deskripsi`='$deskripsi' WHERE id_desk_recruitment = '$id_desk_recruitment'");
+    $sql = mysqli_query($koneksi, "UPDATE `desk_rekrutmen` SET `deskripsi`='$deskripsi' WHERE id_desk_rekrutmen = '$id_desk_rekrutmen'");
 
     // header('location: ?page=deskripsi&penerimaan=8');
     // var_dump($_SESSION);
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="row">
         <div class="col-lg-6">
             <div class="card card-accent-success">
-                <div class="card-header"><strong>Persyaratan - <?= $getlowongan['nama_recruitment'] ?></strong></div>
+                <div class="card-header"><strong>Persyaratan - <?= $getlowongan['nama_rekrutmen'] ?></strong></div>
                 <div class="card-body">
                     <table class="table table-striped table-bordered text-center" style="width:100%" id="datapersyaratan">
                         <thead>
@@ -60,12 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <tbody>
                             <?php $i = 1;
                             while ($getdata = mysqli_fetch_assoc($querysyarat)) : ?>
-                                <tr id="<?= $getdata['id_desk_recruitment'] ?>">
+                                <tr id="<?= $getdata['id_desk_rekrutmen'] ?>">
                                     <td><?= $i++ ?></td>
                                     <td><?= $getdata['deskripsi'] ?></td>
                                     <td>
-                                        <a href="?page=kriteria&action=editdata&id=<?= $getdata['id_kriteria'] ?>&penerimaan=<?= $id_lowongan ?>" class="btn btn-sm btn-primary text-white"><i class="fas fa-edit"></i></a>
-                                        <button type="button" class="btn btn-sm btn-danger remove" title="Hapus" data-id="<?= $getdata['id_desk_recruitment'] ?>" data-nama="<?= $getdata['deskripsi'] ?>"><i class="fas fa-trash"></i></button>
+                                        <a href="" class="btn btn-sm btn-primary text-white"><i class="fas fa-edit"></i></a>
+
+                                        <button type="button" class="btn btn-sm btn-danger remove" title="Hapus" data-id="<?= $getdata['id_desk_rekrutmen'] ?>" data-nama="<?= $getdata['deskripsi'] ?>"><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                             <?php endwhile ?>
@@ -77,12 +78,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="col-lg-6">
             <div class="card card-accent-success">
-                <div class="card-header"><strong>Deskripsi - <?= $getlowongan['nama_recruitment'] ?></strong></div>
+                <div class="card-header"><strong>Deskripsi - <?= $getlowongan['nama_rekrutmen'] ?></strong></div>
                 <div class="card-body">
                     <form action="#" method="post" data-toggle="validator" role="form" id="formdeskripsi">
                         <div class="form-group has-feedback">
                             <label for="deskripsi">Deskripsi Pekerjaan</label>
-                            <input type="hidden" name="id_desk_recruitment" value="<?= $getdesk['id_desk_recruitment'] ?>">
+                            <input type="hidden" name="id_desk_rekrutmen" value="<?= $getdesk['id_desk_rekrutmen'] ?>">
                             <input type="hidden" name="id_lowongan" value="<?= $id_lowongan ?>">
                             <textarea class="form-control" id="deskripsi" rows="5" name="deskripsi" required><?= $getdesk['deskripsi'] ?></textarea>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>

@@ -1,7 +1,7 @@
 <?php
 $id = $_GET['id'];
 
-$query = mysqli_query($koneksi, "SELECT * FROM kriteria_detail WHERE kode_kriteria = '$id'");
+$query = mysqli_query($koneksi, "SELECT * FROM `detail_kriteria_rekrutmen` WHERE `id_dt_krt_rekt` = '$id'");
 
 $getdata = mysqli_fetch_assoc($query);
 
@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $kode_kriteria = htmlspecialchars($_POST['kode_kriteria']);
     $nama_kriteria = htmlspecialchars($_POST['nama_kriteria']);
 
-    $sql = mysqli_query($koneksi, "UPDATE `kriteria_detail` SET `kode_kriteria` = '$kode_kriteria', `nama_kriteria` = '$nama_kriteria'  WHERE kode_kriteria = '$id'");
+    $sql = mysqli_query($koneksi, "UPDATE `detail_kriteria_rekrutmen` SET `id_dt_krt_rekt`='$kode_kriteria',`nama_kriteria_rekrutmen`='$nama_kriteria' WHERE id_dt_krt_rekt = '$id'");
 
     if ($sql) {
         $_SESSION['message'] = 'Data berhasil diperbaharui';
@@ -35,14 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group has-feedback">
                     <label for="kode_kriteria">Kode</label>
-                    <input type="kode_kriteria" class="form-control" id="kode_kriteria" name="kode_kriteria" value="<?= $getdata['kode_kriteria'] ?>" required>
+                    <input type="kode_kriteria" class="form-control" id="kode_kriteria" name="kode_kriteria" value="<?= $getdata['id_dt_krt_rekt'] ?>" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>
 
                 <div class="form-group has-feedback">
                     <label for="nama_kriteria">Nama</label>
-                    <input type="nama_kriteria" class="form-control" id="nama_kriteria" name="nama_kriteria" value="<?= $getdata['nama_kriteria'] ?>" required>
+                    <input type="nama_kriteria" class="form-control" id="nama_kriteria" name="nama_kriteria" value="<?= $getdata['nama_kriteria_rekrutmen'] ?>" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>

@@ -88,42 +88,65 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo $random_akta_kelahiran . '<br>';
         echo $random_kartu_keluarga . '<br>';
         echo $random_ijazah . '<br>';
+        echo $random_skpk . '<br>';
         echo $random_pas_foto . '<br>';
         echo $_SESSION['id_calon_karyawan'] . '<br>';
 
 
         mysqli_begin_transaction($koneksi, MYSQLI_TRANS_START_READ_ONLY);
+        
+        $sql1 = mysqli_query($koneksi, "INSERT INTO `file_calon_karyawan`(`id_rekrutmen`, 
+        `id_calon_karyawan`, 
+        `file_formulir_lamaran`, 
+        `file_cv`, 
+        `file_ktp`, 
+        `file_akta_kelahiran`, 
+        `file_kartu_keluarga`, 
+        `file_ijazah`, 
+        `file_skpk`, 
+        `file_pas_foto`) VALUES (
+            '$id_recruitment_fore',
+            '$id_calon_karyawan_fore',
+            '$random_formulir_lamaran',
+            '$random_cv',
+            '$random_ktp',
+            '$random_akta_kelahiran',
+            '$random_kartu_keluarga',
+            '$random_ijazah',
+            '$random_skpk',
+            '$random_pas_foto'
+        )");
+
+       
+        $sql2 = mysqli_query($koneksi, "INSERT INTO `detail_rekrutmen`(`id_rekrutmen`, `id_calon_karyawan`) VALUES ('$id_recruitment_fore','$id_calon_karyawan_fore')");
+
 
         //insert formulir_lamaran
-        $sql1 = mysqli_query($koneksi, "INSERT INTO `file_calon_karyawan`(`id_recruitment_fore`, `id_calon_karyawan_fore`, `nama_file_calon_karyawan`) VALUES ('$id_recruitment_fore','$id_calon_karyawan_fore','$random_formulir_lamaran')");
         move_uploaded_file($formulir_lamaran["tmp_name"], $folder . $random_formulir_lamaran);
 
         //insert cv
-        $sql2 = mysqli_query($koneksi, "INSERT INTO `file_calon_karyawan`(`id_recruitment_fore`, `id_calon_karyawan_fore`, `nama_file_calon_karyawan`) VALUES ('$id_recruitment_fore','$id_calon_karyawan_fore','$random_cv')");
-        move_uploaded_file($formulir_lamaran["tmp_name"], $folder . $random_cv);
+        move_uploaded_file($cv["tmp_name"], $folder . $random_cv);
 
         // insert ktp
-        $sql3 = mysqli_query($koneksi, "INSERT INTO `file_calon_karyawan`(`id_recruitment_fore`, `id_calon_karyawan_fore`, `nama_file_calon_karyawan`) VALUES ('$id_recruitment_fore','$id_calon_karyawan_fore','$random_ktp')");
-        move_uploaded_file($formulir_lamaran["tmp_name"], $folder . $random_ktp);
+        move_uploaded_file($ktp["tmp_name"], $folder . $random_ktp);
 
         //insert akta_kelahiran
-        $sql4 = mysqli_query($koneksi, "INSERT INTO `file_calon_karyawan`(`id_recruitment_fore`, `id_calon_karyawan_fore`, `nama_file_calon_karyawan`) VALUES ('$id_recruitment_fore','$id_calon_karyawan_fore','$random_akta_kelahiran')");
-        move_uploaded_file($formulir_lamaran["tmp_name"], $folder . $random_akta_kelahiran);
+        move_uploaded_file($akta_kelahiran["tmp_name"], $folder . $random_akta_kelahiran);
 
         //insert kartu keluarga
-        $sql5 = mysqli_query($koneksi, "INSERT INTO `file_calon_karyawan`(`id_recruitment_fore`, `id_calon_karyawan_fore`, `nama_file_calon_karyawan`) VALUES ('$id_recruitment_fore','$id_calon_karyawan_fore','$random_kartu_keluarga')");
-        move_uploaded_file($formulir_lamaran["tmp_name"], $folder . $random_kartu_keluarga);
+        move_uploaded_file($kartu_keluarga["tmp_name"], $folder . $random_kartu_keluarga);
 
         //insert ijazah
-        $sql6 = mysqli_query($koneksi, "INSERT INTO `file_calon_karyawan`(`id_recruitment_fore`, `id_calon_karyawan_fore`, `nama_file_calon_karyawan`) VALUES ('$id_recruitment_fore','$id_calon_karyawan_fore','$random_ijazah')");
-        move_uploaded_file($formulir_lamaran["tmp_name"], $folder . $random_ijazah);
-
+        move_uploaded_file($ijazah["tmp_name"], $folder . $random_ijazah);
+      
+        //skpkp
+        move_uploaded_file($skpk["tmp_name"], $folder . $random_ijazah);
+      
         //insert pas_foto
-        $sql7 = mysqli_query($koneksi, "INSERT INTO `file_calon_karyawan`(`id_recruitment_fore`, `id_calon_karyawan_fore`, `nama_file_calon_karyawan`) VALUES ('$id_recruitment_fore','$id_calon_karyawan_fore','$random_pas_foto')");
-        move_uploaded_file($formulir_lamaran["tmp_name"], $folder . $random_pas_foto);
+        move_uploaded_file($pas_foto["tmp_name"], $folder . $random_pas_foto);
 
 
-        if ($sql1 & $sql2 & $sql3 & $sql4 & $sql5 & $sql6 & $sql7) {
+        if ($sql1 & $sql2) {
             mysqli_commit($koneksi);
             $_SESSION['message'] = 'Berkas berhasil disimpan, silahkan menunggu email dari kami untuk keputusan lebih lanjut.';
             $_SESSION['title'] = 'Data lamaran';
@@ -131,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             redirect('index.php?page=detail&penerimaan='. $id_recruitment_fore);
         } else {
             mysqli_rollback($koneksi);
-            $_SESSION['message'] = 'Maaf berkas gagal disimpah, silahkan coba kembali!';
+            $_SESSION['message'] = 'Maaf berkas gagal disimpan, silahkan coba kembali!';
             $_SESSION['title'] = 'Data lamaran';
             $_SESSION['type'] = 'error';
             redirect('index.php?page=detail&penerimaan=' . $id_recruitment_fore);

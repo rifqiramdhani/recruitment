@@ -2,7 +2,8 @@
 $id = $_GET['id'];
 $id_lowongan = $_GET['penerimaan'];
 
-$query = mysqli_query($koneksi, "SELECT kriteria.*, nama_kriteria FROM `kriteria` JOIN kriteria_detail ON kode_kriteria_fore = kode_kriteria WHERE id_kriteria = '$id' AND id_recruitment_fore = '$id_lowongan'");
+$query = mysqli_query($koneksi, "SELECT kriteria_rekrutmen.*, nama_kriteria_rekrutmen FROM `kriteria_rekrutmen` JOIN detail_kriteria_rekrutmen ON kriteria_rekrutmen.id_dt_krt_rekt = detail_kriteria_rekrutmen.id_dt_krt_rekt WHERE id_krt_rekt = '$id' AND id_rekrutmen = '$id_lowongan'");
+
 
 $getdata = mysqli_fetch_assoc($query);
 
@@ -11,7 +12,7 @@ $queryJabatan = mysqli_query($koneksi, "SELECT * FROM `jabatan`");
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $bobot_kriteria = htmlspecialchars($_POST['bobot_kriteria']);
 
-    $sql = mysqli_query($koneksi, "UPDATE `kriteria` SET `bobot_kriteria` = '$bobot_kriteria' WHERE id_kriteria = '$id'");
+    $sql = mysqli_query($koneksi, "UPDATE `kriteria_rekrutmen` SET `bobot_kriteria`='$bobot_kriteria' WHERE id_krt_rekt = '$id'");
 
     if ($sql) {
         $_SESSION['message'] = 'Data berhasil diperbaharui';
@@ -36,14 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group has-feedback">
                     <label for="kode_kriteria">Kode</label>
-                    <input type="kode_kriteria" class="form-control" id="kode_kriteria" name="kode_kriteria" value="<?= $getdata['kode_kriteria_fore'] ?>" required readonly>
+                    <input type="kode_kriteria" class="form-control" id="kode_kriteria" name="kode_kriteria" value="<?= $getdata['id_dt_krt_rekt'] ?>" required readonly>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>
 
                 <div class="form-group has-feedback">
                     <label for="nama_kriteria">Nama</label>
-                    <input type="nama_kriteria" class="form-control" id="nama_kriteria" name="nama_kriteria" value="<?= $getdata['nama_kriteria'] ?>" required readonly>
+                    <input type="nama_kriteria" class="form-control" id="nama_kriteria" name="nama_kriteria" value="<?= $getdata['nama_kriteria_rekrutmen'] ?>" required readonly>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>

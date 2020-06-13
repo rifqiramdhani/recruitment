@@ -2,7 +2,7 @@
 <?php require('frontend/template/top-section-beranda.php') ?>
 
 <?php
-$query = mysqli_query($koneksi, "SELECT * FROM `recruitment` WHERE status_recruitment = 1");
+$query = mysqli_query($koneksi, "SELECT * FROM `rekrutmen` WHERE status_rekrutmen = 1");
 
 // var_dump($_SESSION);
 ?>
@@ -30,7 +30,7 @@ endif;
                                     <div class="job-icon"><i class="fa fa-briefcase"></i></div>
                                     <div class="job-description">
                                         <h4 class="job-info">
-                                            <?= $getdata['nama_recruitment'] ?>
+                                            <?= $getdata['nama_rekrutmen'] ?>
                                         </h4>
                                         <p>PT Bonli Cipta Sejahtera<br></p>
                                     </div>
@@ -39,7 +39,7 @@ endif;
                                             <li><i class="fa fa-map-marker"></i>&nbsp;Lembang</li>
                                             <li>
                                                 <i class="icon-salary"></i>
-                                                IDR <?= tampil_gaji($getdata['gaji_recruitment']) ?>
+                                                IDR <?= tampil_gaji($getdata['gaji_rekrutmen']) ?>
                                             </li>
                                         </ul>
                                     </div>
@@ -48,9 +48,9 @@ endif;
                             <div class="col-md-3 job-info-right text-right">
                                 <span class="job-time">
                                     <i class="fa fa-heart-o"></i> &nbsp;
-                                    <?= $getdata['waktu_recruitment'] ?>
+                                    <?= $getdata['waktu_rekrutmen'] ?>
                                 </span>
-                                <a class="btn-apply" href="?page=detail&penerimaan=<?= $getdata['id_recruitment'] ?>">
+                                <a class="btn-apply" href="?page=detail&penerimaan=<?= $getdata['id_rekrutmen'] ?>">
                                     Selengkapnya
                                 </a>
                             </div>

@@ -1,13 +1,13 @@
 <?php
 $id_lowongan = $_GET['penerimaan'];
-$querykriteria = mysqli_query($koneksi, "SELECT * FROM kriteria_detail");
+$querykriteria = mysqli_query($koneksi, "SELECT * FROM detail_kriteria_rekrutmen");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_lowongan = $_GET['penerimaan'];
     $kode_kriteria_fore = $_POST['kode_kriteria_fore'];
     $bobot_kriteria = $_POST['bobot_kriteria'];
 
-    $querycek = mysqli_query($koneksi, "SELECT * FROM `kriteria` WHERE kode_kriteria_fore = '$kode_kriteria_fore' AND id_recruitment_fore = '$id_lowongan'");
+    $querycek = mysqli_query($koneksi, "SELECT * FROM `kriteria_rekrutmen` WHERE id_dt_krt_rekt = '$kode_kriteria_fore' AND id_rekrutmen = '$id_lowongan'");
 
     if (mysqli_num_rows($querycek) > 0) {
         $getkriteria = mysqli_fetch_assoc($querycek);
@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($status == 0) {
             $sql = mysqli_query($koneksi, "UPDATE `kriteria` SET `status_kriteria`= 1, `bobot_kriteria`= '$bobot_kriteria' WHERE kode_kriteria_fore = '$kode_kriteria_fore' AND id_recruitment_fore = '$id_lowongan'");
+            $sql = mysqli_query($koneksi, "UPDATE `kriteria_rekrutmen` SET `bobot_kriteria`='$bobot_kriteria',`status_kriteria`= 1 WHERE id_dt_krt_rekt = '$kode_kriteria_fore' AND id_rekrutmen = '$id_lowongan'");
         } else {
             $_SESSION['message'] = 'Maaf data sudah ada';
             $_SESSION['title'] = 'Data Kriteria';
@@ -22,17 +23,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<script>window.location.href = '?page=kriteria&penerimaan=" . $id_lowongan . "';</script>";
         }
     } else {
-        $sql = mysqli_query($koneksi, "INSERT INTO `kriteria`(`id_recruitment_fore`, `kode_kriteria_fore`, `bobot_kriteria`) VALUES ('$id_lowongan','$kode_kriteria_fore','$bobot_kriteria')");
+        $sql = mysqli_query($koneksi, "INSERT INTO `kriteria_rekrutmen`(`id_rekrutmen`, `id_dt_krt_rekt`, `bobot_kriteria`) VALUES ('$id_lowongan','$kode_kriteria_fore','$bobot_kriteria')");
     }
 
     if (isset($sql)) {
         if ($sql) {
             $_SESSION['message'] = 'Data berhasil di tambahkan';
-            $_SESSION['title'] = 'Data Penerimaan';
+            $_SESSION['title'] = 'Data Kriteria';
             $_SESSION['type'] = 'success';
         } else {
             $_SESSION['message'] = 'Data gagal di tambahkan';
-            $_SESSION['title'] = 'Data Penerimaan';
+            $_SESSION['title'] = 'Data Kriteria';
             $_SESSION['type'] = 'error';
         }
 
@@ -53,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <select class="form-control" name="kode_kriteria_fore" id="kode_kriteria_fore" required>
                         <option value="">-Pilih Kriteria</option>
                         <?php while ($getkriteria = mysqli_fetch_assoc($querykriteria)) : ?>
-                            <option value="<?= $getkriteria['kode_kriteria'] ?>"><?= $getkriteria['nama_kriteria'] ?></option>
+                            <option value="<?= $getkriteria['id_dt_krt_rekt'] ?>"><?= $getkriteria['nama_kriteria_rekrutmen'] ?></option>
                         <?php endwhile ?>
                     </select>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>

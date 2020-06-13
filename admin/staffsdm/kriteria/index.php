@@ -2,10 +2,10 @@
 
 $id_lowongan = isset($_GET['penerimaan']) ? $_GET['penerimaan'] : 'Data tidak ditemukan';
 
-$querylowongan = mysqli_query($koneksi, "SELECT * FROM recruitment WHERE id_recruitment = '$id_lowongan'");
+$querylowongan = mysqli_query($koneksi, "SELECT * FROM rekrutmen WHERE id_rekrutmen = '$id_lowongan'");
 $getlowongan = mysqli_fetch_assoc($querylowongan);
 
-$query = mysqli_query($koneksi, "SELECT * FROM `kriteria` JOIN kriteria_detail ON kode_kriteria_fore = kode_kriteria WHERE id_recruitment_fore = '$id_lowongan' AND status_kriteria = 1");
+$query = mysqli_query($koneksi, "SELECT * FROM `kriteria_rekrutmen` JOIN detail_kriteria_rekrutmen ON kriteria_rekrutmen.id_dt_krt_rekt = detail_kriteria_rekrutmen.id_dt_krt_rekt WHERE id_rekrutmen = '$id_lowongan' AND status_kriteria = 1");
 ?>
 
 <!-- <div class="flash-data" data-flashdata=""></div> -->
@@ -28,7 +28,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM `kriteria` JOIN kriteria_detail O
     ?>
 
     <div class="card card-accent-success">
-        <div class="card-header"><strong>Data Kriteria - <?= $getlowongan['nama_recruitment'] ?></strong></div>
+        <div class="card-header"><strong>Data Kriteria - <?= $getlowongan['nama_rekrutmen'] ?></strong></div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-striped table-bordered text-center" style="width:100%" id="datakriteria">
@@ -43,16 +43,16 @@ $query = mysqli_query($koneksi, "SELECT * FROM `kriteria` JOIN kriteria_detail O
                     </thead>
                     <tbody>
                         <?php while ($getdata = mysqli_fetch_assoc($query)) : ?>
-                            <tr id="<?= $getdata['id_kriteria'] ?>">
-                                <td><?= $getdata['kode_kriteria'] ?></td>
-                                <td><?= $getdata['nama_kriteria'] ?></td>
+                            <tr id="<?= $getdata['id_krt_rekt'] ?>">
+                                <td><?= $getdata['id_dt_krt_rekt'] ?></td>
+                                <td><?= $getdata['nama_kriteria_rekrutmen'] ?></td>
                                 <td><?= $getdata['bobot_kriteria'] ?></td>
                                 <td>
-                                    <a href="?page=kriteria&action=editdata&id=<?= $getdata['id_kriteria'] ?>&penerimaan=<?= $id_lowongan ?>" class="btn btn-sm btn-primary text-white"><i class="fas fa-edit"></i></a>
-                                    <button type="button" class="btn btn-sm btn-danger remove" title="Hapus" data-id="<?= $getdata['id_kriteria'] ?>" data-nama="<?= $getdata['nama_kriteria'] ?>"><i class="fas fa-trash"></i></button>
+                                    <a href="?page=kriteria&action=editdata&id=<?= $getdata['id_krt_rekt'] ?>&penerimaan=<?= $id_lowongan ?>" class="btn btn-sm btn-primary text-white"><i class="fas fa-edit"></i></a>
+                                    <button type="button" class="btn btn-sm btn-danger remove" title="Hapus" data-id="<?= $getdata['id_krt_rekt'] ?>" data-nama="<?= $getdata['nama_kriteria_rekrutmen'] ?>"><i class="fas fa-trash"></i></button>
                                 </td>
                                 <td>
-                                    <a href="?page=subkriteria&penerimaan=<?= $id_lowongan ?>&kriteria=<?= $getdata['id_kriteria'] ?>" class="btn btn-sm btn-secondary">Sub Kriteria</a>
+                                    <a href="?page=subkriteria&penerimaan=<?= $id_lowongan ?>&kriteria=<?= $getdata['id_krt_rekt'] ?>" class="btn btn-sm btn-secondary">Sub Kriteria</a>
                                 </td>
                             </tr>
                         <?php endwhile ?>

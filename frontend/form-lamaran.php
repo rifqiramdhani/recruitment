@@ -14,16 +14,16 @@ $id_recruitment = $_GET['penerimaan'];
 $id_calon_karyawan_fore = $_SESSION['id_calon_karyawan'];
 
 
-$query = mysqli_query($koneksi, "SELECT * FROM `recruitment` WHERE id_recruitment= '$id_recruitment' AND status_recruitment = 1");
+$query = mysqli_query($koneksi, "SELECT * FROM `rekrutmen` WHERE id_rekrutmen= '$id_recruitment' AND status_rekrutmen = 1");
 
 if (mysqli_num_rows($query) == 0) {
-    $_SESSION['message'] = 'Maaf data recruitment tidak ada!';
+    $_SESSION['message'] = 'Maaf data rekrutmen tidak ada!';
     $_SESSION['title'] = 'Peringatan!';
     $_SESSION['type'] = 'warning';
     header('location: index.php');
 }
 
-$cek_file_ck = mysqli_query($koneksi, "SELECT * FROM `file_calon_karyawan` WHERE id_recruitment_fore = '$id_recruitment' AND id_calon_karyawan_fore = '$id_calon_karyawan_fore' LIMIT 1");
+$cek_file_ck = mysqli_query($koneksi, "SELECT * FROM `file_calon_karyawan` WHERE id_rekrutmen = '$id_recruitment' AND id_calon_karyawan = '$id_calon_karyawan_fore' LIMIT 1");
 
 
 if (mysqli_num_rows($cek_file_ck) > 0) {
@@ -42,7 +42,7 @@ $getdata = mysqli_fetch_assoc($query);
 <section id="content-section">
     <div class="container">
         <div class="py-lg-5 py-3">
-            <h3 class="text-center title-page mb-lg-4 mb-3">Lowongan Kerja <?= $getdata['nama_recruitment'] ?> PT. Bonli Cipta Sejahtera<br></h3>
+            <h3 class="text-center title-page mb-lg-4 mb-3">Lowongan Kerja <?= $getdata['nama_rekrutmen'] ?> PT. Bonli Cipta Sejahtera<br></h3>
             <div class="row">
                 <div class="col-12">
                     <div class="card work-info">

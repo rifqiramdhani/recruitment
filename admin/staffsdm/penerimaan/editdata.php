@@ -1,21 +1,21 @@
 <?php
 $id = $_GET['id'];
-$query = mysqli_query($koneksi, "SELECT * FROM `recruitment` WHERE id_recruitment = '$id'");
+$query = mysqli_query($koneksi, "SELECT * FROM `rekrutmen` WHERE id_rekrutmen = '$id'");
 
 $getdata = mysqli_fetch_assoc($query);
 
 $queryJabatan = mysqli_query($koneksi, "SELECT * FROM `jabatan`");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nama_recruitment = htmlspecialchars($_POST['nama_recruitment']);
-    $gaji_recruitment = htmlspecialchars($_POST['gaji_recruitment']);
-    $waktu_recruitment = htmlspecialchars($_POST['waktu_recruitment']);
+    $nama_rekrutmen = htmlspecialchars($_POST['nama_rekrutmen']);
+    $gaji_rekrutmen = htmlspecialchars($_POST['gaji_rekrutmen']);
+    $waktu_rekrutmen = htmlspecialchars($_POST['waktu_rekrutmen']);
 
-    $sql = mysqli_query($koneksi, "UPDATE `recruitment` SET 
-        `nama_recruitment`='$nama_recruitment',
-        `gaji_recruitment`='$gaji_recruitment',
-        `waktu_recruitment`='$waktu_recruitment'
-        WHERE id_recruitment = '$id'");
+    $sql = mysqli_query($koneksi, "UPDATE `rekrutmen` SET 
+        `nama_rekrutmen`='$nama_rekrutmen',
+        `gaji_rekrutmen`='$gaji_rekrutmen',
+        `waktu_rekrutmen`='$waktu_rekrutmen'
+        WHERE id_rekrutmen = '$id'");
 
     if ($sql) {
         $_SESSION['message'] = 'Data berhasil diperbaharui';
@@ -39,25 +39,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form action="#" method="post" data-toggle="validator" role="form">
 
                 <div class="form-group has-feedback">
-                    <label for="nama_recruitment">Nama</label>
-                    <input type="nama_recruitment" class="form-control" id="nama_recruitment" name="nama_recruitment" value="<?= $getdata['nama_recruitment'] ?>" required>
+                    <label for="nama_rekrutmen">Nama</label>
+                    <input type="nama_rekrutmen" class="form-control" id="nama_rekrutmen" name="nama_rekrutmen" value="<?= $getdata['nama_rekrutmen'] ?>" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>
 
                 <div class="form-group has-feedback">
-                    <label for="gaji_recruitment">Gaji</label>
-                    <input type="gaji_recruitment" class="form-control" id="gaji_recruitment" name="gaji_recruitment" value="<?= $getdata['gaji_recruitment'] ?>" required>
+                    <label for="gaji_rekrutmen">Gaji</label>
+                    <input type="gaji_rekrutmen" class="form-control" id="gaji_rekrutmen" name="gaji_rekrutmen" value="<?= $getdata['gaji_rekrutmen'] ?>" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>
 
                 <div class="form-group has-feedback">
-                    <label for="waktu_recruitment">Waktu</label>
-                    <select class="form-control" name="waktu_recruitment" id="waktu_lowogan" required>
+                    <label for="waktu_rekrutmen">Waktu</label>
+                    <select class="form-control" name="waktu_rekrutmen" id="waktu_lowogan" required>
                         <option value="">-Pilih Waktu</option>
-                        <option value="FULL TIME" <?php if($getdata['waktu_recruitment'] == "FULL TIME") echo 'selected' ?>>FULL TIME</option>
-                        <option value="PART TIME" <?php if($getdata['waktu_recruitment'] == "PART TIME") echo 'selected' ?>>PART TIME</option>
+                        <option value="FULL TIME" <?php if($getdata['waktu_rekrutmen'] == "FULL TIME") echo 'selected' ?>>FULL TIME</option>
+                        <option value="PART TIME" <?php if($getdata['waktu_rekrutmen'] == "PART TIME") echo 'selected' ?>>PART TIME</option>
                     </select>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>

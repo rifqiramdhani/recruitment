@@ -9,44 +9,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $gaji_recruitment = htmlspecialchars($_POST['gaji_recruitment']);
     $waktu_recruitment = htmlspecialchars($_POST['waktu_recruitment']);
 
-    $sql = mysqli_query($koneksi, "INSERT INTO `recruitment`(`nama_recruitment`, `gaji_recruitment`, `waktu_recruitment`) VALUES ('$nama_recruitment', '$gaji_recruitment', '$waktu_recruitment')");
+    $sql = mysqli_query($koneksi, "INSERT INTO `rekrutmen`(`nama_rekrutmen`, `gaji_rekrutmen`, `waktu_rekrutmen`) VALUES ('$nama_recruitment', '$gaji_recruitment', '$waktu_recruitment')");
 
-    $kriteria = mysqli_query($koneksi, "SELECT * FROM `kriteria` LIMIT 11");
-    $subkriteria = mysqli_query($koneksi, "SELECT * FROM `subkriteria` LIMIT 18");
-    $recruitment = mysqli_query($koneksi, "SELECT id_recruitment FROM `recruitment` ORDER BY id_recruitment DESC LIMIT 1");
+    $kriteria = mysqli_query($koneksi, "SELECT * FROM `kriteria_rekrutmen` LIMIT 11");
+
+    $subkriteria = mysqli_query($koneksi, "SELECT * FROM `subkriteria_rekrutmen` LIMIT 18");
+
+    $recruitment = mysqli_query($koneksi, "SELECT id_rekrutmen FROM `rekrutmen` ORDER BY id_rekrutmen DESC LIMIT 1");
 
     $getrecruitment = mysqli_fetch_assoc($recruitment);
     //id baru recruitment
-    $newid_recruitment = $getrecruitment['id_recruitment'];
+    $newid_recruitment = $getrecruitment['id_rekrutmen'];
 
 
     //insert ke table desk_recruitment
-    mysqli_query($koneksi, "INSERT INTO `desk_recruitment`(`id_recruitment_fore`, `tipe`) VALUES ('$newid_recruitment', 'deskripsi')");
+    mysqli_query($koneksi, "INSERT INTO `desk_rekrutmen`(`id_rekrutmen`, `tipe`) VALUES ('$newid_recruitment', 'deskripsi')");
 
     //insert ke table kriteria dengan id recruitment baru
     while ($getkriteria = mysqli_fetch_assoc($kriteria)) {
-        $kode_kriteria = $getkriteria['kode_kriteria_fore'];
+        $kode_kriteria = $getkriteria['id_dt_krt_rekt'];
         $bobot_kriteria = $getkriteria['bobot_kriteria'];
 
-        mysqli_query($koneksi, "INSERT INTO `kriteria`(`id_recruitment_fore`, `kode_kriteria_fore`, `bobot_kriteria`) VALUES ('$newid_recruitment', '$kode_kriteria', '$bobot_kriteria')");
+        mysqli_query($koneksi, "INSERT INTO `kriteria_rekrutmen`(`id_rekrutmen`, `id_dt_krt_rekt`, `bobot_kriteria`) VALUES ('$newid_recruitment', '$kode_kriteria', '$bobot_kriteria')");
     }
 
     //id baru kriteria
-    $newkriteria = mysqli_query($koneksi, "SELECT * FROM `kriteria` WHERE id_recruitment_fore = '$newid_recruitment'");
+    $newkriteria = mysqli_query($koneksi, "SELECT * FROM `kriteria_rekrutmen` WHERE id_rekrutmen = '$newid_recruitment'");
 
     //insert ke table subkriteria
     $plus = 1;
     while ($getnewkriteria = mysqli_fetch_assoc($newkriteria)) {
         if ($plus == 1) {
-            $id_pendidikan = $getnewkriteria['id_kriteria'];
+            $id_pendidikan = $getnewkriteria['id_krt_rekt'];
         } else if ($plus == 2) {
-            $id_pengalamankerja = $getnewkriteria['id_kriteria'];
+            $id_pengalamankerja = $getnewkriteria['id_krt_rekt'];
         } else if ($plus == 3) {
-            $id_status = $getnewkriteria['id_kriteria'];
+            $id_status = $getnewkriteria['id_krt_rekt'];
         } else if ($plus == 4) {
-            $id_usia = $getnewkriteria['id_kriteria'];
+            $id_usia = $getnewkriteria['id_krt_rekt'];
         } else if ($plus == 11) {
-            $id_kesehatan = $getnewkriteria['id_kriteria'];
+            $id_kesehatan = $getnewkriteria['id_krt_rekt'];
         }
         $plus++;
     }
@@ -59,23 +61,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($counter < 5) {
             // echo $nama_subkriteria. '<br>';
             //tingkat pendidikan
-            mysqli_query($koneksi, "INSERT INTO `subkriteria`(`id_kriteria_fore`, `nama_subkriteria`, `bobot_subkriteria`) VALUES ('$id_pendidikan', '$nama_subkriteria', '$bobot_subkriteria')");
+            mysqli_query($koneksi, "INSERT INTO `subkriteria_rekrutmen`(`id_kriteria_rekrutmen`, `nama_subkriteria`, `bobot_subkriteria`) VALUES ('$id_pendidikan', '$nama_subkriteria', '$bobot_subkriteria')");
         } else if ($counter < 9) {
             // echo $nama_subkriteria. '<br>';
             //pengalaman kerja
-            mysqli_query($koneksi, "INSERT INTO `subkriteria`(`id_kriteria_fore`, `nama_subkriteria`, `bobot_subkriteria`) VALUES ('$id_pengalamankerja', '$nama_subkriteria', '$bobot_subkriteria')");
+            mysqli_query($koneksi, "INSERT INTO `subkriteria_rekrutmen`(`id_kriteria_rekrutmen`, `nama_subkriteria`, `bobot_subkriteria`) VALUES ('$id_pengalamankerja', '$nama_subkriteria', '$bobot_subkriteria')");
         } else if ($counter < 11) {
             // echo $nama_subkriteria. '<br>';
             //status
-            mysqli_query($koneksi, "INSERT INTO `subkriteria`(`id_kriteria_fore`, `nama_subkriteria`, `bobot_subkriteria`) VALUES ('$id_status', '$nama_subkriteria', '$bobot_subkriteria')");
+            mysqli_query($koneksi, "INSERT INTO `subkriteria_rekrutmen`(`id_kriteria_rekrutmen`, `nama_subkriteria`, `bobot_subkriteria`) VALUES ('$id_status', '$nama_subkriteria', '$bobot_subkriteria')");
         } else if ($counter < 16) {
             // echo $nama_subkriteria. '<br>';
             //usia
-            mysqli_query($koneksi, "INSERT INTO `subkriteria`(`id_kriteria_fore`, `nama_subkriteria`, `bobot_subkriteria`) VALUES ('$id_usia', '$nama_subkriteria', '$bobot_subkriteria')");
+            mysqli_query($koneksi, "INSERT INTO `subkriteria_rekrutmen`(`id_kriteria_rekrutmen`, `nama_subkriteria`, `bobot_subkriteria`) VALUES ('$id_usia', '$nama_subkriteria', '$bobot_subkriteria')");
         } else if ($counter < 18) {
             // echo $nama_subkriteria. '<br>';
             //kesehatan
-            mysqli_query($koneksi, "INSERT INTO `subkriteria`(`id_kriteria_fore`, `nama_subkriteria`, `bobot_subkriteria`) VALUES ('$id_kesehatan', '$nama_subkriteria', '$bobot_subkriteria')");
+            mysqli_query($koneksi, "INSERT INTO `subkriteria_rekrutmen`(`id_kriteria_rekrutmen`, `nama_subkriteria`, `bobot_subkriteria`) VALUES ('$id_kesehatan', '$nama_subkriteria', '$bobot_subkriteria')");
         }
 
         $counter++;

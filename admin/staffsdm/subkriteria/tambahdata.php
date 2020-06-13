@@ -3,16 +3,12 @@
 $id_lowongan = $_GET['penerimaan'];
 $id_kriteria = $_GET['kriteria'];
 
-$query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan FROM `karyawan` JOIN jabatan ON id_jabatan_fore = id_jabatan");
-
-
-$queryJabatan = mysqli_query($koneksi, "SELECT * FROM `jabatan`");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nama_subkriteria = strtoupper($_POST['nama_subkriteria']);
+    $nama_subkriteria = $_POST['nama_subkriteria'];
     $bobot_subkriteria = $_POST['bobot_subkriteria'];
 
-    $sql = mysqli_query($koneksi, "INSERT INTO `subkriteria`(`id_kriteria_fore`, `nama_subkriteria`, `bobot_subkriteria`) VALUES ('$id_kriteria','$nama_subkriteria','$bobot_subkriteria')");
+    $sql = mysqli_query($koneksi, "INSERT INTO `subkriteria_rekrutmen`(`id_kriteria_rekrutmen`, `nama_subkriteria`, `bobot_subkriteria`) VALUES ('$id_kriteria','$nama_subkriteria','$bobot_subkriteria')");
 
     if ($sql) {
         $_SESSION['message'] = 'Data berhasil di tambahkan';

@@ -10,7 +10,11 @@
             <li class="nav-title">Components</li>
             <li class="nav-item">
                 <a class="nav-link <?php if ($page == 'penerimaan' || $page == 'kriteria' || $page == 'subkriteria'|| $page == 'deskripsi') echo 'active' ?>" href="<?= BASE_URL . 'admin/index.php?page=penerimaan'; ?>">
-                    <i class="nav-icon fas fa-search"></i> Penerimaan</a>
+                    <i class="nav-icon fas fa-search"></i> Rekrutmen</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?php if ($page == 'penilaian-rekrutmen') echo 'active' ?>" href="<?= BASE_URL . 'admin/index.php?page=penilaian-rekrutmen'; ?>">
+                    <i class="nav-icon fas fa-star"></i> Penilaian Rekrutmen</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?php if ($page == 'karyawan') echo 'active' ?>" href="<?= BASE_URL . 'admin/index.php?page=karyawan'; ?>">
@@ -27,12 +31,7 @@
 
                     <li class="nav-item">
                         <a class="nav-link <?php if ($page == 'detail-kriteria') echo 'active' ?>" href="?page=detail-kriteria">
-                            <i class="nav-icon fas fa-clipboard-check"></i> Kriteria</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="nav-icon icon-puzzle"></i> Tables</a>
+                            <i class="nav-icon fas fa-clipboard-check"></i> Kriteria Rekrutmen</a>
                     </li>
 
                 </ul>

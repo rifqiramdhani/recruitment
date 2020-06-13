@@ -37,7 +37,7 @@
 
         //init custom file input
         bsCustomFileInput.init()
-        
+
         //hapus datakaryawan
         $("#datakaryawan").dataTable()
         $("#datakaryawan").on('click', '.remove', function() {
@@ -62,8 +62,6 @@
             // console.log(id + nama)
             hapusdata('Data lowongan', "?page=penerimaan&action=deletedata&id=", id, nama)
         })
-
-
 
         //tampilhalaman lowongan
         $("#datalowongan").on('click', '.tampilhalaman', function() {
@@ -97,7 +95,47 @@
         $("#datadetailkriteria").on('click', '.remove', function() {
             var id = $(this).data('id');
             var nama = $(this).data('nama');
-            hapusdata('Data detail kriteria', "?page=detail-kriteria&action=deletedata&id=", id, nama)
+
+            Swal.fire({
+                title: 'Apakah yakin?',
+                text: "Ingin Menghapus Data " + nama,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#db3325',
+                cancelButtonColor: '#f5a732',
+                confirmButtonText: "Hapus",
+                cancelButtonText: "Cancel",
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "<?= $level ?>/detail-kriteria/deletedata.php?id=" + id,
+                        type: 'DELETE',
+                        error: function(xhr, textStatus, error) {
+                            console.log(xhr.responseText);
+                            console.log(xhr.statusText);
+                            console.log(textStatus);
+                            console.log(error);
+                        },
+                        success: function(data) {
+                            if (data) {
+                                console.log(data)
+                                Swal.fire({
+                                    title: 'Kesalahan!',
+                                    text: 'Cek console untuk melihat pesan kesalahan',
+                                    icon: 'error'
+                                })
+                            } else {
+                                $("#" + id).remove();
+                                Swal.fire({
+                                    title: 'Data detail kriteria rekrutmen',
+                                    text: 'Data Berhasil Dihapus!',
+                                    icon: 'success'
+                                })
+                            }
+                        }
+                    });
+                }
+            })
         })
 
         //hapus datasubkriteria
@@ -117,7 +155,7 @@
         //edit deskripsi
         $("#savedeskripsi").click(function() {
             var deskripsi = $('textarea').val()
-            var id_desk_recruitment = $('input[name="id_desk_recruitment"]').val()
+            var id_desk_recruitment = $('input[name="id_desk_rekrutmen"]').val()
             var id_lowongan = $('input[name="id_lowongan"]').val()
 
             $.ajax({
@@ -125,7 +163,7 @@
                 type: "post",
                 data: {
                     'deskripsi': deskripsi,
-                    'id_desk_recruitment': id_desk_recruitment
+                    'id_desk_rekrutmen': id_desk_recruitment
                 },
                 success: function(response) {
                     Swal.fire({
@@ -149,6 +187,15 @@
             x++; //text box increment
             $(wrapper).append('<div id="field' + x + '"><div class="form-group"><input type="text" class="form-control" id="deskripsi' + x + '" name="deskripsi[]" required></div></div>'); //add input box
         });
+
+        //data penilaian
+        $("#datapenilaiancalonkaryawan").dataTable()
+        $("#datapenilaiancalonkaryawannew").dataTable()
+        $("#selectrecruitment").on("change", () => {
+            var id_recruitment = $("#selectrecruitment option:selected").val()
+            var page = "<?= BASE_URL . 'admin/staffsdm/penilaian-rekrutmen/datatable.php?id_recruitment=' ?>" + id_recruitment
+            $("#penilaianck").load(page)
+        })
 
         // sweetalert
         const flashdata = $('.flash-data').data('flashdata');
