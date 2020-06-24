@@ -101,8 +101,15 @@ if ($page) {
                     </div>
 
                     <div class="form-group has-feedback">
-                        <label for="alamat_calon_karyawan">Alamat</label>
+                        <label for="alamat_calon_karyawan">Alamat Lengkap</label>
                         <input type="alamat_calon_karyawan" class="form-control" id="alamat_calon_karyawan" name="alamat_calon_karyawan" required>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <span class="help-block with-errors"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <label for="kodepos_calon_karyawan">Kode pos</label>
+                        <input type="kodepos_calon_karyawan" class="form-control" id="kodepos_calon_karyawan" name="kodepos_calon_karyawan" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <span class="help-block with-errors"></span>
                     </div>
@@ -123,6 +130,47 @@ if ($page) {
 
 
                     <div class="form-group has-feedback">
+                        <label for="status_pernikahan">Status Pernikahan</label>
+                        <select required class="form-control" name="status_pernikahan" id="status_pernikahan">
+                            <option value="">-Pilih Status Pernikahan-</option>
+                            <option value="Menikah">Menikah</option>
+                            <option value="Belum menikah">Belum menikah</option>
+                        </select>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <span class="help-block with-errors"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <label for="status_pendidikan">Status Pendidikan</label>
+                        <select required class="form-control" name="status_pendidikan" id="status_pendidikan">
+                            <option value="">-Pilih Status Pendidikan-</option>
+                            <option value="SMU/SMK/SMA">SMU/SMK/SMA</option>
+                            <option value="D1">D1</option>
+                            <option value="D3">D3</option>
+                            <option value="S1">S1</option>
+                            <option value="S2">S2</option>
+                        </select>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <span class="help-block with-errors"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <label for="agama">Agama</label>
+                        <select required class="form-control" name="agama" id="agama">
+                            <option value="">-Pilih Agama-</option>
+                            <option value="Islam">Islam</option>
+                            <option value="Protestan">Protestan</option>
+                            <option value="Khatolik">Khatolik</option>
+                            <option value="Hindu">Hindu</option>
+                            <option value="Buddha">Buddha</option>
+                            <option value="Khonghucu">Khonghucu</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <span class="help-block with-errors"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" required>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -131,7 +179,14 @@ if ($page) {
 
                     <div class="form-group has-feedback">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
+                        <input type="password" class="form-control" id="password" name="password" data-minlength="8" data-minlength-error="Not long enough min length 8 character" required>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <span class="help-block with-errors"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <label for="retype-password">Retype Password</label>
+                        <input type="password" class="form-control" id="retype-password" name="retype-password" data-match="#password" required>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <span class="help-block with-errors"></span>
                     </div>

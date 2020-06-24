@@ -8,7 +8,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan FROM karyawan JOIN jabatan ON karyawan.id_jabatan_fore = jabatan.id_jabatan WHERE email_karyawan = '$email'");
+        $query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan, nama_divisi FROM `karyawan` JOIN detail_jabatan ON detail_jabatan.id_dt_jabatan = karyawan.id_dt_jabatan JOIN jabatan ON detail_jabatan.id_jabatan = jabatan.id_jabatan JOIN divisi ON detail_jabatan.id_divisi = divisi.id_divisi WHERE email_karyawan = '$email'");
+
 
 
         if(mysqli_num_rows($query) > 0){
@@ -21,7 +22,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     $data = [
                         'login' => true,
                         'email' => $email,
-                        'level' => strtolower(str_replace(' ', '', $user['nama_jabatan']))
+                        'level' => strtolower($user['nama_jabatan']. $user['nama_divisi']),
+                        'id_karyawan' => $user['id_karyawan']
                     ];
 
                     //fungsi memasukkan data kedalam session

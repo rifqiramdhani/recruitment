@@ -32,3 +32,18 @@ function hapusdata(title, url, id, nama) {
         }
     })
 }
+
+function swalhref(link, titletext) {
+    Swal.fire({
+        title: 'Apakah kamu yakin?',
+        text: " " + titletext,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Ya',
+        cancelButtonText: 'Tidak'
+    }).then((result) => {
+        if (result.value) {
+            window.location.href = link
+        }
+    })
+}

@@ -4,7 +4,7 @@
     </div>
     <div class="ml-auto">
         <span>Developed by</span>
-        <a href="#">Li</a>
+        <a href="#">Fathia</a>
     </div>
 </footer>
 
@@ -21,7 +21,7 @@
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <!-- custom js -->
 <script src="<?= BASE_URL . 'assets/js/custom.js'; ?>" type="text/javascript" charset="utf-8"></script>
-<!-- custom js -->
+<!-- fontawesome -->
 <script src="<?= BASE_URL . 'assets/js/all.min.js'; ?>" type="text/javascript" charset="utf-8"></script>
 <!-- jquery ui -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -34,6 +34,35 @@
 <script>
     // Setup datatables 
     $(document).ready(function() {
+
+        $('#datafpkb').on('click', '.remove', function(e) {
+            e.preventDefault();
+            var id = $(this).data('id')
+            var nama = $(this).data('nama')
+
+            hapusdata('Data FPKB', "?page=fpkb&action=deletedata&id=", id, nama)
+        });
+
+        $('#datafpkb').on('click', '.penyerahankesdm', function(e) {
+            e.preventDefault();
+            var link = $(this).attr('href');
+            var text = "Ingin menyerahkan FPKB kepada Manager SDM?";
+            swalhref(link, text);
+        });
+
+        $('#datafpkb').on('click', '.penyerahankesupport', function(e) {
+            e.preventDefault();
+            var link = $(this).attr('href');
+            var text = "FPKB Disetujui";
+            swalhref(link, text)
+        });
+
+        $('#datafpkb').on('click', '.tolakfpkb', function(e) {
+            e.preventDefault();
+            var link = $(this).attr('href');
+            var text = "FPKB Ditolak";
+            swalhref(link, text)
+        });
 
         //init custom file input
         bsCustomFileInput.init()
@@ -60,7 +89,7 @@
             var id = $(this).data('id');
             var nama = $(this).data('nama');
             // console.log(id + nama)
-            hapusdata('Data lowongan', "?page=penerimaan&action=deletedata&id=", id, nama)
+            hapusdata('Data Rekrutmen', "?page=penerimaan&action=deletedata&id=", id, nama)
         })
 
         //tampilhalaman lowongan
@@ -82,6 +111,14 @@
                     console.log(textStatus, errorThrown);
                 }
             });
+        })
+
+        //hapus datakriteriapenilaian
+        $("#datakriteriapenilaian").dataTable()
+        $("#datakriteriapenilaian").dataTable().on('click', '.remove', function() {
+            var id = $(this).data('id');
+            var nama = $(this).data('nama');
+            hapusdata('Data kriteria', "?page=kriteriapenilaian&action=deletedata&id=", id, nama)
         })
 
         //hapus datakriteria
@@ -136,6 +173,14 @@
                     });
                 }
             })
+        })
+
+        //hapus datasubkriteriapenilaia
+        $("#datasubkriteriapenilaian").dataTable()
+        $("#datasubkriteriapenilaian").on('click', '.remove', function() {
+            var id = $(this).data('id');
+            var nama = $(this).data('nama');
+            hapusdata('Data subkriteria', "?page=subkriteriapenilaian&action=deletedata&id=", id, nama)
         })
 
         //hapus datasubkriteria
@@ -194,8 +239,35 @@
         $("#selectrecruitment").on("change", () => {
             var id_recruitment = $("#selectrecruitment option:selected").val()
             var page = "<?= BASE_URL . 'admin/staffsdm/penilaian-rekrutmen/datatable.php?id_recruitment=' ?>" + id_recruitment
+            $("#tablepenilaian").remove()
             $("#penilaianck").load(page)
+
         })
+
+        var id_recruitment = $("#selectrecruitment option:selected").val()
+        var page = "<?= BASE_URL . 'admin/staffsdm/penilaian-rekrutmen/datatable.php?id_recruitment=' ?>" + id_recruitment
+        $("#penilaianck").load(page)
+
+        //hitung penilaian
+        $("#hitungpenilaian").click(() => {
+            var id_recruitment = $("#selectrecruitment option:selected").val()
+
+            $.ajax({
+                url: "<?= $level ?>/penilaian-rekrutmen/proses-penilaian-v.php",
+                type: "get",
+                data: {
+                    'id_recruitment': id_recruitment
+                },
+                success: function(response) {
+                    $("#tablepenilaian").remove()
+                    $("#tampilkanpenilaian").append(response)
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                }
+            });
+        })
+
 
         // sweetalert
         const flashdata = $('.flash-data').data('flashdata');

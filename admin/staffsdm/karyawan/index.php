@@ -1,5 +1,5 @@
 <?php
-$query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan FROM `karyawan` JOIN jabatan ON id_jabatan_fore = id_jabatan WHERE status_karyawan = 1");
+$query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan, nama_divisi FROM `karyawan` JOIN detail_jabatan ON karyawan.id_dt_jabatan = detail_jabatan.id_dt_jabatan JOIN jabatan ON detail_jabatan.id_jabatan = jabatan.id_jabatan JOIN divisi ON detail_jabatan.id_divisi = divisi.id_divisi WHERE status_karyawan = 1 ORDER BY id_karyawan ASC");
 ?>
 
 <!-- <div class="flash-data" data-flashdata=""></div> -->
@@ -47,7 +47,7 @@ $query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan FROM `karyawan`
                                 <td><?= $getdata['ttl_karyawan'] ?></td>
                                 <td><?= $getdata['alamat_karyawan'] ?></td>
                                 <td><?= $getdata['email_karyawan'] ?></td>
-                                <td><?= $getdata['nama_jabatan'] ?></td>
+                                <td><?= $getdata['nama_jabatan'] . ' ' . $getdata['nama_divisi'] ?></td>
                                 <td>
                                     <a href="<?= BASE_URL . 'admin/index.php?page=karyawan&action=editdata&id=' . $getdata['id_karyawan'] ?>" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
                                     <button type="button" data-id="<?= $getdata['id_karyawan'] ?>" data-nama="<?= $getdata['nama_karyawan'] ?>" class="btn btn-sm btn-danger remove"><i class="fas fa-trash"></i></button>

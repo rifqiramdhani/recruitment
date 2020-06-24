@@ -1,10 +1,11 @@
 <?php
 $id = $_GET['id'];
-$query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan FROM `karyawan` JOIN jabatan ON id_jabatan_fore = id_jabatan WHERE id_karyawan='$id'");
+$query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan, nama_divisi FROM `karyawan` JOIN detail_jabatan ON karyawan.id_dt_jabatan = detail_jabatan.id_dt_jabatan JOIN jabatan ON detail_jabatan.id_jabatan = jabatan.id_jabatan JOIN divisi ON detail_jabatan.id_divisi = divisi.id_divisi WHERE id_karyawan = '$id'");
 
 $getdata = mysqli_fetch_assoc($query);
 
-$queryJabatan = mysqli_query($koneksi, "SELECT * FROM `jabatan`");
+$queryJabatan = mysqli_query($koneksi, "SELECT id_dt_jabatan, nama_divisi, nama_jabatan FROM `detail_jabatan` JOIN divisi ON detail_jabatan.id_divisi = divisi.id_divisi JOIN jabatan ON detail_jabatan.id_jabatan = jabatan.id_jabatan");
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nik = htmlspecialchars($_POST['nik']);
@@ -16,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email_karyawan = htmlspecialchars($_POST['email_karyawan']);
     $password_karyawan = htmlspecialchars($_POST['password_karyawan']);
 
-    if(empty($password_karyawan)){
+    if (empty($password_karyawan)) {
         $sql = mysqli_query($koneksi, "UPDATE `karyawan` SET 
-        `id_jabatan_fore`='$jabatan',
+        `id_dt_jabatan`='$jabatan',
         `email_karyawan`='$email_karyawan',
         `nama_karyawan`='$nama_karyawan',
         `nik`='$nik',
@@ -26,10 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         `ttl_karyawan`='$ttl_karyawan',
         `alamat_karyawan`='$alamat_karyawan'
         WHERE id_karyawan = '$id'");
-    }else {
+    } else {
         $encryptpass = password_hash($password_karyawan, PASSWORD_DEFAULT);
         $sql = mysqli_query($koneksi, "UPDATE `karyawan` SET 
-        `id_jabatan_fore`='$jabatan',
+        `id_dt_jabatan`='$jabatan',
         `email_karyawan`='$email_karyawan',
         `nama_karyawan`='$nama_karyawan',
         `nik`='$nik',
@@ -102,12 +103,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="form-group has-feedback">
                         <label for="jabatan">Jabatan</label>
-                        <select name="jabatan" id="jabatan" class="form-control">
-                            <option value="">Jabatan</option>
-                            <?php while($getjabatan = mysqli_fetch_assoc($queryJabatan)) : ?>
-                                <option value="<?= $getjabatan['id_jabatan'] ?>" <?php if($getdata['id_jabatan_fore'] == $getjabatan['id_jabatan']) echo 'selected'; ?>><?= $getjabatan['nama_jabatan'] ?></option>
-                            <?php endwhile ?>
+                        <select name="jabatan" id="jabatan" class="form-control" required>
+                            <option value=""">-Pilih Jabatan-</option>
+                                <?php while ($getjabatan = mysqli_fetch_assoc($queryJabatan)) : ?>
+                                    <option value=" <?= $getjabatan['id_dt_jabatan'] ?>" <?php if($getdata['id_dt_jabatan'] == $getjabatan['id_dt_jabatan'])echo 'selected' ?>><?= $getjabatan['nama_jabatan'] . ' ' . $getjabatan['nama_divisi'] ?></option>
+                        <?php endwhile ?>
                         </select>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <span class="help-block with-errors"></span>
                     </div>
 
                     <div class="form-group has-feedback">
@@ -119,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="form-group has-feedback">
                         <label for="password_karyawan">Password</label>
-                        <input type="password_karyawan" class="form-control" placeholder="Kosongkan jika tidak diubah" id="password_karyawan" name="password_karyawan" >
+                        <input type="password" class="form-control" placeholder="Kosongkan jika tidak diubah" id="password_karyawan" name="password_karyawan">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <span class="help-block with-errors"></span>
                     </div>

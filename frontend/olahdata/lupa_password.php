@@ -20,13 +20,13 @@ $mail = new PHPMailer(true);
 $mail->isSMTP();
 $mail->Host     = 'ssl://smtp.googlemail.com';
 $mail->SMTPAuth = true;
-$mail->Username = 'ctccimahi@gmail.com';
-$mail->Password = 'ctccimahi123';
+$mail->Username = 'bonliciptas@gmail.com';
+$mail->Password = 'bonli123';
 $mail->SMTPSecure = 'ssl';
 $mail->Port     = 465;
 
-$mail->setFrom('ctccimahi@gmail.com', 'Cimahi Therapy Center');
-$mail->addReplyTo('ctccimahi@gmail.com', 'Cimahi Therapy Center');
+$mail->setFrom('bonliciptas@gmail.com', 'PT Bonli Cipta Sejahtera');
+$mail->addReplyTo('bonliciptas@gmail.com', 'PT Bonli Cipta Sejahtera');
 // Set email format to HTML
 $mail->isHTML(true);
 

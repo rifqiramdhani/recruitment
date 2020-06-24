@@ -6,7 +6,7 @@ require('../function/koneksi.php');
 
 cek_login();
 $level = $_SESSION['level'];
-$page = isset($_GET['page']) ? $_GET['page'] : 'Dashboard';
+$page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 $action = isset($_GET['action']) ? $_GET['action'] : false;
 ?>
 

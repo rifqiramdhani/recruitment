@@ -1,7 +1,9 @@
 <?php
 $query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan FROM `karyawan` JOIN jabatan ON id_jabatan_fore = id_jabatan");
 
-$queryJabatan = mysqli_query($koneksi, "SELECT * FROM `jabatan`");
+$queryJabatan = mysqli_query($koneksi, "SELECT id_dt_jabatan, nama_divisi, nama_jabatan FROM `detail_jabatan` JOIN divisi ON detail_jabatan.id_divisi = divisi.id_divisi JOIN jabatan ON detail_jabatan.id_jabatan = jabatan.id_jabatan");
+
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nik = htmlspecialchars($_POST['nik']);
@@ -9,11 +11,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $telp_karyawan = htmlspecialchars($_POST['telp_karyawan']);
     $ttl_karyawan = htmlspecialchars($_POST['ttl_karyawan']);
     $alamat_karyawan = htmlspecialchars($_POST['alamat_karyawan']);
-    $jabatan = 7; //Karyawan Masa Percobaan
+    $jabatan = $_POST['jabatan']; //detail jabatan
+   
     $email = htmlspecialchars($_POST['email']);
     $password = password_hash(htmlspecialchars($_POST['password']), PASSWORD_DEFAULT);
 
-    $sql = mysqli_query($koneksi, "INSERT INTO `karyawan`(`id_jabatan_fore`, `email_karyawan`, `password_karyawan`, `nama_karyawan`, `nik`, `telp_karyawan`, `ttl_karyawan`, `alamat_karyawan`) VALUES ('$jabatan', '$email', '$password', '$nama_karyawan', '$nik' , '$telp_karyawan', '$ttl_karyawan', '$alamat_karyawan')");
+    $sql = mysqli_query($koneksi, "INSERT INTO `karyawan`(`id_dt_jabatan`, `email_karyawan`, `password_karyawan`, `nama_karyawan`, `nik`, `telp_karyawan`, `ttl_karyawan`, `alamat_karyawan`) VALUES ('$jabatan', '$email', '$password', '$nama_karyawan', '$nik' , '$telp_karyawan', '$ttl_karyawan', '$alamat_karyawan')");
 
     if ($sql) {
         $_SESSION['message'] = 'Data berhasil di tambahkan';
@@ -75,9 +78,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <span class="help-block with-errors"></span>
                     </div>
 
+
+
                     <div class="form-group has-feedback">
                         <label for="jabatan">Jabatan</label>
-                        <input type="jabatan" class="form-control" id="jabatan" name="jabatan" value="Karyawan Masa Percobaan" required readonly>
+                        <select name="jabatan" id="jabatan" class="form-control" required>
+                            <option value=""">-Pilih Jabatan-</option>
+                                <?php while ($getjabatan = mysqli_fetch_assoc($queryJabatan)) : ?>
+                                    <option value=" <?= $getjabatan['id_dt_jabatan'] ?>"><?= $getjabatan['nama_jabatan'] . ' ' . $getjabatan['nama_divisi'] ?></option>
+                        <?php endwhile ?>
+                        </select>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <span class="help-block with-errors"></span>
                     </div>
 
                     <div class="form-group has-feedback">

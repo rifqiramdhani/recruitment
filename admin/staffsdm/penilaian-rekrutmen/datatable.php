@@ -2,7 +2,7 @@
 require_once("../../../function/koneksi.php");
 
 $id_recruitment = $_GET['id_recruitment'];
-$query = mysqli_query($koneksi, "SELECT calon_karyawan.*, id_recruitment_fore FROM `detail_recruitment` JOIN calon_karyawan ON id_calon_karyawan_fore = id_calon_karyawan WHERE id_recruitment_fore = '$id_recruitment'");
+$query = mysqli_query($koneksi, "SELECT calon_karyawan.*, id_rekrutmen, vector_s FROM `penilaian_rekrutmen` JOIN calon_karyawan ON penilaian_rekrutmen.id_calon_karyawan = calon_karyawan.id_calon_karyawan WHERE id_rekrutmen = '$id_recruitment'");
 
 ?>
 
@@ -19,14 +19,21 @@ if (mysqli_num_rows($query) > 0) :
             <td><?= $getdata['ttl_calon_karyawan'] ?></td>
             <td><?= $getdata['alamat_calon_karyawan'] ?></td>
             <td>
-                <a href="?page=penilaian-recruitment&action=nilai&calon_karyawan=<?= $getdata['id_calon_karyawan'] ?>&penerimaan=<?= $id_recruitment ?>" class="btn btn-sm btn-primary">Nilai</a>
+                <?php if ($getdata['vector_s'] == 0) : ?>
+                    <i class="far fa-times-circle"></i>
+                <?php else : ?>
+                    <i class="far fa-check-circle"></i>
+                <?php endif ?>
+            </td>
+            <td>
+                <a href="?page=penilaian-rekrutmen&action=nilai&calon_karyawan=<?= $getdata['id_calon_karyawan'] ?>&penerimaan=<?= $id_recruitment ?>" class="btn btn-sm btn-primary">Nilai</a>
             </td>
         </tr>
     <?php endwhile;
 else :
     ?>
     <tr>
-        <td colspan="7">No data available in table</td>
+        <td colspan="8">No data available in table</td>
     </tr>
 <?php
 endif;

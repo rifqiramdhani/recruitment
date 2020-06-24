@@ -19,11 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($sql) {
         $_SESSION['message'] = 'Data berhasil diperbaharui';
-        $_SESSION['title'] = 'Data Penerimaan';
+        $_SESSION['title'] = 'Data Rekrutmen';
         $_SESSION['type'] = 'success';
     } else {
         $_SESSION['message'] = 'Data gagal diperbaharui';
-        $_SESSION['title'] = 'Data Penerimaan';
+        $_SESSION['title'] = 'Data Rekrutmen';
         $_SESSION['type'] = 'error';
     }
 
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!-- <div class="flash-data" data-flashdata=""></div> -->
 <div class="col-6">
     <div class="card card-accent-success">
-        <div class="card-header"><strong>Edit Data Penerimaan</strong></div>
+        <div class="card-header"><strong>Edit Data Rekrutmen</strong></div>
         <div class="card-body">
             <form action="#" method="post" data-toggle="validator" role="form">
 
@@ -56,8 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="waktu_rekrutmen">Waktu</label>
                     <select class="form-control" name="waktu_rekrutmen" id="waktu_lowogan" required>
                         <option value="">-Pilih Waktu</option>
-                        <option value="FULL TIME" <?php if($getdata['waktu_rekrutmen'] == "FULL TIME") echo 'selected' ?>>FULL TIME</option>
-                        <option value="PART TIME" <?php if($getdata['waktu_rekrutmen'] == "PART TIME") echo 'selected' ?>>PART TIME</option>
+                        <option value="FULL TIME" <?php if ($getdata['waktu_rekrutmen'] == "FULL TIME") echo 'selected' ?>>FULL TIME</option>
+                        <option value="PART TIME" <?php if ($getdata['waktu_rekrutmen'] == "PART TIME") echo 'selected' ?>>PART TIME</option>
                     </select>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>

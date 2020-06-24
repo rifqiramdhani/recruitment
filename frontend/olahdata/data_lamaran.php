@@ -2,19 +2,6 @@
 require_once('../../function/helper.php');
 require_once('../../function/koneksi.php');
 
-
-function random_name($name)
-{
-    // mengacak angka untuk nama file
-    $acak = rand(00000000, 99999999);
-
-    $ImageExt       = substr($name, strrpos($name, '.'));
-    $ImageExt       = str_replace('.', '', $ImageExt); // Extension
-    $name      = preg_replace("/\.[^.\s]{3,4}$/", "", $name);
-    $NewImageName   = $acak . '.' . $ImageExt;
-    return $NewImageName;
-}
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_recruitment_fore = $_POST['id_recruitment'];
     $id_calon_karyawan_fore = $_SESSION['id_calon_karyawan'];
@@ -118,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         )");
 
        
-        $sql2 = mysqli_query($koneksi, "INSERT INTO `detail_rekrutmen`(`id_rekrutmen`, `id_calon_karyawan`) VALUES ('$id_recruitment_fore','$id_calon_karyawan_fore')");
+        $sql2 = mysqli_query($koneksi, "INSERT INTO `penilaian_rekrutmen`(`id_rekrutmen`, `id_calon_karyawan`) VALUES ('$id_recruitment_fore','$id_calon_karyawan_fore')");
 
 
         //insert formulir_lamaran

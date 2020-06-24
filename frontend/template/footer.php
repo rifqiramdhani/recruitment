@@ -20,7 +20,7 @@
                 </div>
                 <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
             </div>
-            <p class="text-center copy-right">© 2020 Recruitment. All Rights Reserved | Design By Li<br></p>
+            <p class="text-center copy-right">© 2020 Recruitment. All Rights Reserved | Design By Fathia<br></p>
         </div>
     </footer>
 </div>

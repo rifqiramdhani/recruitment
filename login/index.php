@@ -1,8 +1,8 @@
-<?php 
+<?php
 
 require('../function/helper.php');
 // cek apakah user sudah login
-if(isset($_SESSION['login'])) redirect('admin');
+if (isset($_SESSION['login'])) redirect('admin');
 
 ?>
 
@@ -22,13 +22,14 @@ if(isset($_SESSION['login'])) redirect('admin');
 
     <!-- favicon -->
 
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= BASE_URL. 'assets/img/favicons.png'?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= BASE_URL . 'assets/img/favicons.png' ?>">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <!-- style core ui -->
-    <link href="<?= BASE_URL. 'assets/css/style.css'?>" rel="stylesheet">
-    <link href="<?= BASE_URL. 'assets/vendors/pace-progress/css/pace.min.css'?>" rel="stylesheet">
-    <link href="<?= BASE_URL. 'assets/css/custom.css'?>" rel="stylesheet">
+    <link href="<?= BASE_URL . 'assets/css/style.css' ?>" rel="stylesheet">
+    <link href="<?= BASE_URL . 'assets/vendors/pace-progress/css/pace.min.css' ?>" rel="stylesheet">
+    <link href="<?= BASE_URL . 'assets/css/custom.css' ?>" rel="stylesheet">
+
 </head>
 
 <body class="app flex-row align-items-center">
@@ -38,13 +39,13 @@ if(isset($_SESSION['login'])) redirect('admin');
         </div>
     </div>
 
-    <script src="<?= BASE_URL. 'assets/vendors/jquery/js/jquery.min.js'?>"></script>
-    <script src="<?= BASE_URL. 'assets/vendors/bootstrap/js/bootstrap.min.js'?>"></script>
-    <script src="<?= BASE_URL. 'assets/vendors/pace-progress/js/pace.min.js'?>"></script>
+    <script src="<?= BASE_URL . 'assets/vendors/jquery/js/jquery.min.js' ?>"></script>
+    <script src="<?= BASE_URL . 'assets/vendors/bootstrap/js/bootstrap.min.js' ?>"></script>
+    <script src="<?= BASE_URL . 'assets/vendors/pace-progress/js/pace.min.js' ?>"></script>
     <!-- form validation -->
-    <script src="<?php echo BASE_URL. 'assets/node_modules/bootstrap-validator/dist/validator.min.js'; ?>"></script>
+    <script src="<?php echo BASE_URL . 'assets/node_modules/bootstrap-validator/dist/validator.min.js'; ?>"></script>
     <!-- fontawesome -->
-    <script src="https://kit.fontawesome.com/5e43405e99.js" crossorigin="anonymous"></script>
+    <script src="<?= BASE_URL . 'assets/js/all.min.js'; ?>" type="text/javascript" charset="utf-8"></script>
     <script>
         $(document).ready(function() {
 

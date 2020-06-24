@@ -6,10 +6,13 @@ $id_recruitment = $_GET['penerimaan'];
 $queryck = mysqli_query($koneksi, "SELECT * FROM `calon_karyawan` WHERE id_calon_karyawan = '$id_calon_karyawan'");
 $getdatack = mysqli_fetch_assoc($queryck);
 
-$queryfile = mysqli_query($koneksi, "SELECT * FROM `file_calon_karyawan` WHERE id_recruitment_fore = '$id_recruitment' AND id_calon_karyawan_fore = '$id_calon_karyawan'");
+$queryfile = mysqli_query($koneksi, "SELECT * FROM `file_calon_karyawan` WHERE id_rekrutmen = '$id_recruitment' AND id_calon_karyawan = '$id_calon_karyawan'");
 $getdatafile = mysqli_fetch_assoc($queryfile);
 
-$querykrit = mysqli_query($koneksi, "SELECT kriteria_recruitment.*, nama_kriteria_rekrutmen FROM `kriteria_rekrutmen` JOIN detail_kriteria_rekrutmen ON kriteria_recruitment.id_dt_krt_rekt = detail_kriteria_rekrutmen.id_dt_krt_rekt WHERE id_rekrutmen = '$id_recruitment'");
+$querykrit = mysqli_query($koneksi, "SELECT kriteria_rekrutmen.*, nama_kriteria_rekrutmen FROM `kriteria_rekrutmen` JOIN detail_kriteria_rekrutmen ON kriteria_rekrutmen.id_dt_krt_rekt = detail_kriteria_rekrutmen.id_dt_krt_rekt WHERE id_rekrutmen = '$id_recruitment' AND status_kriteria = 1");
+
+$querynilai = mysqli_query($koneksi, "SELECT * FROM `penilaian_rekrutmen` WHERE id_rekrutmen = '$id_recruitment' AND id_calon_karyawan = '$id_calon_karyawan'");
+$getnilai = mysqli_fetch_assoc($querynilai);
 
 ?>
 
@@ -117,49 +120,71 @@ $querykrit = mysqli_query($koneksi, "SELECT kriteria_recruitment.*, nama_kriteri
     <div class="card card-accent-success">
         <div class="card-header"><strong>Penilaian - <?= $getdatack['nama_calon_karyawan'] ?></strong></div>
         <div class="card-body">
-            <form action="<?= $level ?>/penilaian-rekrutmen/proses-penilaian.php" method="post" data-toggle="validator" role="form">
-                <?php while ($getkrit = mysqli_fetch_assoc($querykrit)) : ?>
-                    <div class="form-group row has-feedback">
-                        <label class="col-sm-4 col-form-label"><?= $getkrit['nama_kriteria_rekrutmen'] ?></label>
-                        <div class="col-sm-8">
-                            <?php
-                            $id_kriteria = $getkrit['id_krt_rekt'];
-                            $querysubkrit = mysqli_query($koneksi, "SELECT * FROM `subkriteria_rekrutmen` WHERE id_kriteria_rekrutmen = '$id_kriteria' ORDER BY nama_subkriteria ASC");
-                            ?>
-                            <?php if (mysqli_num_rows($querysubkrit) > 0) : ?>
-                                <select name="nilai[]" class="form-control" required>
-                                    <option value="">-Pilih <?= $getkrit['nama_kriteria_rekrutmen'] ?> -</option>
-                                    <?php while ($getsubkrit = mysqli_fetch_assoc($querysubkrit)) : ?>
-                                        <option value="<?= $getsubkrit['bobot_subkriteria'] ?>"><?= $getsubkrit['nama_subkriteria'] ?></option>
-                                    <?php endwhile ?>
-                                </select>
+            <?php if ($getnilai['vector_s'] == 0) : ?>
+                <form action="<?= $level ?>/penilaian-rekrutmen/proses-penilaian-s.php" method="post" data-toggle="validator" role="form">
+                    <?php while ($getkrit = mysqli_fetch_assoc($querykrit)) : ?>
+                        <div class="form-group row has-feedback">
+                            <label class="col-sm-4 col-form-label"><?= $getkrit['nama_kriteria_rekrutmen'] ?></label>
+                            <div class="col-sm-8">
+                                <?php
+                                $id_kriteria = $getkrit['id_krt_rekt'];
+                                $querysubkrit = mysqli_query($koneksi, "SELECT * FROM `subkriteria_rekrutmen` WHERE id_kriteria_rekrutmen = '$id_kriteria' ORDER BY nama_subkriteria ASC");
+                                ?>
+                                <?php if (mysqli_num_rows($querysubkrit) > 0) : ?>
+                                    <select name="nilai[]" class="form-control" required>
+                                        <option value="">-Pilih <?= $getkrit['nama_kriteria_rekrutmen'] ?> -</option>
+                                        <?php while ($getsubkrit = mysqli_fetch_assoc($querysubkrit)) : ?>
+                                            <option value="<?= $getsubkrit['bobot_subkriteria'] ?>"><?= $getsubkrit['nama_subkriteria'] ?></option>
+                                        <?php endwhile ?>
+                                    </select>
 
-                            <?php else : ?>
-                                <input type="text" class="form-control" name="nilai[]" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
-                            <?php endif ?>
+                                <?php else : ?>
+                                    <select name="nilai[]" class="form-control" required>
+                                        <option value="">-Pilih Nilai-</option>
+                                        <option value="1">Sangat Kurang</option>
+                                        <option value="2">Kurang</option>
+                                        <option value="3">Cukup</option>
+                                        <option value="4">Baik</option>
+                                        <option value="5">Sangat Baik</option>
+                                    </select>
 
-                            <span class="glyphicon form-control-feedback mr-3" aria-hidden="true"></span>
-                            <span class="help-block with-errors"></span>
+                                    <?php endif ?>
+
+                                    <span class="glyphicon form-control-feedback mr-3" aria-hidden="true"></span>
+                                    <span class="help-block with-errors"></span>
+                            </div>
                         </div>
+
+                        <div class="form-group">
+                            <input type="hidden" name="bobot_kriteria[]" value="<?= $getkrit['bobot_kriteria'] ?>">
+                        </div>
+
+                    <?php endwhile ?>
+
+                    <div class="form-group">
+                        <input type="hidden" name="id_calon_karyawan" value="<?= $id_calon_karyawan ?>">
                     </div>
 
                     <div class="form-group">
-                        <input type="hidden" name="bobot_kriteria[]" value="<?= $getkrit['bobot_kriteria'] ?>">
+                        <input type="hidden" name="id_recruitment" value="<?= $id_recruitment ?>">
                     </div>
 
-                <?php endwhile ?>
+                    <hr>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-sm btn-success">
+                            <i class="fas fa-save"></i>
+                            Simpan
+                        </button>
+                    </div>
 
 
-                <hr>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-sm btn-success">
-                        <i class="fas fa-save"></i>
-                        Simpan
-                    </button>
+                </form>
+            <?php else : ?>
+                <div class="alert alert-light" role="alert">
+                    Calon karyawan telah dinilai
                 </div>
+            <?php endif ?>
 
-
-            </form>
         </div>
     </div>
 </div>

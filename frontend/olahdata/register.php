@@ -20,24 +20,30 @@ $mail = new PHPMailer(true);
 $mail->isSMTP();
 $mail->Host     = 'ssl://smtp.googlemail.com';
 $mail->SMTPAuth = true;
-$mail->Username = 'ctccimahi@gmail.com';
-$mail->Password = 'ctccimahi123';
+$mail->Username = 'bonliciptas@gmail.com';
+$mail->Password = 'bonli123';
 $mail->SMTPSecure = 'ssl';
 $mail->Port     = 465;
 
-$mail->setFrom('ctccimahi@gmail.com', 'Cimahi Therapy Center');
-$mail->addReplyTo('ctccimahi@gmail.com', 'Cimahi Therapy Center');
+$mail->setFrom('bonliciptas@gmail.com', 'PT Bonli Cipta Sejahtera');
+$mail->addReplyTo('bonliciptas@gmail.com', 'PT Bonli Cipta Sejahtera');
 // Set email format to HTML
 $mail->isHTML(true);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $nama_calon_karyawan = htmlspecialchars($_POST['nama_calon_karyawan']);
-    $alamat_calon_karyawan = htmlspecialchars($_POST['alamat_calon_karyawan']);
-    $telp_calon_karyawan = htmlspecialchars($_POST['telp_calon_karyawan']);
-    $ttl_calon_karyawan = htmlspecialchars($_POST['ttl_calon_karyawan']);
-    $email = htmlspecialchars($_POST['email']);
-    $password = password_hash(htmlspecialchars($_POST['password']), PASSWORD_DEFAULT);
+    echo $nama_calon_karyawan = htmlspecialchars($_POST['nama_calon_karyawan']);
+    echo $alamat_calon_karyawan = htmlspecialchars($_POST['alamat_calon_karyawan']);
+    echo $telp_calon_karyawan = htmlspecialchars($_POST['telp_calon_karyawan']);
+    echo $ttl_calon_karyawan = htmlspecialchars($_POST['ttl_calon_karyawan']);
+    
+    echo $kodepos_calon_karyawan = htmlspecialchars($_POST['kodepos_calon_karyawan']);
+    echo $status_pernikahan = htmlspecialchars($_POST['status_pernikahan']);
+    echo $status_pendidikan = htmlspecialchars($_POST['status_pendidikan']);
+    echo $agama = htmlspecialchars($_POST['agama']);
+    
+    echo $email = htmlspecialchars($_POST['email']);
+    echo $password = password_hash(htmlspecialchars($_POST['password']), PASSWORD_DEFAULT);
 
     $query = mysqli_query($koneksi, "SELECT * FROM `calon_karyawan` WHERE email_calon_karyawan = '$email'");
 
@@ -57,18 +63,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($mail->send()) {
             $sql = mysqli_query($koneksi, "INSERT INTO `calon_karyawan`(`nama_calon_karyawan`, 
             `email_calon_karyawan`, `password_calon_karyawan`, `telp_calon_karyawan`, 
-            `ttl_calon_karyawan`, `alamat_calon_karyawan`, `token_calon_karyawan`, `status_calon_karyawan`) VALUES ('$nama_calon_karyawan',
+            `ttl_calon_karyawan`, `alamat_calon_karyawan`, `token_calon_karyawan`, `status_calon_karyawan`, `kodepos_calon_karyawan`, `status_pernikahan`, `status_pendidikan`, `agama`) VALUES ('$nama_calon_karyawan',
             '$email','$password','$telp_calon_karyawan','$ttl_calon_karyawan',
-            '$alamat_calon_karyawan', '$token', 0)");
+            '$alamat_calon_karyawan', '$token', 0, '$kodepos_calon_karyawan','$status_pernikahan','$status_pendidikan','$agama')");
+
         } else {
             $mail->ErrorInfo;
         }
 
+
         if ($sql) {
+
+            echo 'masuk';
             $_SESSION['message'] = 'Data berhasil diregistrasi. Silahkan cek email untuk proses aktivasi email.';
             $_SESSION['title'] = 'Data Calon Karyawan';
             $_SESSION['type'] = 'success';
         } else {
+            echo 'gagal';
             $_SESSION['message'] = 'Data gagal diregistrasi, silahkan coba kembali!';
             $_SESSION['title'] = 'Data Calon Karyawan';
             $_SESSION['type'] = 'error';
@@ -80,5 +91,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['type'] = 'error';
     }
 
-    redirect('index.php');
+    // redirect('index.php');
 }

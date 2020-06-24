@@ -85,11 +85,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($sql) {
         $_SESSION['message'] = 'Data berhasil di tambahkan';
-        $_SESSION['title'] = 'Data Penerimaan';
+        $_SESSION['title'] = 'Data Rekrutmen';
         $_SESSION['type'] = 'success';
     } else {
         $_SESSION['message'] = 'Data gagal di tambahkan';
-        $_SESSION['title'] = 'Data Penerimaan';
+        $_SESSION['title'] = 'Data Rekrutmen';
         $_SESSION['type'] = 'error';
     }
 
@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!-- <div class="flash-data" data-flashdata=""></div> -->
 <div class="col-lg-6 col-md-12 ">
     <div class="card card-accent-success">
-        <div class="card-header"><strong>Tambah Data Penerimaan</strong></div>
+        <div class="card-header"><strong>Tambah Data Rekrutmen</strong></div>
         <div class="card-body">
             <form action="#" method="post" data-toggle="validator" role="form">
 

@@ -19,12 +19,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'id_calon_karyawan' => $getdata['id_calon_karyawan']
                 ];
 
+                $id_calon_karyawan = $getdata['id_calon_karyawan'];
+                
                 //fungsi memasukkan data kedalam session
                 session_userdata($data);
 
-                $_SESSION['message'] = 'Selamat ' . $getdata['nama_calon_karyawan'] . ' berhasil login';
-                $_SESSION['title'] = 'Login';
-                $_SESSION['type'] = 'success';
+                $cekrekrutmen = mysqli_query($koneksi, "SELECT nama_rekrutmen FROM `penilaian_rekrutmen` JOIN rekrutmen ON rekrutmen.id_rekrutmen = penilaian_rekrutmen.id_rekrutmen WHERE id_calon_karyawan = '$id_calon_karyawan' AND hasil = 1");
+
+                $getrekrutmen = mysqli_fetch_assoc($cekrekrutmen);
+
+                if(mysqli_num_rows($cekrekrutmen) > 0){
+                    $_SESSION['message'] = 'Selamat anda diterima kerja menjadi '. $getrekrutmen['nama_rekrutmen']. ' sebagai karyawan masa percobaan.';
+                    $_SESSION['title'] = 'Info Rekrutmen';
+                    $_SESSION['type'] = 'success';
+                }else{
+                    $_SESSION['message'] = 'Selamat ' . $getdata['nama_calon_karyawan'] . ' berhasil login';
+                    $_SESSION['title'] = 'Login';
+                    $_SESSION['type'] = 'success';
+                }
+
                 redirect('index.php');
             } else {
                 $_SESSION['message'] = 'Maaf password salah!';

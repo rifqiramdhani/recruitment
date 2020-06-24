@@ -58,18 +58,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $i = 1;
-                            while ($getdata = mysqli_fetch_assoc($querysyarat)) : ?>
-                                <tr id="<?= $getdata['id_desk_rekrutmen'] ?>">
-                                    <td><?= $i++ ?></td>
-                                    <td><?= $getdata['deskripsi'] ?></td>
-                                    <td>
-                                        <a href="" class="btn btn-sm btn-primary text-white"><i class="fas fa-edit"></i></a>
 
-                                        <button type="button" class="btn btn-sm btn-danger remove" title="Hapus" data-id="<?= $getdata['id_desk_rekrutmen'] ?>" data-nama="<?= $getdata['deskripsi'] ?>"><i class="fas fa-trash"></i></button>
-                                    </td>
+
+                            <?php if (mysqli_num_rows($querysyarat) > 0) : ?>
+                                <?php $i = 1;
+                                while ($getdata = mysqli_fetch_assoc($querysyarat)) : ?>
+                                    <tr id="<?= $getdata['id_desk_rekrutmen'] ?>">
+                                        <td><?= $i++ ?></td>
+                                        <td><?= $getdata['deskripsi'] ?></td>
+                                        <td>
+                                            <a href="" class="btn btn-sm btn-primary text-white"><i class="fas fa-edit"></i></a>
+
+                                            <button type="button" class="btn btn-sm btn-danger remove" title="Hapus" data-id="<?= $getdata['id_desk_rekrutmen'] ?>" data-nama="<?= $getdata['deskripsi'] ?>"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                <?php endwhile ?>
+                            <?php else : ?>
+                                <tr>
+                                    <td colspan="3">No data available in table</td>
                                 </tr>
-                            <?php endwhile ?>
+                            <?php endif ?>
                         </tbody>
                     </table>
                 </div>
