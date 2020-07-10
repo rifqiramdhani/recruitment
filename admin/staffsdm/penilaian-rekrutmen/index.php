@@ -20,7 +20,6 @@ $queryck = mysqli_query($koneksi, "SELECT calon_karyawan.*, id_rekrutmen FROM `p
             endwhile ?>
         </select>
 
-        <button class="btn ml-1 btn-success" id="hitungpenilaian">Hitung</button>
     </div>
 
     <!-- show sweet alert -->

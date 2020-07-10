@@ -63,7 +63,7 @@ endif;
                             <div class="mb-5">
                                 <h4><i class="fa fa-download mr-3"></i>Download</h4>
                                 <hr>
-                                <a href="frontend/assets/file/CV.docx" class="btn-link">formulir lamaran.docx</a>
+                                <a href="frontend/assets/file/FORMULIR_LAMARAN.doc" class="btn-link">formulir lamaran.docx</a>
                             </div>
                             <div class="col-12 text-center">
                                 <a href="?page=form-lamaran&penerimaan=<?= $id_recruitment ?>" class="btn btn-success btn-sm">

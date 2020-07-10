@@ -17,18 +17,7 @@ require('../../function/vendor/autoload.php');
 $mail = new PHPMailer(true);
 
 // SMTP configuration
-$mail->isSMTP();
-$mail->Host     = 'ssl://smtp.googlemail.com';
-$mail->SMTPAuth = true;
-$mail->Username = 'bonliciptas@gmail.com';
-$mail->Password = 'bonli123';
-$mail->SMTPSecure = 'ssl';
-$mail->Port     = 465;
-
-$mail->setFrom('bonliciptas@gmail.com', 'PT Bonli Cipta Sejahtera');
-$mail->addReplyTo('bonliciptas@gmail.com', 'PT Bonli Cipta Sejahtera');
-// Set email format to HTML
-$mail->isHTML(true);
+configsmtp($mail);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -36,6 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $query = mysqli_query($koneksi, "SELECT * FROM `calon_karyawan` WHERE email_calon_karyawan = '$email'");
     $getdata = mysqli_fetch_assoc($query);
+
+    //redirect atau header halaman
+    // redirect('index.php');
+    echo "<script>window.location.href = '../../index.php';</script>";
 
     if (mysqli_num_rows($query) > 0) {
         if($getdata['status_calon_karyawan'] == 1){
@@ -75,5 +68,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['type'] = 'error';
     }
 
-    redirect('index.php');
+    
 }

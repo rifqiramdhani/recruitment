@@ -5,56 +5,62 @@ require('../function/helper.php');
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     if(isset($_POST['login'])){
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        echo $email = $_POST['email'];
+        echo $password = $_POST['password'];
 
-        $query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan, nama_divisi FROM `karyawan` JOIN detail_jabatan ON detail_jabatan.id_dt_jabatan = karyawan.id_dt_jabatan JOIN jabatan ON detail_jabatan.id_jabatan = jabatan.id_jabatan JOIN divisi ON detail_jabatan.id_divisi = divisi.id_divisi WHERE email_karyawan = '$email'");
+        $querycek = mysqli_query($koneksi, "SELECT * FROM `karyawan` WHERE email_karyawan = '$email'");
+        $getcek = mysqli_fetch_assoc($querycek);
 
+        if(mysqli_num_rows($querycek) > 0){
 
+            if(password_verify($password, $getcek['password_karyawan'])){
+                if($getcek['status_karyawan'] == 1){
+                    if($getcek['level'] == 'admin'){
+                        $data = [
+                            'login' => true,
+                            'email' => $email,
+                            'level' => 'admin',
+                            'id_karyawan' => $getcek['id_karyawan'],
+                            'nama_karyawan' => $getcek['nama_karyawan']
+                        ];
+                    }else{
+                        $query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan, nama_divisi FROM `karyawan` JOIN jabatan USING(id_jabatan) JOIN divisi USING(id_divisi) WHERE email_karyawan = '$email'");
+                        $user = mysqli_fetch_assoc($query);
 
-        if(mysqli_num_rows($query) > 0){
-            $user = mysqli_fetch_assoc($query);
-            
+                        $level = strtolower($user['nama_jabatan'] . $user['nama_divisi']);
 
-            if(password_verify($password, $user['password_karyawan'])){
-                if($user['status_karyawan'] == 1){
-
-                    $data = [
-                        'login' => true,
-                        'email' => $email,
-                        'level' => strtolower($user['nama_jabatan']. $user['nama_divisi']),
-                        'id_karyawan' => $user['id_karyawan']
-                    ];
+                        $data = [
+                                'login' => true,
+                                'email' => $email,
+                                'level' => str_replace(" ", "", $level),
+                                'id_karyawan' => $user['id_karyawan'],
+                                'nama_karyawan' => $user['nama_karyawan']
+                            ];
+                    }
 
                     //fungsi memasukkan data kedalam session
                     session_userdata($data);
                     redirect('admin');
 
                 }else{
-                    redirect('login/index.php', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        Maaf akun anda tidak aktif. Silahkan hubungi Staff SDM untuk info mengenai akun.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>');
+                    $_SESSION['message'] = 'Maaf akun anda tidak aktif. Silahkan hubungi Staff SDM untuk info mengenai akun.';
+                    $_SESSION['title'] = 'Login';
+                    $_SESSION['type'] = 'error';
+                    header('location: index.php');
                 }
 
             }else{
-                redirect('login/index.php', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        Maaf password yang anda masukan salah.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>');
+                $_SESSION['message'] = 'Maaf password yang anda masukan salah.';
+                $_SESSION['title'] = 'Login';
+                $_SESSION['type'] = 'error';
+                header('location: index.php');
             }
         
         }else{
-            redirect('login/index.php', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        Maaf email yang anda masukan belum terdaftar.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>');
+            $_SESSION['message'] = 'Maaf email yang anda masukan belum terdaftar..';
+            $_SESSION['title'] = 'Login';
+            $_SESSION['type'] = 'error';
+            header('location: index.php');
         }
     }
 

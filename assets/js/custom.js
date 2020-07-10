@@ -1,14 +1,14 @@
 //function swall alert hapus data
 function hapusdata(title, url, id, nama) {
     Swal.fire({
-        title: 'Apakah yakin?',
+        title: 'Apakah anda yakin?',
         text: "Ingin Menghapus Data " + nama,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#db3325',
         cancelButtonColor: '#f5a732',
         confirmButtonText: "Hapus",
-        cancelButtonText: "Cancel",
+        cancelButtonText: "Kembali",
     }).then((result) => {
         if (result.value) {
             $.ajax({
@@ -35,7 +35,7 @@ function hapusdata(title, url, id, nama) {
 
 function swalhref(link, titletext) {
     Swal.fire({
-        title: 'Apakah kamu yakin?',
+        title: 'Apakah anda yakin?',
         text: " " + titletext,
         icon: 'warning',
         showCancelButton: true,

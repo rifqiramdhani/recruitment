@@ -17,7 +17,11 @@ $getnilai = mysqli_fetch_assoc($querynilai);
 ?>
 
 <!-- <div class="flash-data" data-flashdata=""></div> -->
+<div class="col-sm-12 mb-3">
+    <a href="?page=penilaian-rekrutmen" class="btn btn-warning btn-sm"><i class="fas fa-reply"></i> Kembali</a>
+</div>
 <div class="col-sm-6">
+
     <!-- show sweet alert -->
     <?php if (isset($_SESSION['message'])) : ?>
         <div class="flash-data" data-flashdata="<?= $_SESSION['message'] ?>" data-title="<?= $_SESSION['title'] ?>" data-type="<?= $_SESSION['type'] ?>"></div>
@@ -27,6 +31,7 @@ $getnilai = mysqli_fetch_assoc($querynilai);
         unset($_SESSION['type']);
     endif;
     ?>
+
 
     <div class="card card-accent-success">
         <div class="card-header"><strong>Berkas Calon Karyawan - <?= $getdatack['nama_calon_karyawan'] ?></strong></div>
@@ -125,19 +130,21 @@ $getnilai = mysqli_fetch_assoc($querynilai);
                     <?php while ($getkrit = mysqli_fetch_assoc($querykrit)) : ?>
                         <div class="form-group row has-feedback">
                             <label class="col-sm-4 col-form-label"><?= $getkrit['nama_kriteria_rekrutmen'] ?></label>
+                            <input type="hidden" class="col-2" name="id_kriteria[]" value="<?= $getkrit['id_krt_rekt'] ?>">
                             <div class="col-sm-8">
                                 <?php
                                 $id_kriteria = $getkrit['id_krt_rekt'];
                                 $querysubkrit = mysqli_query($koneksi, "SELECT * FROM `subkriteria_rekrutmen` WHERE id_kriteria_rekrutmen = '$id_kriteria' ORDER BY nama_subkriteria ASC");
                                 ?>
                                 <?php if (mysqli_num_rows($querysubkrit) > 0) : ?>
-                                    <select name="nilai[]" class="form-control" required>
+                                    <select name="nilaisub[]" class="form-control" required>
                                         <option value="">-Pilih <?= $getkrit['nama_kriteria_rekrutmen'] ?> -</option>
                                         <?php while ($getsubkrit = mysqli_fetch_assoc($querysubkrit)) : ?>
-                                            <option value="<?= $getsubkrit['bobot_subkriteria'] ?>"><?= $getsubkrit['nama_subkriteria'] ?></option>
+                                            <option value="<?= $getsubkrit['id_subkriteria_rekrutmen'] ?>"><?= $getsubkrit['nama_subkriteria'] ?></option>
                                         <?php endwhile ?>
                                     </select>
-
+                                <?php elseif ($getkrit['id_dt_krt_rekt'] == 'K010') : ?>
+                                    <input type="text" name="nilaipsikotes" class="form-control" placeholder="Masukkan Nilai" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                                 <?php else : ?>
                                     <select name="nilai[]" class="form-control" required>
                                         <option value="">-Pilih Nilai-</option>
@@ -148,10 +155,10 @@ $getnilai = mysqli_fetch_assoc($querynilai);
                                         <option value="5">Sangat Baik</option>
                                     </select>
 
-                                    <?php endif ?>
+                                <?php endif ?>
 
-                                    <span class="glyphicon form-control-feedback mr-3" aria-hidden="true"></span>
-                                    <span class="help-block with-errors"></span>
+                                <span class="glyphicon form-control-feedback mr-3" aria-hidden="true"></span>
+                                <span class="help-block with-errors"></span>
                             </div>
                         </div>
 

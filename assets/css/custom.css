@@ -952,6 +952,10 @@ input[type="radio"] {
     color: #FF9800 !important;
 }
 
+.col-green {
+    color: #4dbd74 !important;
+}
+
 .btn:not(.btn-link):not(.btn-circle) {
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0.16), 0 1px 5px rgba(0, 0, 0, 0.12);
     border: none;

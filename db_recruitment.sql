@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2020 at 10:16 PM
+-- Generation Time: Jul 03, 2020 at 06:25 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -49,11 +49,11 @@ CREATE TABLE `calon_karyawan` (
 --
 
 INSERT INTO `calon_karyawan` (`id_calon_karyawan`, `nama_calon_karyawan`, `email_calon_karyawan`, `password_calon_karyawan`, `telp_calon_karyawan`, `ttl_calon_karyawan`, `alamat_calon_karyawan`, `kodepos_calon_karyawan`, `status_pernikahan`, `status_pendidikan`, `agama`, `token_calon_karyawan`, `status_calon_karyawan`) VALUES
-(1, 'Rifqi Ramdhani', 'rifqiramdhani8@gmail.com', '$2y$10$myhj85TL1WRU3XTCpP29mutvzsB6UePlIHyhdON2Jt9pTgFLrM0oS', '081393003129', 'bandung, 21 desember 1998', 'Jl budhi No 37', '40553', 'Belum menikah', 'S1', 'Islam', 'rXEQXZVKiYRs9fY+0oGQ4l6iRDCMDtP/9EYudZn5G0k=', 1),
-(2, 'Ahmad kasim', 'rifqiramdhani71@yahoo.co.id', '$2y$10$wQDSXeIs2ZvXSmS5U0c0qOpZoQDo6oDigkc7LNHLBBmQys6wMj2QW', '081393003329', 'Bandung, 22 april 1999', 'Perum bukit berlian c72', '40552', 'Menikah', 'S2', 'Islam', '', 1),
-(4, 'Rifqi Ramdhani', 'ramdhanirifqi8@gmail.com', '$2y$10$AaQppD9LJnx.wWeG4Y0M3.FAgJW/FlIfNl53uu3SUyEBe/VUsqQI6', '081393001222', 'padalarang, 21 desember', 'Jl budhi No 37', '40554', 'Belum menikah', 'S1', 'Islam', 'lXg6pvvomijPfyp4W2so1CAn5/AN0/yBZOE+WASLLyI=', 1),
-(5, 'Ruyatsyah', 'ruyatsy@gmail.com', '$2y$10$jQOWLBYNTj.LGv/sa2hq4uXZDbbOCsK4m18fhdLHxXH.IhP5kfXZW', '081393003321', 'Cianjur, 22 Desember 1999', 'Cianjur', '', '', '', '', '', 1),
-(6, 'Saeful Apriana', 'saeful@gmail.com', '$2y$10$Y5q9KdkLoNwwbMR7YB1N0.m1tTGulkexW8gOIyp.c/HUgwMqRsoO.', '08338277162', 'Garut, 22 April 2000', 'garut', '', '', '', '', '', 1);
+(16, 'Saeful Apriana', 'saeful.apriana@gmail.com', '$2y$10$B8EzXzjvHwoOry6697OIVuZ3utI4KUfleNoDg6e6omQ9R/RolkkHq', '08939930029', 'Garut, 22 April 2000', 'Garut, jl bukit mawar no 10', '40553', 'Belum menikah', 'D1', 'Islam', 'WIrxlx8h7dU7mSE7ulj+DtMG/1LFK3/BqcftwuClPa8=', 0),
+(19, 'Saeful Apriana', 'saeful@gmail.com', '$2y$10$FdrtE92qAQbIekWciy3ZKe7Qz4p6hqR/WD/NFNhOE0fqoQXfmv/4G', '081393887622', 'Cianjur, 22 Desember 1999', 'Garut, jl bukit mawar no 10', '', '', '', '', '', 1),
+(20, 'Ruyatsyah', 'ruyatsy@gmail.com', '$2y$10$qtpjUIPWM7K29OdLB36v0e8L0emN2J1WyV.cfXBvv0Rovu8iNYehG', '0893992881223', 'Garut, 22 April 2000', 'Jl Karapitan no 44', '', '', '', '', '', 1),
+(21, 'Ahmad Sholihin', 'ahmad@gmail.com', '$2y$10$wh1VbGspdHzmz8Wk.zOCEue6kQiSP0oCJpkaNgfyTRZZ4xq5BYnpq', '087337772818', 'Bandung, 25 Desember 1999', 'jl turangga no 30', '', '', '', '', '', 1),
+(22, 'Budi Anduk', 'budi@gmail.com', '$2y$10$2f4Id8cWvPli1S661YcAEep2FyJhDkqLciCeketu9ANhPI8LAHPtC', '0893992881223', 'Cianjur, 22 Desember 1999', 'jl turangga no 30', '', '', '', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -73,44 +73,11 @@ CREATE TABLE `desk_rekrutmen` (
 --
 
 INSERT INTO `desk_rekrutmen` (`id_desk_rekrutmen`, `id_rekrutmen`, `deskripsi`, `tipe`) VALUES
-(1, 1, 'Kami perusahaan garment berorientasi export berskala international yang pertama dan terbesar di Kabupaten Majalengka, saat ini membutuhkan karyawan baru untuk posisi :\r\n\r\nHRD MANAGER ( Kode HRM )', 'deskripsi'),
-(2, 1, 'Minimal S1 Law/Psychology/Industrial Engineering or Management', 'persyaratan'),
-(3, 1, 'Minimum 5 Years of experience in all function of HRM in mfg environment and control of minimum 2500 employees.', 'persyaratan'),
-(4, 1, '45 Years old', 'persyaratan'),
-(5, 1, 'Good command in English both speaking and writing.', 'persyaratan'),
-(6, 1, 'Having excellent comunication,leadership,negotiation and well managed.', 'persyaratan'),
-(7, 1, 'Familiar with customer audit standard in garment industry is an advantage.', 'persyaratan'),
-(8, 1, 'Willing to be placed in Tegal', 'persyaratan'),
-(22, 10, 'Perusahaan kami sedang membutuhkan busseness analytical untuk menganalisi bisnis yang sedang kami jalankan ', 'deskripsi'),
-(23, 10, 'Minimal pendidikan S2', 'persyaratan'),
-(24, 10, 'Bersedia bekerja di bawah tekanan', 'persyaratan'),
-(25, 10, 'Memiliki keyakinan tinggi', 'persyaratan'),
-(28, 11, '', 'deskripsi'),
-(29, 12, '', 'deskripsi');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `detail_jabatan`
---
-
-CREATE TABLE `detail_jabatan` (
-  `id_dt_jabatan` int(11) NOT NULL,
-  `id_jabatan` int(11) NOT NULL,
-  `id_divisi` int(11) NOT NULL,
-  `kebutuhan_karyawan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `detail_jabatan`
---
-
-INSERT INTO `detail_jabatan` (`id_dt_jabatan`, `id_jabatan`, `id_divisi`, `kebutuhan_karyawan`) VALUES
-(1, 3, 1, 5),
-(2, 2, 4, 2),
-(3, 2, 1, 7),
-(4, 1, 2, 1),
-(5, 1, 3, 1);
+(41, 17, 'Dibutuhkan Spv. Layanan & Handling Complain Sales & Marketing segera ', 'deskripsi'),
+(42, 17, 'Ganteng', 'persyaratan'),
+(43, 17, 'Gesit', 'persyaratan'),
+(44, 17, 'Tidak mudah menyerah', 'persyaratan'),
+(45, 17, 'Rajin ibadah', 'persyaratan');
 
 -- --------------------------------------------------------
 
@@ -161,7 +128,49 @@ INSERT INTO `detail_kriteria_rekrutmen` (`id_dt_krt_rekt`, `nama_kriteria_rekrut
 ('K009', 'Kemampuan Komunikasi'),
 ('K010', 'Psikotes'),
 ('K011', 'Kesehatan'),
-('K012', 'Kenyamanan');
+('K012', 'Kenyamanan'),
+('K013', 'Asdf');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_penilaian_rekrutmen`
+--
+
+CREATE TABLE `detail_penilaian_rekrutmen` (
+  `id_dt_penilaian_rekrutmen` int(11) NOT NULL,
+  `id_penilaian_rekrutmen` int(11) NOT NULL,
+  `id_kriteria_rekrutmen` int(11) NOT NULL,
+  `id_subkriteria_rekrutmen` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `detail_penilaian_rekrutmen`
+--
+
+INSERT INTO `detail_penilaian_rekrutmen` (`id_dt_penilaian_rekrutmen`, `id_penilaian_rekrutmen`, `id_kriteria_rekrutmen`, `id_subkriteria_rekrutmen`) VALUES
+(78, 26, 126, 186),
+(79, 26, 127, 190),
+(80, 26, 128, 193),
+(81, 26, 129, 195),
+(82, 26, 130, 3),
+(83, 26, 131, 3),
+(84, 26, 132, 3),
+(85, 26, 133, 5),
+(86, 26, 134, 1),
+(87, 26, 135, 85),
+(88, 26, 136, 199),
+(89, 27, 126, 184),
+(90, 27, 127, 189),
+(91, 27, 128, 193),
+(92, 27, 129, 195),
+(93, 27, 130, 2),
+(94, 27, 131, 3),
+(95, 27, 132, 4),
+(96, 27, 133, 4),
+(97, 27, 134, 2),
+(98, 27, 135, 75),
+(99, 27, 136, 199);
 
 -- --------------------------------------------------------
 
@@ -174,18 +183,31 @@ CREATE TABLE `detail_subkriteria_penilaian` (
   `id_dt_krt_penilaian` varchar(2) NOT NULL,
   `nama_subkriteria_penilaian` varchar(128) NOT NULL,
   `jumlah_subkriteria_penilaian` double NOT NULL DEFAULT '0',
-  `nilai_prioritas_subkriteria` double NOT NULL DEFAULT '0'
+  `nilai_prioritas_subkriteria` double NOT NULL DEFAULT '0',
+  `nilai_bobot_global` double NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `detail_subkriteria_penilaian`
 --
 
-INSERT INTO `detail_subkriteria_penilaian` (`id_dt_subkriteria_penilaian`, `id_dt_krt_penilaian`, `nama_subkriteria_penilaian`, `jumlah_subkriteria_penilaian`, `nilai_prioritas_subkriteria`) VALUES
-(1, 'C1', 'Kesetiaan terhadap perusahaan', 0, 0),
-(2, 'C1', 'Mengutamakan pelayanan', 0, 0),
-(3, 'C1', 'Minat bekerja', 0, 0),
-(4, 'C1', 'Minat belajar', 0, 0);
+INSERT INTO `detail_subkriteria_penilaian` (`id_dt_subkriteria_penilaian`, `id_dt_krt_penilaian`, `nama_subkriteria_penilaian`, `jumlah_subkriteria_penilaian`, `nilai_prioritas_subkriteria`, `nilai_bobot_global`) VALUES
+(1, 'C1', 'Kesetiaan terhadap perusahaan', 2.46, 0.36, 0.04),
+(2, 'C1', 'Mengutamakan pelayanan', 8.35, 0.15, 0.017),
+(3, 'C1', 'Minat bekerja', 14.36, 0.08, 0.009),
+(4, 'C1', 'Minat belajar', 14.36, 0.08, 0.009),
+(5, 'C1', 'Penerimaan terhadap pengawasan', 5.52, 0.22, 0.024),
+(6, 'C1', 'Kepemimpinan', 17.03, 0.06, 0.007),
+(7, 'C1', 'Kemampuan bekerja dibawah tekanan', 20.33, 0.06, 0.007),
+(8, 'C2', 'Kehadiran tepat waktu', 4.69, 0.26, 0.164),
+(9, 'C2', 'Ketepatan waktu menyelesaikan pekerjaan', 1.86, 0.51, 0.321),
+(10, 'C2', 'Inisiatif', 7.33, 0.16, 0.101),
+(11, 'C2', 'Penerimaan terhadap tugas tambahan', 12, 0.08, 0.05),
+(12, 'C3', 'Kreatifitas', 11.09, 0.09, 0.023),
+(13, 'C3', 'Produktivitas', 11.09, 0.09, 0.023),
+(14, 'C3', 'Kemampuan dalam bekerja', 2.99, 0.32, 0.083),
+(15, 'C3', 'Pengetahuan tentang pekerjaan', 2.99, 0.32, 0.083),
+(16, 'C3', 'Ketepatan mengambil keputusan', 7.66, 0.18, 0.047);
 
 -- --------------------------------------------------------
 
@@ -206,7 +228,8 @@ INSERT INTO `divisi` (`id_divisi`, `nama_divisi`) VALUES
 (1, 'SDM'),
 (2, 'Support'),
 (3, 'Utama'),
-(4, 'Divisi');
+(4, 'Divisi'),
+(5, 'Sales & Marketing');
 
 -- --------------------------------------------------------
 
@@ -233,12 +256,8 @@ CREATE TABLE `file_calon_karyawan` (
 --
 
 INSERT INTO `file_calon_karyawan` (`id_file_calon_karyawan`, `id_rekrutmen`, `id_calon_karyawan`, `file_formulir_lamaran`, `file_cv`, `file_ktp`, `file_akta_kelahiran`, `file_kartu_keluarga`, `file_ijazah`, `file_skpk`, `file_pas_foto`) VALUES
-(2, 10, 1, '98976367.pdf', '30251655.pdf', '73574183.JPG', '99701516.pdf', '55896338.jpg', '48275895.jpg', '5636902.jpg', '5282938.jpg'),
-(4, 10, 2, '69394036.pdf', '10732580.pdf', '62327096.JPG', '79115110.pdf', '92773680.jpg', '40985795.jpg', '45379984.jpg', '5874041.jpg'),
-(5, 10, 4, '34315226.pdf', '70400631.pdf', '48871178.JPG', '97757677.pdf', '94805640.jpg', '88600081.jpg', '84450364.jpg', '22738058.jpg'),
-(6, 11, 1, '27338495.pdf', '63433051.pdf', '78650130.JPG', '9638308.pdf', '29028508.jpg', '95358269.jpg', '98595506.jpg', '46403149.jpg'),
-(7, 10, 6, '48499043.pdf', '31125164.pdf', '84514835.JPG', '10694353.pdf', '30338535.jpg', '23534544.jpg', '77766911.jpg', '54588123.jpg'),
-(8, 10, 5, '46348773.pdf', '27734805.pdf', '79610869.JPG', '88502008.pdf', '69934695.jpg', '83916861.jpg', '69146419.jpg', '31180994.jpg');
+(26, 17, 19, '34122281.pdf', '39552446.pdf', '68337414.JPG', '73999323.pdf', '20743676.jpg', '71613670.jpg', '91315247.jpg', '91892973.jpg'),
+(27, 17, 20, '2445988.pdf', '1345503.pdf', '74146487.JPG', '31986040.pdf', '67467056.jpg', '37620255.jpg', '97372500.jpg', '94135420.jpg');
 
 -- --------------------------------------------------------
 
@@ -263,8 +282,7 @@ CREATE TABLE `fpkb` (
 --
 
 INSERT INTO `fpkb` (`id_fpkb`, `id_karyawan`, `nama_file_fpkb`, `posisi_dibutuhkan`, `jumlah_dibutuhkan`, `jumlah_karyawan`, `tanggal_permintaan`, `tanggal_disetujui`, `status_fpkb`) VALUES
-(10, 7, '46031512.docx', 'Staff SDM', 4, 1, '2020-06-17', '2020-06-18', 6),
-(11, 7, '65844577.docx', 'Manager SDM', 7, 0, '2020-06-18', '2020-06-20', 5);
+(1, 6, '84298580.pdf', 'Spv. Layanan &amp; Handling Complain Sales &amp; Marketing', 1, 0, '2020-06-30', '2020-06-30', 5);
 
 -- --------------------------------------------------------
 
@@ -274,17 +292,30 @@ INSERT INTO `fpkb` (`id_fpkb`, `id_karyawan`, `nama_file_fpkb`, `posisi_dibutuhk
 
 CREATE TABLE `jabatan` (
   `id_jabatan` int(11) NOT NULL,
-  `nama_jabatan` varchar(50) NOT NULL
+  `nama_jabatan` varchar(50) NOT NULL,
+  `id_divisi` int(11) NOT NULL,
+  `jumlah_jabatan` int(11) NOT NULL,
+  `status_jabatan` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jabatan`
 --
 
-INSERT INTO `jabatan` (`id_jabatan`, `nama_jabatan`) VALUES
-(1, 'Direktur'),
-(2, 'Manager'),
-(3, 'Staff');
+INSERT INTO `jabatan` (`id_jabatan`, `nama_jabatan`, `id_divisi`, `jumlah_jabatan`, `status_jabatan`) VALUES
+(1, 'Direktur', 3, 1, 1),
+(2, 'Manager', 1, 3, 1),
+(3, 'Staff', 1, 5, 1),
+(4, 'Karyawan Masa Percobaan', 1, 0, 1),
+(5, 'Direktur', 2, 1, 1),
+(6, 'Manager Divisi', 5, 1, 1),
+(7, 'Spv. Layanan & Handling Complain', 5, 1, 1),
+(8, 'Corporate Communication', 5, 1, 1),
+(9, 'Bussiness Analytical', 5, 3, 1),
+(11, 'Content Writer', 5, 8, 1),
+(12, 'Admin Sales', 5, 4, 1),
+(15, 'Spv. Creative Marketing', 5, 1, 1),
+(17, 'Karyawan Masa Percobaan', 5, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -294,7 +325,7 @@ INSERT INTO `jabatan` (`id_jabatan`, `nama_jabatan`) VALUES
 
 CREATE TABLE `karyawan` (
   `id_karyawan` int(11) NOT NULL,
-  `id_dt_jabatan` int(11) DEFAULT NULL,
+  `id_jabatan` int(11) DEFAULT NULL,
   `email_karyawan` varchar(128) NOT NULL,
   `password_karyawan` varchar(128) NOT NULL,
   `nama_karyawan` varchar(128) NOT NULL,
@@ -309,12 +340,14 @@ CREATE TABLE `karyawan` (
 -- Dumping data for table `karyawan`
 --
 
-INSERT INTO `karyawan` (`id_karyawan`, `id_dt_jabatan`, `email_karyawan`, `password_karyawan`, `nama_karyawan`, `nik`, `telp_karyawan`, `ttl_karyawan`, `alamat_karyawan`, `status_karyawan`) VALUES
-(1, 1, 'admin@gmail.com', '$2y$10$Qjk0pRj.YFxHbkOvGKhuX.96v34mxJivJksZQETf/eWYvREUJ3n8G', 'Admin', '18117636', '081393003129', 'Bandung, 21 Desember 1998', 'jl. budhi no 37', 1),
-(6, 2, 'managerdivisi@gmail.com', '$2y$10$7s1wxEOv/5V4mRu/7G.dvOQ0IW7WdSc5KW1F82pIni8EUMHkDNhsO', 'Manager Divisi', '17887636', '08139300129', 'Bandung, 22 November 1980', 'Bukit Mawar no 10', 1),
-(7, 3, 'managersdm@gmail.com', '$2y$10$Ebw.vVcTIMHub/5mMb2z/u4bKzBv0/LfVlVsV1nfly97HGZ3fkFDK', 'Manager SDM', '17338872', '0813993322817', 'Bandung, 22 Mei 1990', 'Jl Mercusuar no 22', 1),
-(8, 4, 'direktursupport@gmail.com', '$2y$10$7pnAHKbtL4DGo0vIOMg/5eLzRVwr3SN4pOsNKdF5hVHXQu/0u8cYu', 'Direktur Support', '18336666', '087303998722', 'Bandung, 5 Mei 1972', 'Jl Mercusuar no 50', 1),
-(9, 5, 'direkturutama@gmail.com', '$2y$10$ROKFNSGDbFaKNIzr/WWNPu.TQOsZLaBJXUDtryLD1ECw2aty5mGA6', 'Direktur Utama', '1788778', '08139332200', 'Bandung, 30 April 1979', 'Jl lumba-lumba no 10', 1);
+INSERT INTO `karyawan` (`id_karyawan`, `id_jabatan`, `email_karyawan`, `password_karyawan`, `nama_karyawan`, `nik`, `telp_karyawan`, `ttl_karyawan`, `alamat_karyawan`, `status_karyawan`) VALUES
+(1, 3, 'admin@gmail.com', '$2y$10$Qjk0pRj.YFxHbkOvGKhuX.96v34mxJivJksZQETf/eWYvREUJ3n8G', 'Admin', '18117636', '081393003129', 'Bandung, 21 Desember 1998', 'jl. budhi no 37', 1),
+(6, 6, 'managerdivisi@gmail.com', '$2y$10$7s1wxEOv/5V4mRu/7G.dvOQ0IW7WdSc5KW1F82pIni8EUMHkDNhsO', 'Manager Divisi Sales &amp; Marketing', '17887636', '08139300129', 'Bandung, 22 November 1980', 'Bukit Mawar no 10', 1),
+(7, 2, 'managersdm@gmail.com', '$2y$10$Ebw.vVcTIMHub/5mMb2z/u4bKzBv0/LfVlVsV1nfly97HGZ3fkFDK', 'Manager SDM', '17338872', '0813993322817', 'Bandung, 22 Mei 1990', 'Jl Mercusuar no 22', 1),
+(8, 5, 'direktursupport@gmail.com', '$2y$10$7pnAHKbtL4DGo0vIOMg/5eLzRVwr3SN4pOsNKdF5hVHXQu/0u8cYu', 'Direktur Support', '18336666', '087303998722', 'Bandung, 5 Mei 1972', 'Jl Mercusuar no 50', 1),
+(9, 1, 'direkturutama@gmail.com', '$2y$10$ROKFNSGDbFaKNIzr/WWNPu.TQOsZLaBJXUDtryLD1ECw2aty5mGA6', 'Direktur Utama', '1788778', '08139332200', 'Bandung, 30 April 1979', 'Jl lumba-lumba no 10', 1),
+(10, 17, 'ruyatsy@gmail.com', '$2y$10$E1i3k/LakUmb9Zf7smasIOFnDNKu/Nzo104IYaERM8vbuURIu919O', 'Ruyatsyah', '10117732', '081377288918', 'Cianjur, 22 Desember 1998', 'Jl Mercusuar no 50', 1),
+(14, 17, 'rifqiramdhani8@gmail.com', '$2y$10$UWuP.F6A.Ojnu7H44TBYQ.hOoOZHuopNZal3yr1/SQ8IAA9ZyBnJ.', 'Rifqi Ramdhani', '10118737', '0812223303994', 'Bandung, 22 November 1980', 'Bukit Mawar no 10', 1);
 
 -- --------------------------------------------------------
 
@@ -365,51 +398,17 @@ CREATE TABLE `kriteria_rekrutmen` (
 --
 
 INSERT INTO `kriteria_rekrutmen` (`id_krt_rekt`, `id_rekrutmen`, `id_dt_krt_rekt`, `bobot_kriteria`, `status_kriteria`) VALUES
-(1, 1, 'K001', 3, 1),
-(2, 1, 'K002', 4, 1),
-(3, 1, 'K003', 2, 1),
-(4, 1, 'K004', 3, 1),
-(5, 1, 'K005', 3, 1),
-(6, 1, 'K006', 4, 1),
-(7, 1, 'K007', 5, 1),
-(8, 1, 'K008', 5, 1),
-(9, 1, 'K009', 4, 1),
-(10, 1, 'K010', 4, 1),
-(11, 1, 'K011', 3, 1),
-(57, 10, 'K001', 3, 1),
-(58, 10, 'K002', 4, 1),
-(59, 10, 'K003', 2, 1),
-(60, 10, 'K004', 3, 1),
-(61, 10, 'K005', 3, 1),
-(62, 10, 'K006', 4, 1),
-(63, 10, 'K007', 5, 1),
-(64, 10, 'K008', 5, 1),
-(65, 10, 'K009', 4, 1),
-(66, 10, 'K010', 4, 1),
-(67, 10, 'K011', 3, 1),
-(69, 11, 'K001', 3, 1),
-(70, 11, 'K002', 4, 1),
-(71, 11, 'K003', 2, 1),
-(72, 11, 'K004', 3, 1),
-(73, 11, 'K005', 3, 1),
-(74, 11, 'K006', 4, 1),
-(75, 11, 'K007', 5, 1),
-(76, 11, 'K008', 5, 1),
-(77, 11, 'K009', 4, 1),
-(78, 11, 'K010', 4, 1),
-(79, 11, 'K011', 3, 1),
-(80, 10, 'K012', 2, 0),
-(81, 12, 'K001', 3, 1),
-(82, 12, 'K002', 4, 1),
-(83, 12, 'K003', 2, 1),
-(84, 12, 'K004', 3, 1),
-(85, 12, 'K005', 3, 1),
-(86, 12, 'K006', 4, 1),
-(87, 12, 'K007', 5, 1),
-(88, 12, 'K008', 5, 1),
-(89, 12, 'K009', 4, 1),
-(90, 12, 'K010', 4, 1),
-(91, 12, 'K011', 3, 1);
+(126, 17, 'K001', 3, 1),
+(127, 17, 'K002', 4, 1),
+(128, 17, 'K003', 2, 1),
+(129, 17, 'K004', 3, 1),
+(130, 17, 'K005', 3, 1),
+(131, 17, 'K006', 4, 1),
+(132, 17, 'K007', 5, 1),
+(133, 17, 'K008', 5, 1),
+(134, 17, 'K009', 4, 1),
+(135, 17, 'K010', 4, 1),
+(136, 17, 'K011', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -419,11 +418,18 @@ INSERT INTO `kriteria_rekrutmen` (`id_krt_rekt`, `id_rekrutmen`, `id_dt_krt_rekt
 
 CREATE TABLE `penilaian_kmp` (
   `id_penilaian_kmp` int(11) NOT NULL,
-  `id_krt_penilaian` int(11) NOT NULL,
   `id_karyawan` int(11) NOT NULL,
-  `nilai` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `nilai` double NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `penilaian_kmp`
+--
+
+INSERT INTO `penilaian_kmp` (`id_penilaian_kmp`, `id_karyawan`, `nilai`, `status`) VALUES
+(3, 14, 49.74, 1),
+(4, 10, 49.29, 2);
 
 -- --------------------------------------------------------
 
@@ -435,9 +441,9 @@ CREATE TABLE `penilaian_rekrutmen` (
   `id_penilaian_rekrutmen` int(11) NOT NULL,
   `id_rekrutmen` int(11) DEFAULT NULL,
   `id_calon_karyawan` int(11) DEFAULT NULL,
-  `vector_s` float NOT NULL,
-  `vector_v` float NOT NULL,
-  `hasil` float NOT NULL
+  `vector_s` float NOT NULL DEFAULT '0',
+  `vector_v` float NOT NULL DEFAULT '0',
+  `hasil` float NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -445,12 +451,8 @@ CREATE TABLE `penilaian_rekrutmen` (
 --
 
 INSERT INTO `penilaian_rekrutmen` (`id_penilaian_rekrutmen`, `id_rekrutmen`, `id_calon_karyawan`, `vector_s`, `vector_v`, `hasil`) VALUES
-(1, 10, 1, 12.86, 0.203, 1),
-(4, 10, 2, 12.56, 0.198, 0),
-(5, 10, 4, 12.71, 0.2, 1),
-(6, 11, 1, 0, 0, 0),
-(7, 10, 6, 12.76, 0.201, 1),
-(8, 10, 5, 12.51, 0.197, 1);
+(26, 17, 19, 12.68, 0.502, 1),
+(27, 17, 20, 12.59, 0.498, 0);
 
 -- --------------------------------------------------------
 
@@ -460,10 +462,10 @@ INSERT INTO `penilaian_rekrutmen` (`id_penilaian_rekrutmen`, `id_rekrutmen`, `id
 
 CREATE TABLE `rekrutmen` (
   `id_rekrutmen` int(11) NOT NULL,
+  `id_fpkb` int(11) NOT NULL,
   `nama_rekrutmen` varchar(128) NOT NULL,
   `gaji_rekrutmen` varchar(128) NOT NULL,
   `waktu_rekrutmen` varchar(128) NOT NULL,
-  `pengumuman` tinyint(1) NOT NULL DEFAULT '0',
   `status_rekrutmen` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -471,12 +473,8 @@ CREATE TABLE `rekrutmen` (
 -- Dumping data for table `rekrutmen`
 --
 
-INSERT INTO `rekrutmen` (`id_rekrutmen`, `nama_rekrutmen`, `gaji_rekrutmen`, `waktu_rekrutmen`, `pengumuman`, `status_rekrutmen`) VALUES
-(1, 'Spv. Layanan &amp; Handling Complain', '5000000 - 7000000', 'PART TIME', 0, 2),
-(10, 'Spv. Layanan &amp; Handling Complain', '2000000 - 5000000', 'PART TIME', 0, 1),
-(11, 'Manager SDM', '10000000 - 20000000', 'FULL TIME', 0, 1),
-(12, 'Corporate Communication', '10000000 - 20000000', 'FULL TIME', 0, 0),
-(13, 'Staff SDM', '10000000 - 15000000', 'FULL TIME', 0, 0);
+INSERT INTO `rekrutmen` (`id_rekrutmen`, `id_fpkb`, `nama_rekrutmen`, `gaji_rekrutmen`, `waktu_rekrutmen`, `status_rekrutmen`) VALUES
+(17, 1, 'Spv. Layanan &amp; Handling Complain Sales &amp; Marketing', '5000000 - 10000000', 'FULL TIME', 1);
 
 -- --------------------------------------------------------
 
@@ -532,10 +530,96 @@ CREATE TABLE `subkriteria_penilaian` (
 --
 
 INSERT INTO `subkriteria_penilaian` (`id_skala_penilaian`, `id_dt_subkrt_penilaian_1`, `nilai_perbandingan`, `hasil_perbandingan`, `id_dt_subkrt_penilaian_2`) VALUES
-(9, 1, 1, 0, 1),
-(9, 2, 1, 0, 2),
-(9, 3, 1, 0, 3),
-(9, 4, 1, 0, 4);
+(9, 1, 1, 0.41, 1),
+(7, 1, 3, 0.36, 2),
+(5, 1, 5, 0.35, 3),
+(5, 1, 5, 0.35, 4),
+(7, 1, 3, 0.54, 5),
+(5, 1, 5, 0.29, 6),
+(5, 1, 5, 0.25, 7),
+(7, 2, 0.33, 0.13, 1),
+(9, 2, 1, 0.12, 2),
+(7, 2, 3, 0.21, 3),
+(7, 2, 3, 0.21, 4),
+(11, 2, 0.33, 0.06, 5),
+(7, 2, 3, 0.18, 6),
+(7, 2, 3, 0.15, 7),
+(5, 3, 0.2, 0.08, 1),
+(7, 3, 0.33, 0.04, 2),
+(9, 3, 1, 0.07, 3),
+(9, 3, 1, 0.07, 4),
+(11, 3, 0.33, 0.06, 5),
+(9, 3, 1, 0.06, 6),
+(7, 3, 3, 0.15, 7),
+(5, 4, 0.2, 0.08, 1),
+(7, 4, 0.33, 0.04, 2),
+(9, 4, 1, 0.07, 3),
+(9, 4, 1, 0.07, 4),
+(11, 4, 0.33, 0.06, 5),
+(9, 4, 1, 0.06, 6),
+(7, 4, 3, 0.15, 7),
+(7, 5, 0.33, 0.13, 1),
+(11, 5, 3.03, 0.36, 2),
+(11, 5, 3.03, 0.21, 3),
+(11, 5, 3.03, 0.21, 4),
+(9, 5, 1, 0.18, 5),
+(7, 5, 3, 0.18, 6),
+(5, 5, 5, 0.25, 7),
+(5, 6, 0.2, 0.08, 1),
+(7, 6, 0.33, 0.04, 2),
+(9, 6, 1, 0.07, 3),
+(9, 6, 1, 0.07, 4),
+(7, 6, 0.33, 0.06, 5),
+(9, 6, 1, 0.06, 6),
+(11, 6, 0.33, 0.02, 7),
+(5, 7, 0.2, 0.08, 1),
+(7, 7, 0.33, 0.04, 2),
+(7, 7, 0.33, 0.02, 3),
+(7, 7, 0.33, 0.02, 4),
+(5, 7, 0.2, 0.04, 5),
+(11, 7, 3.03, 0.18, 6),
+(9, 7, 1, 0.05, 7),
+(9, 8, 1, 0.21, 8),
+(11, 8, 0.33, 0.18, 9),
+(7, 8, 3, 0.41, 10),
+(7, 8, 3, 0.25, 11),
+(11, 9, 3.03, 0.65, 8),
+(9, 9, 1, 0.54, 9),
+(7, 9, 3, 0.41, 10),
+(5, 9, 5, 0.42, 11),
+(7, 10, 0.33, 0.07, 8),
+(7, 10, 0.33, 0.18, 9),
+(9, 10, 1, 0.14, 10),
+(7, 10, 3, 0.25, 11),
+(7, 11, 0.33, 0.07, 8),
+(5, 11, 0.2, 0.11, 9),
+(7, 11, 0.33, 0.05, 10),
+(9, 11, 1, 0.08, 11),
+(9, 12, 1, 0.09, 12),
+(9, 12, 1, 0.09, 13),
+(11, 12, 0.33, 0.11, 14),
+(11, 12, 0.33, 0.11, 15),
+(11, 12, 0.33, 0.04, 16),
+(9, 13, 1, 0.09, 12),
+(9, 13, 1, 0.09, 13),
+(11, 13, 0.33, 0.11, 14),
+(11, 13, 0.33, 0.11, 15),
+(11, 13, 0.33, 0.04, 16),
+(11, 14, 3.03, 0.27, 12),
+(11, 14, 3.03, 0.27, 13),
+(9, 14, 1, 0.33, 14),
+(9, 14, 1, 0.33, 15),
+(7, 14, 3, 0.39, 16),
+(11, 15, 3.03, 0.27, 12),
+(11, 15, 3.03, 0.27, 13),
+(9, 15, 1, 0.33, 14),
+(9, 15, 1, 0.33, 15),
+(7, 15, 3, 0.39, 16),
+(11, 16, 3.03, 0.27, 12),
+(11, 16, 3.03, 0.27, 13),
+(7, 16, 0.33, 0.11, 14),
+(7, 16, 0.33, 0.11, 15),
+(9, 16, 1, 0.13, 16);
 
 -- --------------------------------------------------------
 
@@ -555,78 +639,24 @@ CREATE TABLE `subkriteria_rekrutmen` (
 --
 
 INSERT INTO `subkriteria_rekrutmen` (`id_subkriteria_rekrutmen`, `id_kriteria_rekrutmen`, `nama_subkriteria`, `bobot_subkriteria`) VALUES
-(1, 1, 'SMU / SMK /SMA', 1),
-(2, 1, 'D1', 2),
-(3, 1, 'D3', 3),
-(4, 1, 'S1', 4),
-(5, 1, 'S2', 5),
-(6, 2, '0 tahun', 1),
-(7, 2, '1 - 2 tahun', 2),
-(8, 2, '3 - 4 tahun', 3),
-(9, 2, '5 tahun keatas', 4),
-(10, 3, 'Menikah', 3),
-(11, 3, 'Belum Menikah', 4),
-(12, 4, '21', 5),
-(13, 4, '22', 4),
-(14, 4, '23', 3),
-(15, 4, '24', 2),
-(16, 4, '25 - 30', 1),
-(17, 11, 'Sehat', 5),
-(18, 11, 'Tidak Sehat', 1),
-(73, 57, 'SMU / SMK /SMA', 1),
-(74, 57, 'D1', 2),
-(75, 57, 'D3', 3),
-(76, 57, 'S1', 4),
-(77, 57, 'S2', 5),
-(78, 58, '0 tahun', 1),
-(79, 58, '1 - 2 tahun', 2),
-(80, 58, '3 - 4 tahun', 3),
-(81, 58, '5 tahun keatas', 4),
-(82, 59, 'Menikah', 3),
-(83, 59, 'Belum Menikah', 4),
-(84, 60, '21', 5),
-(85, 60, '22', 4),
-(86, 60, '23', 3),
-(87, 60, '24', 2),
-(88, 60, '25 - 30', 1),
-(89, 67, 'Sehat', 5),
-(90, 67, 'Tidak Sehat', 1),
-(93, 69, 'SMU / SMK /SMA', 1),
-(94, 69, 'D1', 2),
-(95, 69, 'D3', 3),
-(96, 69, 'S1', 4),
-(97, 69, 'S2', 5),
-(98, 70, '0 tahun', 1),
-(99, 70, '1 - 2 tahun', 2),
-(100, 70, '3 - 4 tahun', 3),
-(101, 70, '5 tahun keatas', 4),
-(102, 71, 'Menikah', 3),
-(103, 71, 'Belum Menikah', 4),
-(104, 72, '21', 5),
-(105, 72, '22', 4),
-(106, 72, '23', 3),
-(107, 72, '24', 2),
-(108, 72, '25 - 30', 1),
-(109, 79, 'Sehat', 5),
-(110, 79, 'Tidak Sehat', 1),
-(111, 81, 'SMU / SMK /SMA', 1),
-(112, 81, 'D1', 2),
-(113, 81, 'D3', 3),
-(114, 81, 'S1', 4),
-(115, 81, 'S2', 5),
-(116, 82, '0 tahun', 1),
-(117, 82, '1 - 2 tahun', 2),
-(118, 82, '3 - 4 tahun', 3),
-(119, 82, '5 tahun keatas', 4),
-(120, 83, 'Menikah', 3),
-(121, 83, 'Belum Menikah', 4),
-(122, 84, '21', 5),
-(123, 84, '22', 4),
-(124, 84, '23', 3),
-(125, 84, '24', 2),
-(126, 84, '25 - 30', 1),
-(127, 91, 'Sehat', 5),
-(128, 91, 'Tidak Sehat', 1);
+(183, 126, 'SMU / SMK /SMA', 1),
+(184, 126, 'D1', 2),
+(185, 126, 'D3', 3),
+(186, 126, 'S1', 4),
+(187, 126, 'S2', 5),
+(188, 127, '0 tahun', 1),
+(189, 127, '1 - 2 tahun', 2),
+(190, 127, '3 - 4 tahun', 3),
+(191, 127, '5 tahun keatas', 4),
+(192, 128, 'Menikah', 3),
+(193, 128, 'Belum Menikah', 4),
+(194, 129, '21', 5),
+(195, 129, '22', 4),
+(196, 129, '23', 3),
+(197, 129, '24', 2),
+(198, 129, '25 - 30', 1),
+(199, 136, 'Sehat', 5),
+(200, 136, 'Tidak Sehat', 1);
 
 --
 -- Indexes for dumped tables
@@ -648,14 +678,6 @@ ALTER TABLE `desk_rekrutmen`
   ADD KEY `desk_rekrutmen_ibfk_1` (`id_rekrutmen`);
 
 --
--- Indexes for table `detail_jabatan`
---
-ALTER TABLE `detail_jabatan`
-  ADD PRIMARY KEY (`id_dt_jabatan`),
-  ADD KEY `id_jabatan` (`id_jabatan`),
-  ADD KEY `id_divisi` (`id_divisi`);
-
---
 -- Indexes for table `detail_kriteria_penilaian`
 --
 ALTER TABLE `detail_kriteria_penilaian`
@@ -668,11 +690,18 @@ ALTER TABLE `detail_kriteria_rekrutmen`
   ADD PRIMARY KEY (`id_dt_krt_rekt`);
 
 --
+-- Indexes for table `detail_penilaian_rekrutmen`
+--
+ALTER TABLE `detail_penilaian_rekrutmen`
+  ADD PRIMARY KEY (`id_dt_penilaian_rekrutmen`),
+  ADD KEY `id_penilaian_rekrutmen` (`id_penilaian_rekrutmen`);
+
+--
 -- Indexes for table `detail_subkriteria_penilaian`
 --
 ALTER TABLE `detail_subkriteria_penilaian`
   ADD PRIMARY KEY (`id_dt_subkriteria_penilaian`),
-  ADD KEY `id_dt_kriteria_penilaian` (`id_dt_krt_penilaian`);
+  ADD KEY `detail_subkriteria_penilaian_ibfk_1` (`id_dt_krt_penilaian`);
 
 --
 -- Indexes for table `divisi`
@@ -686,7 +715,7 @@ ALTER TABLE `divisi`
 ALTER TABLE `file_calon_karyawan`
   ADD PRIMARY KEY (`id_file_calon_karyawan`),
   ADD KEY `id_recruitment_fore` (`id_rekrutmen`),
-  ADD KEY `id_calon_karyawan_fore` (`id_calon_karyawan`);
+  ADD KEY `file_calon_karyawan_ibfk_2` (`id_calon_karyawan`);
 
 --
 -- Indexes for table `fpkb`
@@ -699,7 +728,8 @@ ALTER TABLE `fpkb`
 -- Indexes for table `jabatan`
 --
 ALTER TABLE `jabatan`
-  ADD PRIMARY KEY (`id_jabatan`);
+  ADD PRIMARY KEY (`id_jabatan`),
+  ADD KEY `id_divisi` (`id_divisi`);
 
 --
 -- Indexes for table `karyawan`
@@ -708,7 +738,7 @@ ALTER TABLE `karyawan`
   ADD PRIMARY KEY (`id_karyawan`),
   ADD UNIQUE KEY `no_induk_karyawan` (`nik`),
   ADD UNIQUE KEY `no_telp_karyawan` (`telp_karyawan`),
-  ADD KEY `id_dt_jabatan` (`id_dt_jabatan`);
+  ADD KEY `id_jabatan` (`id_jabatan`);
 
 --
 -- Indexes for table `kriteria_penilaian`
@@ -730,21 +760,23 @@ ALTER TABLE `kriteria_rekrutmen`
 -- Indexes for table `penilaian_kmp`
 --
 ALTER TABLE `penilaian_kmp`
-  ADD PRIMARY KEY (`id_penilaian_kmp`);
+  ADD PRIMARY KEY (`id_penilaian_kmp`),
+  ADD KEY `id_karyawan` (`id_karyawan`);
 
 --
 -- Indexes for table `penilaian_rekrutmen`
 --
 ALTER TABLE `penilaian_rekrutmen`
   ADD PRIMARY KEY (`id_penilaian_rekrutmen`),
-  ADD KEY `id_calon_karyawan_fore` (`id_calon_karyawan`),
-  ADD KEY `id_recruitment_fore` (`id_rekrutmen`);
+  ADD KEY `penilaian_rekrutmen_ibfk_1` (`id_calon_karyawan`),
+  ADD KEY `penilaian_rekrutmen_ibfk_2` (`id_rekrutmen`);
 
 --
 -- Indexes for table `rekrutmen`
 --
 ALTER TABLE `rekrutmen`
-  ADD PRIMARY KEY (`id_rekrutmen`);
+  ADD PRIMARY KEY (`id_rekrutmen`),
+  ADD KEY `id_fpkb` (`id_fpkb`);
 
 --
 -- Indexes for table `skala_penilaian`
@@ -775,79 +807,79 @@ ALTER TABLE `subkriteria_rekrutmen`
 -- AUTO_INCREMENT for table `calon_karyawan`
 --
 ALTER TABLE `calon_karyawan`
-  MODIFY `id_calon_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_calon_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `desk_rekrutmen`
 --
 ALTER TABLE `desk_rekrutmen`
-  MODIFY `id_desk_rekrutmen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_desk_rekrutmen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
--- AUTO_INCREMENT for table `detail_jabatan`
+-- AUTO_INCREMENT for table `detail_penilaian_rekrutmen`
 --
-ALTER TABLE `detail_jabatan`
-  MODIFY `id_dt_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `detail_penilaian_rekrutmen`
+  MODIFY `id_dt_penilaian_rekrutmen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `detail_subkriteria_penilaian`
 --
 ALTER TABLE `detail_subkriteria_penilaian`
-  MODIFY `id_dt_subkriteria_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_dt_subkriteria_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `divisi`
 --
 ALTER TABLE `divisi`
-  MODIFY `id_divisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_divisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `file_calon_karyawan`
 --
 ALTER TABLE `file_calon_karyawan`
-  MODIFY `id_file_calon_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_file_calon_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `fpkb`
 --
 ALTER TABLE `fpkb`
-  MODIFY `id_fpkb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_fpkb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `jabatan`
 --
 ALTER TABLE `jabatan`
-  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `karyawan`
 --
 ALTER TABLE `karyawan`
-  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `kriteria_rekrutmen`
 --
 ALTER TABLE `kriteria_rekrutmen`
-  MODIFY `id_krt_rekt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id_krt_rekt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- AUTO_INCREMENT for table `penilaian_kmp`
 --
 ALTER TABLE `penilaian_kmp`
-  MODIFY `id_penilaian_kmp` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_penilaian_kmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `penilaian_rekrutmen`
 --
 ALTER TABLE `penilaian_rekrutmen`
-  MODIFY `id_penilaian_rekrutmen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_penilaian_rekrutmen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `rekrutmen`
 --
 ALTER TABLE `rekrutmen`
-  MODIFY `id_rekrutmen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_rekrutmen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `skala_penilaian`
@@ -859,7 +891,7 @@ ALTER TABLE `skala_penilaian`
 -- AUTO_INCREMENT for table `subkriteria_rekrutmen`
 --
 ALTER TABLE `subkriteria_rekrutmen`
-  MODIFY `id_subkriteria_rekrutmen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+  MODIFY `id_subkriteria_rekrutmen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
 
 --
 -- Constraints for dumped tables
@@ -872,24 +904,23 @@ ALTER TABLE `desk_rekrutmen`
   ADD CONSTRAINT `desk_rekrutmen_ibfk_1` FOREIGN KEY (`id_rekrutmen`) REFERENCES `rekrutmen` (`id_rekrutmen`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `detail_jabatan`
+-- Constraints for table `detail_penilaian_rekrutmen`
 --
-ALTER TABLE `detail_jabatan`
-  ADD CONSTRAINT `detail_jabatan_ibfk_1` FOREIGN KEY (`id_jabatan`) REFERENCES `jabatan` (`id_jabatan`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `detail_jabatan_ibfk_2` FOREIGN KEY (`id_divisi`) REFERENCES `divisi` (`id_divisi`) ON UPDATE CASCADE;
+ALTER TABLE `detail_penilaian_rekrutmen`
+  ADD CONSTRAINT `detail_penilaian_rekrutmen_ibfk_1` FOREIGN KEY (`id_penilaian_rekrutmen`) REFERENCES `penilaian_rekrutmen` (`id_penilaian_rekrutmen`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `detail_subkriteria_penilaian`
 --
 ALTER TABLE `detail_subkriteria_penilaian`
-  ADD CONSTRAINT `detail_subkriteria_penilaian_ibfk_1` FOREIGN KEY (`id_dt_krt_penilaian`) REFERENCES `detail_kriteria_penilaian` (`id_dt_kriteria_penilaian`);
+  ADD CONSTRAINT `detail_subkriteria_penilaian_ibfk_1` FOREIGN KEY (`id_dt_krt_penilaian`) REFERENCES `detail_kriteria_penilaian` (`id_dt_kriteria_penilaian`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `file_calon_karyawan`
 --
 ALTER TABLE `file_calon_karyawan`
   ADD CONSTRAINT `file_calon_karyawan_ibfk_1` FOREIGN KEY (`id_rekrutmen`) REFERENCES `rekrutmen` (`id_rekrutmen`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `file_calon_karyawan_ibfk_2` FOREIGN KEY (`id_calon_karyawan`) REFERENCES `calon_karyawan` (`id_calon_karyawan`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `file_calon_karyawan_ibfk_2` FOREIGN KEY (`id_calon_karyawan`) REFERENCES `calon_karyawan` (`id_calon_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `fpkb`
@@ -898,10 +929,16 @@ ALTER TABLE `fpkb`
   ADD CONSTRAINT `fpkb_ibfk_1` FOREIGN KEY (`id_karyawan`) REFERENCES `karyawan` (`id_karyawan`) ON UPDATE CASCADE;
 
 --
+-- Constraints for table `jabatan`
+--
+ALTER TABLE `jabatan`
+  ADD CONSTRAINT `jabatan_ibfk_1` FOREIGN KEY (`id_divisi`) REFERENCES `divisi` (`id_divisi`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `karyawan`
 --
 ALTER TABLE `karyawan`
-  ADD CONSTRAINT `karyawan_ibfk_1` FOREIGN KEY (`id_dt_jabatan`) REFERENCES `detail_jabatan` (`id_dt_jabatan`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `karyawan_ibfk_1` FOREIGN KEY (`id_jabatan`) REFERENCES `jabatan` (`id_jabatan`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `kriteria_penilaian`
@@ -919,11 +956,23 @@ ALTER TABLE `kriteria_rekrutmen`
   ADD CONSTRAINT `kriteria_rekrutmen_ibfk_2` FOREIGN KEY (`id_dt_krt_rekt`) REFERENCES `detail_kriteria_rekrutmen` (`id_dt_krt_rekt`) ON UPDATE CASCADE;
 
 --
+-- Constraints for table `penilaian_kmp`
+--
+ALTER TABLE `penilaian_kmp`
+  ADD CONSTRAINT `penilaian_kmp_ibfk_1` FOREIGN KEY (`id_karyawan`) REFERENCES `karyawan` (`id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `penilaian_rekrutmen`
 --
 ALTER TABLE `penilaian_rekrutmen`
-  ADD CONSTRAINT `penilaian_rekrutmen_ibfk_1` FOREIGN KEY (`id_calon_karyawan`) REFERENCES `calon_karyawan` (`id_calon_karyawan`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `penilaian_rekrutmen_ibfk_2` FOREIGN KEY (`id_rekrutmen`) REFERENCES `rekrutmen` (`id_rekrutmen`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `penilaian_rekrutmen_ibfk_1` FOREIGN KEY (`id_calon_karyawan`) REFERENCES `calon_karyawan` (`id_calon_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `penilaian_rekrutmen_ibfk_2` FOREIGN KEY (`id_rekrutmen`) REFERENCES `rekrutmen` (`id_rekrutmen`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `rekrutmen`
+--
+ALTER TABLE `rekrutmen`
+  ADD CONSTRAINT `rekrutmen_ibfk_1` FOREIGN KEY (`id_fpkb`) REFERENCES `fpkb` (`id_fpkb`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `subkriteria_penilaian`

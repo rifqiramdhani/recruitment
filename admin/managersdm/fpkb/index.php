@@ -1,6 +1,6 @@
 <?php
 // $query = mysqli_query($koneksi, "SELECT fpkb.*, nama_karyawan FROM `fpkb` JOIN karyawan ON fpkb.id_karyawan = karyawan.id_karyawan");
-$query = mysqli_query($koneksi, "SELECT fpkb.*, nama_karyawan, nama_jabatan, nama_divisi FROM `fpkb` JOIN karyawan ON fpkb.id_karyawan = karyawan.id_karyawan JOIN detail_jabatan ON karyawan.id_dt_jabatan = detail_jabatan.id_dt_jabatan JOIN divisi ON detail_jabatan.id_divisi = divisi.id_divisi JOIN jabatan ON detail_jabatan.id_jabatan = jabatan.id_jabatan WHERE status_fpkb >= 2 ORDER BY tanggal_disetujui DESC");
+$query = mysqli_query($koneksi, "SELECT fpkb.*, nama_karyawan, nama_jabatan, nama_divisi FROM `fpkb` JOIN karyawan USING(id_karyawan) JOIN jabatan ON karyawan.id_jabatan = jabatan.id_jabatan JOIN divisi USING(id_divisi)  WHERE status_fpkb >= 1 ORDER BY tanggal_permintaan DESC");
 ?>
 
 <!-- <div class="flash-data" data-flashdata=""></div> -->
@@ -24,13 +24,12 @@ $query = mysqli_query($koneksi, "SELECT fpkb.*, nama_karyawan, nama_jabatan, nam
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Yang mengajukan</th>
+                            <th>Pengaju</th>
                             <th>Jabatan</th>
                             <th>Posisi dibutuhkan</th>
                             <th>Jumlah dibutuhkan</th>
                             <th>Tanggal Permintaan</th>
-                            <th>File FPKB</th>
-                            <th>Disetujui Oleh</th>
+                            <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -44,26 +43,39 @@ $query = mysqli_query($koneksi, "SELECT fpkb.*, nama_karyawan, nama_jabatan, nam
                                 <td><?= $getdata['posisi_dibutuhkan'] ?></td>
                                 <td><?= $getdata['jumlah_dibutuhkan'] ?></td>
                                 <td><?= date('d-m-Y', strtotime($getdata['tanggal_permintaan'])) ?></td>
+
                                 <td>
-                                    <a href="../assets/file/<?= $getdata['nama_file_fpkb'] ?>"><?= $getdata['nama_file_fpkb'] ?></a>
-                                </td>
-                                <td>
-                                    <?php 
-                                        if($getdata['status_fpkb'] > 2){
-                                            echo 'Manager SDM';
-                                        }else{
+                                    <?php
+                                    switch ($getdata['status_fpkb']) {
+                                        case 1:
                                             echo '-';
-                                        }
+                                            break;
+
+                                        case 2:
+                                            echo '<button class="btn btn-block btn-default col-red font-weight-bold" >Menunggu Persetujuan <br> Direktur Support</button>';
+                                            break;
+
+                                        case 3:
+                                            echo '<button class="btn btn-block btn-default col-green font-weight-bold" >Disetujui</button>';
+                                            break;
+
+                                        case 4:
+                                            echo '<button class="btn btn-block btn-danger font-weight-bold" >Ditolak</button>';
+                                            break;
+
+                                        default:
+
+                                            break;
+                                    }
                                     ?>
                                 </td>
                                 <td>
-                                    <a href="?page=fpkb&action=penyerahan&fpkb=<?= $getdata['id_fpkb'] ?>&status=1" class="btn btn-block btn-success btn-sm mt-1 penyerahankesupport <?php if ($getdata['status_fpkb'] > 2) echo 'disabled' ?>" title="Serahkan Ke Direktur Support"><i class="fas fa-check"></i> Setujui</a>
-                                    <a href="?page=fpkb&action=penyerahan&fpkb=<?= $getdata['id_fpkb'] ?>&status=0" class="btn btn-block btn-danger btn-sm mt-1 tolakfpkb <?php if ($getdata['status_fpkb'] > 2) echo 'disabled' ?>" title="FPKB Ditolak"><i class="fas fa-times"></i> Tolak</a>
-                                    
+                                    <a href="?page=fpkb&action=penyerahan&fpkb=<?= $getdata['id_fpkb'] ?>&status=1" class="btn btn-block btn-success btn-sm mt-1 penyerahankesupport <?php if ($getdata['status_fpkb'] > 1) echo 'disabled' ?>" title="Setujui FPKB"><i class="fas fa-check"></i> Setuju</a>
+                                    <a href="?page=fpkb&action=penyerahan&fpkb=<?= $getdata['id_fpkb'] ?>&status=0" class="btn btn-block btn-danger btn-sm mt-1 tolakfpkb <?php if ($getdata['status_fpkb'] > 1) echo 'disabled' ?>" title="Tolak FPKB "><i class="fas fa-times"></i> Tolak</a>
+                                    <a href="#" class="btn btn-block btn-warning btn-sm mt-1" data-toggle="modal" data-target="#modaldetail<?= $getdata['id_fpkb'] ?>" title="Detail FPKB"><i class="fas fa-eye"></i> Detail FPKB</a>
                                 </td>
-
                             </tr>
-                        <?php endwhile ?>
+                        <?php include('modaldetail.php'); endwhile ?>
                     </tbody>
                 </table>
             </div>

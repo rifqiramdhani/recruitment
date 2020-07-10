@@ -4,7 +4,11 @@ require('function/helper.php');
 
 $page = isset($_GET['page']) ? $_GET['page'] : false;
 if ($page) {
-    require('frontend/' . $page . '.php');
+    if(file_exists('frontend/' . $page . '.php')){
+        require('frontend/' . $page . '.php');
+    }else{
+        require('template/404.php');
+    }
 } else {
     require('frontend/index.php');
 }

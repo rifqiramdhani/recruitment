@@ -594,3 +594,51 @@ i.icon-salary {
     border-radius: 0px!important;
     border: 1px solid #2529d8!important;
 }
+
+.dropdown-menu{
+background-color: rgba(225,225,225,0.2)!important;
+}
+
+.dropdown-item{
+color: #fff!important;
+}
+
+.dropdown-item:hover{
+color: rgb(0, 0, 0)!important;
+}
+
+.kebawah {
+    margin-bottom: 35px;
+}
+
+
+@media (max-width: 425px){
+  .job-info{ 
+    display: inline-flex!important;
+  }
+}
+
+@media (max-width: 375px){
+  .job-info{ 
+    display: block!important;
+  }
+}
+
+@media (max-width: 320px){
+  .job-info{ 
+    display: -webkit-inline-box!important;
+  }
+  li.uli {
+    width: 164px;
+}
+}
+
+li.nav-item.active > .dropdown .nav-link{
+  background-color: #2529d8!important;
+  color: #fff!important;
+}
+
+.dropdown-item:hover {
+    color: #fff!important;
+    background-color: #007bff!important;
+}

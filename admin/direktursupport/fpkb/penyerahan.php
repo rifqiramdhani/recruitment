@@ -1,11 +1,12 @@
 <?php
 
 if (isset($_GET['fpkb']) & isset($_GET['status'])) {
-    echo $id_fpkb = $_GET['fpkb'];
-    echo $status = $_GET['status'];
+    $id_fpkb = $_GET['fpkb'];
+    $status = $_GET['status'];
+    $date = date('Y-m-d');
 
     if ($status == 1) {
-        $sql = mysqli_query($koneksi, "UPDATE `fpkb` SET `status_fpkb` = '4' WHERE `fpkb`.`id_fpkb` = '$id_fpkb'");
+        $sql = mysqli_query($koneksi, "UPDATE `fpkb` SET `status_fpkb` = '3', `tanggal_disetujui` = '$date' WHERE `fpkb`.`id_fpkb` = '$id_fpkb'");
 
         if ($sql) {
             $_SESSION['message'] = 'FPKB Berhasil Disetujui';
@@ -17,7 +18,7 @@ if (isset($_GET['fpkb']) & isset($_GET['status'])) {
             $_SESSION['type'] = 'error';
         }
     } else if ($status == 0) {
-        $sql = mysqli_query($koneksi, "UPDATE `fpkb` SET `status_fpkb` = '6' WHERE `fpkb`.`id_fpkb` = '$id_fpkb'");
+        $sql = mysqli_query($koneksi, "UPDATE `fpkb` SET `status_fpkb` = '4' WHERE `fpkb`.`id_fpkb` = '$id_fpkb'");
 
         if ($sql) {
             $_SESSION['message'] = 'FPKB Berhasil ditolak';

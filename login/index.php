@@ -46,12 +46,28 @@ if (isset($_SESSION['login'])) redirect('admin');
     <script src="<?php echo BASE_URL . 'assets/node_modules/bootstrap-validator/dist/validator.min.js'; ?>"></script>
     <!-- fontawesome -->
     <script src="<?= BASE_URL . 'assets/js/all.min.js'; ?>" type="text/javascript" charset="utf-8"></script>
+    <script src="<?= BASE_URL . 'assets/js/custom.js'; ?>" type="text/javascript" charset="utf-8"></script>
+    <!-- sweetaler 2 -->
+    <script src="<?= BASE_URL . 'assets/js/sweetalert2.all.min.js' ?>"></script>
     <script>
         $(document).ready(function() {
 
             $('.btn-forgot-password').click(function() {
                 alert('Silahkan Hubungi Staff SDM')
             })
+
+            // sweetalert
+            const flashdata = $('.flash-data').data('flashdata');
+            const title = $('.flash-data').data('title');
+            const type = $('.flash-data').data('type');
+
+            if (flashdata) {
+                Swal.fire({
+                    title: title,
+                    text: flashdata,
+                    icon: type
+                })
+            }
 
             // setTimeout(function() {
             //     $(".btn-register").click();

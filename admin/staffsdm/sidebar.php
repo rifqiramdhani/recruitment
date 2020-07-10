@@ -56,24 +56,14 @@
 
                 </ul>
             </li>
-            <li class="nav-title">SETTING</li>
-            <li class="nav-item nav-dropdown <?php if ($page == 'detail-kriteria') echo 'open' ?>">
-                <a class="nav-link nav-dropdown-toggle" href="#">
-                    <i class="nav-icon fas fa-cog"></i> Setting</a>
-                <ul class="nav-dropdown-items">
-
-                    <li class="nav-item">
-                        <a class="nav-link <?php if ($page == 'detail-kriteria') echo 'active' ?>" href="?page=detail-kriteria">
-                            <i class="nav-icon fas fa-clipboard-check"></i> Kriteria Rekrutmen
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php if ($page == 'jabatan') echo 'active' ?>" href="?page=jabatan">
-                            <i class="nav-icon fas fa-clipboard-check"></i> Jabatan
-                        </a>
-                    </li>
-
-                </ul>
+            <li class="nav-title">JABATAN</li>
+            <li class="nav-item">
+                <a class="nav-link <?php if ($page == 'jabatan') echo 'active' ?>" href="<?= BASE_URL . 'admin/index.php?page=jabatan'; ?>">
+                    <i class="nav-icon fas fa-user"></i> Jabatan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?php if ($page == 'divisi') echo 'active' ?>" href="<?= BASE_URL . 'admin/index.php?page=divisi'; ?>">
+                    <i class="nav-icon fas fa-user"></i>Divisi</a>
             </li>
         </ul>
     </nav>

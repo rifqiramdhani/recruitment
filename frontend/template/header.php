@@ -15,8 +15,9 @@
     <!-- <link rel="stylesheet" href="frontend/assets/fonts/font-awesome.min.css"> -->
     <link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="frontend/assets/fonts/ionicons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700">
     <link rel="stylesheet" href="frontend/assets/css/Footer-Dark.css">
     <link rel="stylesheet" href="frontend/assets/css/styles.css">
+    <link rel="stylesheet" href="assets/node_modules/jquery-smartwizard-master/dist/css/smart_wizard_all.min.css">
 </head>

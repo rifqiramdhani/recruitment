@@ -8,9 +8,12 @@ $getck = mysqli_fetch_assoc($queryck);
 $queryk = mysqli_query($koneksi, "SELECT COUNT(id_karyawan) as jumlah FROM `karyawan` WHERE status_karyawan = 1");
 $getk = mysqli_fetch_assoc($queryk);
 
-//karyawan
+//rekturmen
 $queryrek = mysqli_query($koneksi, "SELECT COUNT(id_rekrutmen) as jumlah FROM `rekrutmen` WHERE status_rekrutmen = 1");
 $getrek = mysqli_fetch_assoc($queryrek);
+
+//monitoring jabatan
+$queryjabatan = mysqli_query($koneksi, "SELECT * FROM `jabatan` JOIN divisi USING(id_divisi) ORDER BY `id_jabatan` ASC");
 ?>
 
 <div class="container-fluid">
@@ -19,7 +22,7 @@ $getrek = mysqli_fetch_assoc($queryrek);
 			<div class="col-lg-4 col-sm-6 col-xs-12  mx-auto">
 				<div class="info-box bg-pink hover-expand-effect">
 					<div class="icon">
-						<i class="fas fa-list-ul"></i>
+						<i class="fas fa-user"></i>
 					</div>
 					<div class="content">
 						<div class="text text-white">CALON KARYAWAN</div>
@@ -30,7 +33,7 @@ $getrek = mysqli_fetch_assoc($queryrek);
 			<div class="col-lg-4 col-sm-6 col-xs-12  mx-auto">
 				<div class="info-box bg-cyan hover-expand-effect">
 					<div class="icon">
-						<i class="fas fa-question-circle"></i>
+						<i class="fas fa-users"></i>
 					</div>
 					<div class="content">
 						<div class="text text-white">KARYAWAN</div>
@@ -65,18 +68,36 @@ $getrek = mysqli_fetch_assoc($queryrek);
 							</thead>
 
 							<tbody>
-								<tr>
-									<td>Account Receivable Administrator</td>
-									<td>-</td>
-								</tr>
-								<tr>
-									<td>Account Receivable Administrator</td>
-									<td class="font-danger">5 Orang</td>
-								</tr>
-								<tr>
-									<td>Account Receivable Administrator</td>
-									<td>-</td>
-								</tr>
+								<?php 
+								while ($getdatajabatan = mysqli_fetch_assoc($queryjabatan)) :
+
+									$id_jabatan = $getdatajabatan['id_jabatan'];
+
+									$queryjumlahkaryawan = mysqli_query($koneksi, "SELECT COUNT(id_jabatan) as jumlah FROM `karyawan` WHERE id_jabatan = '$id_jabatan'");
+
+									$getjumlahkaryawan = mysqli_fetch_assoc($queryjumlahkaryawan);
+
+
+									$kekosongan = intval($getdatajabatan['jumlah_jabatan']) - intval($getjumlahkaryawan['jumlah']);
+
+
+								?>
+									<tr>
+										<td><?= $getdatajabatan['nama_jabatan'] . ' ' . $getdatajabatan['nama_divisi'] ?></td>
+										<td>
+											<?php
+											if ($kekosongan <= 0) {
+												echo '-';
+											} else {
+												echo '<span class="text-danger">'. $kekosongan . ' orang</span>';
+											
+											}
+											?>
+										</td>
+
+									</tr>
+
+								<?php endwhile ?>
 							</tbody>
 						</table>
 					</div>

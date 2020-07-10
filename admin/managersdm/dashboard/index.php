@@ -8,9 +8,16 @@ $getck = mysqli_fetch_assoc($queryck);
 $queryk = mysqli_query($koneksi, "SELECT COUNT(id_karyawan) as jumlah FROM `karyawan` WHERE status_karyawan = 1");
 $getk = mysqli_fetch_assoc($queryk);
 
-//karyawan
+//rekturmen
 $queryrek = mysqli_query($koneksi, "SELECT COUNT(id_rekrutmen) as jumlah FROM `rekrutmen` WHERE status_rekrutmen = 1");
 $getrek = mysqli_fetch_assoc($queryrek);
+
+//monitoring jabatan
+$queryjabatan = mysqli_query($koneksi, "SELECT * FROM `jabatan` JOIN divisi USING(id_divisi) ORDER BY `id_jabatan` ASC");
+
+
+//monitoring karyawan
+$querykaryawan = mysqli_query($koneksi, "SELECT nama_karyawan, nama_jabatan, nama_divisi FROM `karyawan` JOIN jabatan USING(id_jabatan) JOIN divisi USING(id_divisi)  WHERE status_karyawan = 1");
 ?>
 
 <div class="container-fluid">
@@ -19,7 +26,7 @@ $getrek = mysqli_fetch_assoc($queryrek);
 			<div class="col-lg-4 col-sm-6 col-xs-12  mx-auto">
 				<div class="info-box bg-pink hover-expand-effect">
 					<div class="icon">
-						<i class="fas fa-list-ul"></i>
+						<i class="fas fa-user"></i>
 					</div>
 					<div class="content">
 						<div class="text text-white">CALON KARYAWAN</div>
@@ -30,7 +37,7 @@ $getrek = mysqli_fetch_assoc($queryrek);
 			<div class="col-lg-4 col-sm-6 col-xs-12  mx-auto">
 				<div class="info-box bg-cyan hover-expand-effect">
 					<div class="icon">
-						<i class="fas fa-question-circle"></i>
+						<i class="fas fa-users"></i>
 					</div>
 					<div class="content">
 						<div class="text text-white">KARYAWAN</div>
@@ -50,35 +57,34 @@ $getrek = mysqli_fetch_assoc($queryrek);
 				</div>
 			</div>
 
-			<div class="col-md-6">
-				<div class="container-fluid">
-					<div class="block-header">
-						<h2>Monitoring Kekosongan Jabatan</h2>
-					</div>
-					<div class="card">
-						<table class="table table-striped table-hover">
-							<thead>
-								<tr>
-									<th>Jabatan</th>
-									<th>Kekurangan</th>
-								</tr>
-							</thead>
+			<div class="col-md-12">
+				<div class="card card-accent-success">
+					<div class="card-header"><strong>Monitoring Karyawan</strong></div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-striped text-center" style="width:100%" id="datakaryawan">
+								<thead>
+									<tr>
+										<th>No</th>
+										<th>Nama</th>
+										<th>Jabatan</th>
+										<th>Divisi</th>
+									</tr>
+								</thead>
 
-							<tbody>
-								<tr>
-									<td>Account Receivable Administrator</td>
-									<td>-</td>
-								</tr>
-								<tr>
-									<td>Account Receivable Administrator</td>
-									<td class="font-danger">5 Orang</td>
-								</tr>
-								<tr>
-									<td>Account Receivable Administrator</td>
-									<td>-</td>
-								</tr>
-							</tbody>
-						</table>
+								<tbody>
+									<?php $no = 1;
+									while ($getdata = mysqli_fetch_assoc($querykaryawan)) : ?>
+										<tr>
+											<td><?= $no++ ?></td>
+											<td><?= $getdata['nama_karyawan'] ?></td>
+											<td><?= $getdata['nama_jabatan'] ?></td>
+											<td><?= $getdata['nama_divisi'] ?></td>
+										</tr>
+									<?php endwhile ?>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>

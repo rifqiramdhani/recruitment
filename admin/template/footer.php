@@ -17,24 +17,60 @@
 <!-- form validation -->
 <script src="<?= BASE_URL . 'assets/node_modules/bootstrap-validator/dist/validator.min.js'; ?>"></script>
 <!-- datatables -->
-<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?= BASE_URL . 'assets/vendors/datatables/datatables.min.js' ?>"></script>
 <!-- custom js -->
 <script src="<?= BASE_URL . 'assets/js/custom.js'; ?>" type="text/javascript" charset="utf-8"></script>
 <!-- fontawesome -->
 <script src="<?= BASE_URL . 'assets/js/all.min.js'; ?>" type="text/javascript" charset="utf-8"></script>
-<!-- jquery ui -->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- smartwizard multistep form -->
 <script src="<?= BASE_URL . 'assets/js/jquery.smartWizard.min.js' ?>"></script>
 <!-- sweetaler 2 -->
 <script src="<?= BASE_URL . 'assets/js/sweetalert2.all.min.js' ?>"></script>
 <!-- custom file input -->
 <script src="<?= BASE_URL . 'assets/node_modules/bs-custom-file-input/dist/bs-custom-file-input.min.js' ?>"></script>
+<!-- gijgo datepicker -->
+<script src="<?= BASE_URL . 'assets/node_modules/datepicker/js/bootstrap-datepicker.min.js' ?>"></script>
+
 <script>
     // Setup datatables 
     $(document).ready(function() {
 
+        //init custom file input
+        bsCustomFileInput.init()
+
+        $('#tanggal_buka .input-group.date').datepicker({
+            format: "dd-mm-yyyy",
+            todayBtn: "linked",
+            language: "id",
+            todayHighlight: true,
+            autoclose: true
+        });
+
+        $('#tanggal_tutup .input-group.date').datepicker({
+            format: "dd-mm-yyyy",
+            todayBtn: "linked",
+            language: "id",
+            todayHighlight: true,
+            autoclose: true
+        });
+
+        //datakaryawan
+        $("#datakaryawan").dataTable()
+
+        //datakriteria
+        $("#datakriteria").dataTable()
+
+        //datadetailkriteria
+        $("#datadetailkriteria").dataTable()
+
+        //penilaiankaryawan
+        $("#penilaiankaryawan").dataTable()
+
+        //datasubkriteria
+        $("#datasubkriteria").dataTable()
+
+        //data fpkb
+        $("#datafpkb").dataTable()
         $('#datafpkb').on('click', '.remove', function(e) {
             e.preventDefault();
             var id = $(this).data('id')
@@ -53,19 +89,41 @@
         $('#datafpkb').on('click', '.penyerahankesupport', function(e) {
             e.preventDefault();
             var link = $(this).attr('href');
-            var text = "FPKB Disetujui";
+            var text = "Akan menyetujui FPKB";
             swalhref(link, text)
         });
 
         $('#datafpkb').on('click', '.tolakfpkb', function(e) {
             e.preventDefault();
             var link = $(this).attr('href');
-            var text = "FPKB Ditolak";
+            var text = "Akan menolak FPKB";
             swalhref(link, text)
         });
 
-        //init custom file input
-        bsCustomFileInput.init()
+        //hapus datadivisi
+        $("#datadivisi").dataTable()
+        $("#datadivisi").on('click', '.remove', function() {
+            var id = $(this).data('id');
+            var nama = $(this).data('nama');
+            hapusdata('Data Divisi', "?page=divisi&action=deletedata&id=", id, nama)
+        })
+
+        //hapus datadetailjabatan
+        $("#datadetailjabatan").dataTable()
+        $("#datadetailjabatan").on('click', '.remove', function() {
+            var id = $(this).data('id');
+            var nama = $(this).data('nama');
+            hapusdata('Data Divisi', "?page=detailjabatan&action=deletedata&id=", id, nama)
+        })
+
+        //hapus datajabatan
+        $("#datajabatan").dataTable()
+        $("#datajabatan").on('click', '.remove', function() {
+            var id = $(this).data('id');
+            var nama = $(this).data('nama');
+            hapusdata('Data Jabatan', "?page=jabatan&action=deletedata&id=", id, nama)
+
+        })
 
         //hapus datakaryawan
         $("#datakaryawan").dataTable()
@@ -238,14 +296,14 @@
         $("#datapenilaiancalonkaryawannew").dataTable()
         $("#selectrecruitment").on("change", () => {
             var id_recruitment = $("#selectrecruitment option:selected").val()
-            var page = "<?= BASE_URL . 'admin/staffsdm/penilaian-rekrutmen/datatable.php?id_recruitment=' ?>" + id_recruitment
+            var page = "<?= BASE_URL . 'admin/' . $level . '/penilaian-rekrutmen/datatable.php?id_recruitment=' ?>" + id_recruitment
             $("#tablepenilaian").remove()
             $("#penilaianck").load(page)
 
         })
 
         var id_recruitment = $("#selectrecruitment option:selected").val()
-        var page = "<?= BASE_URL . 'admin/staffsdm/penilaian-rekrutmen/datatable.php?id_recruitment=' ?>" + id_recruitment
+        var page = "<?= BASE_URL . 'admin/' . $level . '/penilaian-rekrutmen/datatable.php?id_recruitment=' ?>" + id_recruitment
         $("#penilaianck").load(page)
 
         //hitung penilaian
@@ -261,6 +319,21 @@
                 success: function(response) {
                     $("#tablepenilaian").remove()
                     $("#tampilkanpenilaian").append(response)
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                }
+            });
+        })
+
+        //tampilan penilaian karyawan
+        $("#hitungpenilaiankaryawan").click(function() {
+            // $("#tampilkaryawan").append()
+            $.ajax({
+                url: "<?= $level ?>/penilaian-karyawan/tampilkaryawan.php",
+                type: "get",
+                success: function(response) {
+                    $("#tampilkaryawan").append(response)
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus, errorThrown);
@@ -296,71 +369,6 @@
         };
 
 
-        //ajax autocomplete
-        // autocomplete
-        $(function() {
-            function log(message) {
-                $("<div>").text(message).prependTo("#log");
-                $("#log").scrollTop(0);
-            }
-
-            $("#nf-email").autocomplete({
-                source: function(request, response) {
-                    $.ajax({
-                        url: "",
-                        dataType: "json",
-                        data: {
-                            term: request.term
-                        },
-                        success: function(data) {
-                            response(data);
-                        }
-                    });
-                },
-                minLength: 1,
-                select: function(event, ui) {
-                    $('#nf-password').val(ui.item.judul)
-                    log("Selected: " + ui.item.value + " aka " + ui.item.id);
-                }
-            });
-        });
-
-
-        $(function() {
-            function log(message) {
-                $("<div>").text(message).prependTo("#log");
-                $("#log").scrollTop(0);
-            }
-
-            $("input[name='level']").autocomplete({
-                source: function(request, response) {
-                    $.ajax({
-                        url: "",
-                        dataType: "json",
-                        data: {
-                            term: request.term
-                        },
-                        success: function(data) {
-                            $('#tableWizard tbody').remove();
-                            $('#tableWizard').show();
-
-                            tbody = $("<tbody></tbody>");
-
-                            $.each(data, function(key, value) {
-                                tr = $("<tr></tr>");
-                                tr.append("<td>" + value.nama + "</td>");
-                                tr.append("<td>" + value.email + "</td>");
-                                tr.append("<td>" + value.alamat + "</td>");
-
-                                $("#tableWizard").append(tbody);
-                                $("#tableWizard tbody").append(tr);
-                            });
-                        }
-                    });
-                },
-                minLength: 1,
-            });
-        });
 
         //wizard multistep form
         // Toolbar extra buttons

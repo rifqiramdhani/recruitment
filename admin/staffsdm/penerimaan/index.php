@@ -27,11 +27,10 @@ $query = mysqli_query($koneksi, "SELECT * FROM `rekrutmen` WHERE status_rekrutme
                         <tr>
                             <th>#</th>
                             <th>Nama Rekrutmen</th>
-                            <th>Tempat</th>
-                            <th>Gaji</th>
+                            <th>Tanggal Buka</th>
+                            <th>Tanggal Tutup</th>
                             <th>Waktu</th>
-                            <!-- <th>Pengumuman</th> -->
-                            <th>Aktif</th>
+                            <th></th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -42,31 +41,20 @@ $query = mysqli_query($koneksi, "SELECT * FROM `rekrutmen` WHERE status_rekrutme
                             <tr id="<?= $getdata['id_rekrutmen'] ?>">
                                 <td><?= $i++; ?></td>
                                 <td><?= $getdata['nama_rekrutmen'] ?></td>
-                                <td>Lembang</td>
-                                <td><?= $getdata['gaji_rekrutmen'] ?></td>
+                                <td><?= date('d-m-Y', strtotime($getdata['tanggal_buka'])) ?></td>
+                                <td><?= date('d-m-Y', strtotime($getdata['tanggal_tutup'])) ?></td>
                                 <td><?= $getdata['waktu_rekrutmen'] ?></td>
-                                <!-- <td>
-                                    <?php if ($getdata['pengumuman'] == 0) : ?>
-                                        <i class="far fa-times-circle"></i>
-                                    <?php else : ?>
-                                        <i class="far fa-check-circle"></i>
-                                    <?php endif ?>
-                                </td> -->
-                                <td>
-                                    <?php if ($getdata['status_rekrutmen'] == 0) : ?>
-                                        <i class="far fa-times-circle"></i>
-                                    <?php else : ?>
-                                        <i class="far fa-check-circle"></i>
-                                    <?php endif ?>
-                                </td>
                                 <td>
                                     <a href="?page=penerimaan&action=editdata&id=<?= $getdata['id_rekrutmen'] ?>" class="btn btn-sm btn-primary text-white mt-1" title="Edit data"><i class="fas fa-edit"></i></a>
                                     <button type="button" class="btn btn-sm btn-danger remove mt-1" title="Hapus data" data-nama="<?= $getdata['nama_rekrutmen'] ?>" data-id="<?= $getdata['id_rekrutmen'] ?>"><i class="fas fa-trash"></i></button>
-                                    <button type="button" data-id="<?= $getdata['id_rekrutmen'] ?>" class="btn btn-sm btn-primary text-white tampilhalaman mt-1" title="Tampilkan rekrutmen"><i class="fas fa-eye"></i></button>
+                                    <button type="button" data-id="<?= $getdata['id_rekrutmen'] ?>" class="btn btn-sm btn-warning text-white tampilhalaman mt-1" title="Aktifkan rekrutmen"><i class="fas fa-eye"></i></button>
                                 </td>
                                 <td>
                                     <a href="?page=deskripsi&penerimaan=<?= $getdata['id_rekrutmen'] ?>" class="btn btn-sm btn-secondary mt-1" title="Olah Data Deskripsi Rekrutmen">Deskripsi</a>
                                     <a href="?page=kriteria&penerimaan=<?= $getdata['id_rekrutmen'] ?>" class="btn btn-sm btn-secondary mt-1" title="Olah Data Kriteria">Kriteria</a>
+                                </td>
+                                <td>
+                                    <a href="?page=penerimaan&action=pelamar&penerimaan=<?= $getdata['id_rekrutmen'] ?>" class="btn btn-sm btn-secondary mt-1" title="Olah Data Pelamar Rekrutmen">Pelamar</a>
                                 </td>
                             </tr>
                         <?php endwhile ?>

@@ -3,8 +3,36 @@ require_once('../../function/helper.php');
 require_once('../../function/koneksi.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $nama_calon_karyawan = htmlspecialchars($_POST['nama_calon_karyawan']);
+    $alamat_calon_karyawan = htmlspecialchars($_POST['alamat_calon_karyawan']);
+    $telp_calon_karyawan = htmlspecialchars($_POST['telp_calon_karyawan']);
+    $ttl_calon_karyawan = htmlspecialchars($_POST['ttl_calon_karyawan']);
+
+    $kodepos_calon_karyawan = htmlspecialchars($_POST['kodepos_calon_karyawan']);
+    $status_pernikahan = htmlspecialchars($_POST['status_pernikahan']);
+    $status_pendidikan = htmlspecialchars($_POST['status_pendidikan']);
+    $agama = htmlspecialchars($_POST['agama']);
+
+    $email = htmlspecialchars($_POST['email']);
+
+    $query = mysqli_query($koneksi, "SELECT * FROM `calon_karyawan` WHERE email_calon_karyawan = '$email'");
+
+    if (mysqli_num_rows($query) == 0) {
+        $sql = mysqli_query($koneksi, "INSERT INTO `calon_karyawan`(`nama_calon_karyawan`, 
+            `email_calon_karyawan`, `telp_calon_karyawan`, 
+            `ttl_calon_karyawan`, `alamat_calon_karyawan`,  `status_calon_karyawan`, `kodepos_calon_karyawan`, `status_pernikahan`, `status_pendidikan`, `agama`) VALUES ('$nama_calon_karyawan','$email','$telp_calon_karyawan','$ttl_calon_karyawan',
+            '$alamat_calon_karyawan', 1, '$kodepos_calon_karyawan','$status_pernikahan','$status_pendidikan','$agama')");
+        
+        $query = mysqli_query($koneksi, "SELECT * FROM `calon_karyawan` ORDER BY id_calon_karyawan DESC LIMIT 1");
+        $getdata = mysqli_fetch_assoc($query);
+        $id_calon_karyawan_fore = $getdata['id_calon_karyawan'];
+    }else{
+        $getdata = mysqli_fetch_assoc($query);
+        $id_calon_karyawan_fore = $getdata['id_calon_karyawan'];
+    }
+
     $id_recruitment_fore = $_POST['id_recruitment'];
-    $id_calon_karyawan_fore = $_SESSION['id_calon_karyawan'];
     $formulir_lamaran = $_FILES['formulir_lamaran'];
     $cv = $_FILES['cv'];
     $ktp = $_FILES['ktp'];
@@ -77,11 +105,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo $random_ijazah . '<br>';
         echo $random_skpk . '<br>';
         echo $random_pas_foto . '<br>';
-        echo $_SESSION['id_calon_karyawan'] . '<br>';
+        echo $id_calon_karyawan_fore . '<br>';
+        echo $id_recruitment_fore;
 
-
-        mysqli_begin_transaction($koneksi, MYSQLI_TRANS_START_READ_ONLY);
-        
         $sql1 = mysqli_query($koneksi, "INSERT INTO `file_calon_karyawan`(`id_rekrutmen`, 
         `id_calon_karyawan`, 
         `file_formulir_lamaran`, 
@@ -134,13 +160,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         if ($sql1 & $sql2) {
-            mysqli_commit($koneksi);
             $_SESSION['message'] = 'Berkas berhasil disimpan, silahkan menunggu email dari kami untuk keputusan lebih lanjut.';
             $_SESSION['title'] = 'Data lamaran';
             $_SESSION['type'] = 'success';
             redirect('index.php?page=detail&penerimaan='. $id_recruitment_fore);
         } else {
-            mysqli_rollback($koneksi);
             $_SESSION['message'] = 'Maaf berkas gagal disimpan, silahkan coba kembali!';
             $_SESSION['title'] = 'Data lamaran';
             $_SESSION['type'] = 'error';
@@ -150,10 +174,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         mysqli_close($koneksi);
 
     } else {
-        $_SESSION['message'] = 'Maaf Hanya Boleh File yang Berekstensi : .pdf, .jpg, .jpeg, .png!';
+        $_SESSION['message'] = 'Maaf Hanya Boleh File yang Berekstensi : .pdf, .jpg, .jpeg, .png';
         $_SESSION['title'] = 'Login';
         $_SESSION['type'] = 'error';
-        redirect('index.php');
+        redirect('index.php?page=form-lamaran&penerimaan=' . $id_recruitment_fore);
     }
 
 }

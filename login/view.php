@@ -2,7 +2,15 @@
 <div class="col-md-8" id="form-login">
     <div class="card-group">
         <div class="container-fluid">
-            <?php session_flashdata() ?>
+            <!-- show sweet alert -->
+            <?php if (isset($_SESSION['message'])) : ?>
+                <div class="flash-data" data-flashdata="<?= $_SESSION['message'] ?>" data-title="<?= $_SESSION['title'] ?>" data-type="<?= $_SESSION['type'] ?>"></div>
+            <?php
+                unset($_SESSION['message']);
+                unset($_SESSION['title']);
+                unset($_SESSION['type']);
+            endif;
+            ?>
         </div>
 
         <div class="card">

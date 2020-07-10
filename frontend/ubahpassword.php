@@ -55,9 +55,6 @@ if (empty($email) & empty($change)) {
                                     <button class="btn btn-success btn-sm" type="submit">
                                         <i class="fa fa-save text-white"></i> Simpan
                                     </button>
-                                    <a href="?page=detail&penerimaan=<?= $id_recruitment ?>" class="btn btn-warning text-white btn-sm" type="submit">
-                                        <i class="fa fa-reply text-white"></i> Kembali
-                                    </a>
                                 </div>
                             </form>
                         </div>

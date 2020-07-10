@@ -36,6 +36,8 @@
 <script src="<?= BASE_URL . 'assets/js/sweetalert2.all.min.js' ?>"></script>
 <!-- custom js -->
 <script src="assets/js/custom.js" type="text/javascript" charset="utf-8"></script>
+<!-- smartwizard -->
+<script src="assets/node_modules/jquery-smartwizard-master/dist/js/jquery.smartWizard.min.js" type="text/javascript" charset="utf-8"></script>
 
 <script>
     $(document).ready(function() {
@@ -61,6 +63,144 @@
             }, 500);
 
         })
+
+        $("#submitformlamaran").click(function(e) {
+            e.preventDefault;
+            var form = $(this).parents('form')
+            Swal.fire({
+                title: 'Apakah anda yakin data sesuai?',
+                text: "Karena data yang dikirim tidak dapat diubah.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#4dbd74',
+                cancelButtonColor: '#f86c6b',
+                confirmButtonText: "Submit",
+                cancelButtonText: "Cancel",
+            }).then((result) => {
+                console.log(result)
+                if (result.value) {
+                    form.submit()
+                }
+            })
+        })
+
+        //wizard multistep form
+        // Toolbar extra buttons
+        var btnFinish = $('<button></button>').text('Finish')
+            .addClass('btn btn-info')
+            .on('click', function() {
+                if (!$(this).hasClass('disabled')) {
+                    var elmForm = $("#myForm");
+                    if (elmForm) {
+                        elmForm.validator('validate');
+                        var elmErr = elmForm.find('.has-error');
+                        if (elmErr && elmErr.length > 0) {
+                            alert('Tolong lengkapi data di form');
+                            return false;
+                        } else {
+                            elmForm.submit();
+                            return false;
+                        }
+                    }
+                }
+            });
+
+        var btnCancel = $('<button></button>').text('Cancel')
+            .addClass('btn btn-danger')
+            .on('click', function() {
+                $('#smartwizard').smartWizard("reset");
+            });
+
+        // Step show event
+        $("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection) {
+            // Enable finish button only on last step
+            if (stepNumber == 3) {
+                $('.btn-finish').removeClass('disabled');
+            } else {
+                $('.btn-finish').addClass('disabled');
+            }
+        });
+
+        $("#smartwizard").on("leaveStep", function(e, anchorObject, stepNumber, stepDirection) {
+            var elmForm = $("#form-step-" + stepNumber);
+            // stepDirection === 'forward' :- this condition allows to do the form validation
+            // only on forward navigation, that makes easy navigation on backwards still do the validation when going next
+            if (stepDirection === 'forward' && elmForm) {
+                elmForm.validator('validate');
+                var elmErr = elmForm.children('.has-error');
+                if (elmErr && elmErr.length > 0) {
+                    // Form validation failed
+                    return false;
+                }
+            }
+            return true;
+        });
+
+        $('#smartwizard').smartWizard("reset");
+
+        // Smart Wizard
+        $('#smartwizard').smartWizard({
+            theme: 'dots',
+            justified: true, // Nav menu justification. true/false
+            transition: {
+                animation: 'fade', // Effect on navigation, none/fade/slide-horizontal/slide-vertical/slide-swing
+            },
+            enableFinishButton: false, // makes finish button enabled always,
+            contentCache: true,
+            onFinish: onFinishCallback,
+            enableURLhash: true, // Enable selection of the step based on url hash
+            toolbarSettings: {
+                toolbarPosition: 'bottom', // none, top, bottom, both
+                toolbarButtonPosition: 'center', // left, right, center
+                showNextButton: true, // show/hide a Next button
+                showPreviousButton: true, // show/hide a Previous button
+                toolbarExtraButtons: [btnFinish] // Extra buttons to show on toolbar, array of jQuery input/buttons elements
+            },
+            anchorSettings: {
+                anchorClickable: true, // Enable/Disable anchor navigation
+                enableAllAnchors: false, // Activates all anchors clickable all times
+                markDoneStep: true, // Add done css
+                markAllPreviousStepsAsDone: true, // When a step selected by url hash, all previous steps are marked done
+                removeDoneStepOnNavigateBack: true, // While navigate back done step after active step will be cleared
+                enableAnchorOnDoneStep: true // Enable/Disable the done steps navigation
+            },
+            lang: { // Language variables for button
+                next: 'Lanjut',
+                previous: 'kembali'
+            },
+        });
+
+        function onFinishCallback() {
+            $.ajax({
+                type: 'POST',
+                url: 'index.cfm?action=addClassData&nolayout',
+                data: $('#myForm').serialize(),
+                cache: false,
+                success: function(ress) {
+                    alert("successful post");
+                    /*$("#editPage").jqmHide();*/
+                }
+            });
+        }
+
+        // External Button Events
+        $("#reset-btn").on("click", function() {
+            // Reset wizard
+            $('#smartwizard').smartWizard("reset");
+            return true;
+        });
+
+        $("#prev-btn").on("click", function() {
+            // Navigate previous
+            $('#smartwizard').smartWizard("prev");
+            return true;
+        });
+
+        $("#next-btn").on("click", function() {
+            // Navigate next
+            $('#smartwizard').smartWizard("next");
+            return true;
+        });
     })
 </script>
 </body>
