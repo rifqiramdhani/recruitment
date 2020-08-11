@@ -3,13 +3,13 @@
         <ul class="nav">
             <li class="nav-item">
                 <a class="nav-link <?php if ($page == 'dashboard') echo 'active' ?>" href="<?= BASE_URL . 'admin/index.php?page=dashboard'; ?>">
-                    <i class="nav-icon fas fa-tachometer-alt"></i> Dashboard
+                    <i class="nav-icon fas fa-tachometer-alt"></i> Beranda
                 </a>
             </li>
             <li class="nav-title">Data</li>
             <li class="nav-item">
-                <a class="nav-link <?php if ($page == 'karyawan') echo 'active' ?>" href="<?= BASE_URL . 'admin/index.php?page=karyawan'; ?>">
-                    <i class="nav-icon fas fa-users"></i> Karyawan</a>
+                <a class="nav-link <?php if ($page == 'fpkb') echo 'active' ?>" href="<?= BASE_URL . 'admin/index.php?page=fpkb'; ?>">
+                    <i class="nav-icon fas fa-file-invoice"></i> FPKB</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?php if ($page == 'hasil-rekrutmen') echo 'active' ?>" href="<?= BASE_URL . 'admin/index.php?page=hasil-rekrutmen'; ?>">
@@ -19,14 +19,7 @@
                 <a class="nav-link <?php if ($page == 'hasil-penilaian') echo 'active' ?>" href="<?= BASE_URL . 'admin/index.php?page=hasil-penilaian'; ?>">
                     <i class="nav-icon fas fa-file-invoice"></i> Hasil Penilaian</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link <?php if ($page == 'fpkb') echo 'active' ?>" href="<?= BASE_URL . 'admin/index.php?page=fpkb'; ?>">
-                    <i class="nav-icon fas fa-file-invoice"></i> FPKB</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <?php if ($page == 'penerimaan' || $page == 'kriteria' || $page == 'subkriteria' || $page == 'deskripsi') echo 'active' ?>" href="<?= BASE_URL . 'admin/index.php?page=penerimaan'; ?>">
-                    <i class="nav-icon fas fa-search"></i> Rekrutmen</a>
-            </li>
+
 
         </ul>
     </nav>

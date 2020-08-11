@@ -192,14 +192,14 @@
             var nama = $(this).data('nama');
 
             Swal.fire({
-                title: 'Apakah yakin?',
+                title: 'Apakah anda yakin?',
                 text: "Ingin Menghapus Data " + nama,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#db3325',
                 cancelButtonColor: '#f5a732',
                 confirmButtonText: "Hapus",
-                cancelButtonText: "Cancel",
+                cancelButtonText: "Kembali",
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
@@ -288,8 +288,24 @@
         $(add_button).click(function(e) { //on add input button click
             e.preventDefault();
             x++; //text box increment
-            $(wrapper).append('<div id="field' + x + '"><div class="form-group"><input type="text" class="form-control" id="deskripsi' + x + '" name="deskripsi[]" required></div></div>'); //add input box
+            $(wrapper).append('<div id="field' + x + '"><div class="form-group"><input type="text" class="form-control" id="deskripsi' + x + '" name="deskripsi[]" data-required-error="Data tidak boleh kosong" required></div></div>'); //add input box
         });
+        
+        //data jabatan
+        var id_divisi = $("#pilihdivisi option:selected").val()
+        var page = "<?= BASE_URL . 'admin/' . $level . '/dashboard/datatable.php?id=' ?>" + id_divisi
+        $("#newjabatan").append().load(page)
+
+        $("#pilihdivisi").on("change", () => {
+            var id_divisi = $("#pilihdivisi option:selected").val()
+            var page = "<?= BASE_URL . 'admin/' . $level . '/dashboard/datatable.php?id=' ?>" + id_divisi
+
+            // $(".table-responsive").remove()
+            $("#newjabatan").append().load(page)
+            // $("#tablepenilaian").remove()
+            // $("#penilaianck").load(page)
+
+        })
 
         //data penilaian
         $("#datapenilaiancalonkaryawan").dataTable()

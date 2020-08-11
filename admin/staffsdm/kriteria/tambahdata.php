@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group has-feedback">
                     <label for="kode_kriteria_fore">Nama Subkriteria</label>
-                    <select class="form-control" name="kode_kriteria_fore" id="kode_kriteria_fore" required>
+                    <select class="form-control" name="kode_kriteria_fore" id="kode_kriteria_fore"   data-required-error="Data tidak boleh kosong" required>
                         <option value="">-Pilih Kriteria</option>
                         <?php while ($getkriteria = mysqli_fetch_assoc($querykriteria)) : ?>
                             <option value="<?= $getkriteria['id_dt_krt_rekt'] ?>"><?= $getkriteria['nama_kriteria_rekrutmen'] ?></option>
@@ -63,7 +63,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group has-feedback">
                     <label for="bobot_kriteria">Bobot</label>
-                    <input type="bobot_kriteria" class="form-control" id="bobot_kriteria" name="bobot_kriteria" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
+                    <select name="bobot_kriteria" id="bobot_kriteria" class="form-control" data-data-required-error="Data tidak boleh kosong" required-error="Tolong pilih salah satu opsi" data-required-error="Data tidak boleh kosong" required>
+                        <option value="">-Pilih Bobot-</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>

@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group has-feedback">
                     <label for="id_fpkb">Nama</label>
-                    <select name="id_fpkb" id="id_fpkb" class="form-control" required>
+                    <select name="id_fpkb" id="id_fpkb" class="form-control" data-required-error="Data tidak boleh kosong" required>
                         <option value="">-Pilih nama-</option>
                         <?php while ($getFpkb = mysqli_fetch_assoc($queryFpkb)) : ?>
                             <option value="<?= $getFpkb['id_fpkb'] ?>"><?= $getFpkb['posisi_dibutuhkan'] ?></option>
@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-group has-feedback" id="tanggal_buka">
                     <label for="open_date">Tanggal Buka</label>
                     <div class="input-group date mb-3">
-                        <input type="text" class="form-control" name="tanggal_buka" id="open_date" onkeypress="return false" required>
+                        <input type="text" class="form-control" name="tanggal_buka" id="open_date" onkeypress="return false" data-required-error="Data tidak boleh kosong" required>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                         </div>
@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-group has-feedback" id="tanggal_tutup">
                     <label for="close_date">Tanggal Tutup</label>
                     <div class="input-group date mb-3">
-                        <input type="text" class="form-control" name="tanggal_tutup" id="close_date" onkeypress="return false" required>
+                        <input type="text" class="form-control" name="tanggal_tutup" id="close_date" onkeypress="return false" data-required-error="Data tidak boleh kosong" required>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                         </div>
@@ -146,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group has-feedback">
                     <label for="waktu_recruitment">Waktu</label>
-                    <select class="form-control" name="waktu_recruitment" id="waktu_recruitment" required>
+                    <select class="form-control" name="waktu_recruitment" id="waktu_recruitment" data-required-error="Data tidak boleh kosong" required>
                         <option value="">-Pilih Waktu</option>
                         <option value="FULL TIME">Full Time</option>
                         <option value="PART TIME">Part Time</option>

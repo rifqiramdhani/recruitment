@@ -46,7 +46,7 @@ html, body {
 }
 
 #top-section {
-  background-image: url("../../assets/img/top-banner.jpg");
+  background-image: url("../../assets/img/top_1.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -54,7 +54,7 @@ html, body {
 }
 
 #top-section-page {
-  background-image: url("../../assets/img/top-banner.jpg");
+  background-image: url("../../assets/img/top_1.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

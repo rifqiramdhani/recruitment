@@ -8,19 +8,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama_subkriteria = $_POST['nama_subkriteria'];
     $bobot_subkriteria = $_POST['bobot_subkriteria'];
 
-    $sql = mysqli_query($koneksi, "INSERT INTO `subkriteria_rekrutmen`(`id_kriteria_rekrutmen`, `nama_subkriteria`, `bobot_subkriteria`) VALUES ('$id_kriteria','$nama_subkriteria','$bobot_subkriteria')");
+    $queryCek = mysqli_query($koneksi, "SELECT * FROM subkriteria_rekrutmen WHERE nama_subkriteria = '$nama_subkriteria' AND id_kriteria_rekrutmen = '$id_kriteria'");
 
-    if ($sql) {
-        $_SESSION['message'] = 'Data berhasil di tambahkan';
-        $_SESSION['title'] = 'Data subkriteria';
-        $_SESSION['type'] = 'success';
-    } else {
-        $_SESSION['message'] = 'Data gagal di tambahkan';
+    if(mysqli_num_rows($queryCek) == 0){
+        $sql = mysqli_query($koneksi, "INSERT INTO `subkriteria_rekrutmen`(`id_kriteria_rekrutmen`, `nama_subkriteria`, `bobot_subkriteria`) VALUES ('$id_kriteria','$nama_subkriteria','$bobot_subkriteria')");
+
+        if ($sql) {
+            $_SESSION['message'] = 'Data berhasil di tambahkan';
+            $_SESSION['title'] = 'Data subkriteria';
+            $_SESSION['type'] = 'success';
+        } else {
+            $_SESSION['message'] = 'Data gagal di tambahkan';
+            $_SESSION['title'] = 'Data subkriteria';
+            $_SESSION['type'] = 'error';
+        }
+    }else{
+        $_SESSION['message'] = 'Data subkriteria sudah ada, data gagal ditambahkan';
         $_SESSION['title'] = 'Data subkriteria';
         $_SESSION['type'] = 'error';
     }
 
-    echo "<script>window.location.href = '?page=subkriteria&penerimaan=".$id_lowongan ."&kriteria=". $id_kriteria ."';</script>";
+    
+
+    echo "<script>window.location.href = '?page=subkriteria&penerimaan=" . $id_lowongan . "&kriteria=" . $id_kriteria . "';</script>";
 }
 ?>
 
@@ -33,14 +43,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group has-feedback">
                     <label for="nama_subkriteria">Nama</label>
-                    <input type="nama_subkriteria" class="form-control" id="nama_subkriteria" name="nama_subkriteria" required>
+                    <input type="text" class="form-control" id="nama_subkriteria" name="nama_subkriteria" data-required-error="Data tidak boleh kosong" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>
 
                 <div class="form-group has-feedback">
                     <label for="bobot_subkriteria">Bobot</label>
-                    <input type="bobot_subkriteria" class="form-control" id="bobot_subkriteria" name="bobot_subkriteria" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
+                    <select name="bobot_subkriteria" id="bobot_subkriteria" class="form-control" data-data-required-error="Data tidak boleh kosong" required-error="Tolong pilih salah satu opsi" data-required-error="Data tidak boleh kosong" required>
+                        <option value="">-Pilih Bobot-</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>

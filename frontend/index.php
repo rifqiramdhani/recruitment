@@ -21,7 +21,7 @@ endif;
         <div class="py-lg-5 py-3">
             <h3 class="text-center title mb-lg-4 mb-3"><span>some info</span>Posisi Lowongan Kerja<br></h3>
             <div class="row">
-                <div class="col-lg-4 text-center"><img class="img-fluid" src="frontend/assets/img/job-1.jpg"></div>
+                <div class="col-lg-4 text-center"><img class="img-fluid" src="frontend/assets/img/side.png"></div>
                 <div class="col-lg-8">
                     <?php if (mysqli_num_rows($query) > 0) : ?>
                         <?php while ($getdata = mysqli_fetch_assoc($query)) : ?>
@@ -41,15 +41,15 @@ endif;
                                             </h4>
                                             <p><b>PT Bonli Cipta Sejahtera</b><br><br></p>
                                             <p>
-                                                <?= substr($getdatadesk['deskripsi'], 0, 150). '....' ?>
+                                                <?= substr($getdatadesk['deskripsi'], 0, 150) . '....' ?>
                                             </p>
                                         </div>
                                         <!-- <div class="col-12">
-                                            <ul class="d-flex justify-content-center job-info">
-                                                <li><i class="fa fa-map-marker"></i>&nbsp;Lembang</li>
-                                                
-                                            </ul>
-                                        </div> -->
+<ul class="d-flex justify-content-center job-info">
+<li><i class="fa fa-map-marker"></i>&nbsp;Lembang</li>
+
+</ul>
+</div> -->
                                     </div>
                                 </div>
                                 <div class="col-md-3 job-info-right text-right">

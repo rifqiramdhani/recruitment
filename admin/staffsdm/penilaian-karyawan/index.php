@@ -1,14 +1,9 @@
 <?php
-
-$query = mysqli_query($koneksi, "SELECT * FROM `penilaian_kmp` JOIN karyawan USING(id_karyawan) JOIn jabatan USING(id_jabatan)");
-
+$query = mysqli_query($koneksi, "SELECT karyawan.*, nama_divisi, status FROM `penilaian_kmp` JOIN karyawan USING(id_karyawan) JOIN jabatan USING(id_jabatan) JOIN divisi USING(id_divisi) WHERE status = 4 ORDER BY `id_penilaian_kmp` ASC");
 ?>
 
 <!-- <div class="flash-data" data-flashdata=""></div> -->
 <div class="col-12">
-    <div class="form-group row ml-1">
-        <button class="btn ml-1 btn-success" id="hitungpenilaiankaryawan">Tampilkan Nilai</button>
-    </div>
 
     <!-- show sweet alert -->
     <?php if (isset($_SESSION['message'])) : ?>
@@ -21,52 +16,43 @@ $query = mysqli_query($koneksi, "SELECT * FROM `penilaian_kmp` JOIN karyawan USI
     ?>
 
     <div class="card card-accent-success">
-        <div class="card-header"><strong>Data Penilaian Karyawan</strong></div>
+        <div class="card-header"><strong>Data Hasil Penilaian</strong></div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered text-center" style="width:100%" id="penilaiankaryawan">
+                <table class="table table-striped table-bordered text-center" style="width:100%" id="datacalonkaryawan">
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>NIK</th>
                             <th>Nama</th>
                             <th>Email</th>
                             <th>No Telepon</th>
                             <th>Tempat, Tanggal Lahir</th>
                             <th>Alamat</th>
-                            <th>Telah Dinilai</th>
-                            <th></th>
+                            <th>Divisi</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody> <?php
-                            $i = 1;
-                            while ($getdata = mysqli_fetch_assoc($query)) : ?>
+                    <tbody>
+                        <?php $i = 1;
+                        while ($getdata = mysqli_fetch_assoc($query)) : ?>
                             <tr id="<?= $getdata['id_karyawan'] ?>">
                                 <td><?= $i++ ?></td>
+                                <td><?= $getdata['nik'] ?></td>
                                 <td><?= $getdata['nama_karyawan'] ?></td>
                                 <td><?= $getdata['email_karyawan'] ?></td>
                                 <td><?= $getdata['telp_karyawan'] ?></td>
                                 <td><?= $getdata['ttl_karyawan'] ?></td>
                                 <td><?= $getdata['alamat_karyawan'] ?></td>
+                                <td><?= $getdata['nama_divisi'] ?></td>
                                 <td>
-                                    <?php if ($getdata['nilai'] == 0) : ?>
-                                        <i class="far fa-times-circle"></i>
-                                    <?php else : ?>
-                                        <i class="far fa-check-circle"></i>
-                                    <?php endif ?>
-                                </td>
-                                <td>
-                                    <a href="?page=penilaian-karyawan&action=nilai&karyawan=<?= $getdata['id_karyawan'] ?>" class="btn btn-sm btn-primary <?php if ($getdata['nilai'] <> 0) echo 'disabled bg-danger' ?>">Nilai</a>
+                                    <button class="btn btn-default col-green"><?= $getdata['status'] == 4 ? 'Diterima' : '-' ?></button>
                                 </td>
                             </tr>
-                        <?php endwhile; ?>
+                        <?php endwhile ?>
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
-</div>
-
-<div class="col-12" id="tampilkaryawan">
-
 </div>

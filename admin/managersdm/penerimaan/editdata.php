@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_fpkb = htmlspecialchars($_POST['id_fpkb']);
     $tanggal_buka = htmlspecialchars(date('Y-m-d', strtotime($_POST['tanggal_buka'])));
     $tanggal_tutup = htmlspecialchars(date('Y-m-d', strtotime($_POST['tanggal_tutup'])));
-    $waktu_rekrutmen = htmlspecialchars($_POST['waktu_rekrutmen']);
+    // $waktu_rekrutmen = htmlspecialchars($_POST['waktu_rekrutmen']);
 
     $queryPosisiFpkb = mysqli_query($koneksi, "SELECT * FROM fpkb WHERE id_fpkb = '$id_fpkb'");
     $getPosisiFpkb = mysqli_fetch_assoc($queryPosisiFpkb);
@@ -22,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = mysqli_query($koneksi, "UPDATE `rekrutmen` SET 
         `nama_rekrutmen`='$nama_rekrutmen',
         `tanggal_buka`='$tanggal_buka',
-        `tanggal_tutup`='$tanggal_tutup',
-        `waktu_rekrutmen`='$waktu_rekrutmen'
+        `tanggal_tutup`='$tanggal_tutup'
+        -- `waktu_rekrutmen`='$waktu_rekrutmen'
         WHERE id_rekrutmen = '$id'");
 
     if ($sql) {
@@ -43,13 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!-- <div class="flash-data" data-flashdata=""></div> -->
 <div class="col-6">
     <div class="card card-accent-success">
-        <div class="card-header"><strong>Edit Data Rekrutmen</strong></div>
+        <div class="card-header"><strong>Ubah data Rekrutmen</strong></div>
         <div class="card-body">
             <form action="#" method="post" data-toggle="validator" role="form">
 
                 <div class="form-group has-feedback">
                     <label for="id_fpkb">Nama</label>
-                    <select name="id_fpkb" id="id_fpkb" class="form-control" required>
+                    <select name="id_fpkb" id="id_fpkb" class="form-control" data-required-error="Data tidak boleh kosong" required>
                         <option value="">-Pilih nama-</option>
                         <?php while ($getFpkb = mysqli_fetch_assoc($queryFpkb)) : ?>
                             <option value="<?= $getFpkb['id_fpkb'] ?>" <?= $getdata['id_fpkb'] == $getFpkb['id_fpkb'] ? 'selected' : '' ?>><?= $getFpkb['posisi_dibutuhkan'] ?></option>
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-group has-feedback" id="tanggal_buka">
                     <label for="open_date">Tanggal Buka</label>
                     <div class="input-group date mb-3">
-                        <input type="text" class="form-control" name="tanggal_buka" id="open_date" onkeypress="return false" value="<?= date('d-m-Y', strtotime($getdata['tanggal_buka'])) ?>" required>
+                        <input type="text" class="form-control" name="tanggal_buka" id="open_date" onkeypress="return false" value="<?= date('d-m-Y', strtotime($getdata['tanggal_buka'])) ?>" data-required-error="Data tidak boleh kosong" required>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                         </div>
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-group has-feedback" id="tanggal_tutup">
                     <label for="close_date">Tanggal Tutup</label>
                     <div class="input-group date mb-3">
-                        <input type="text" class="form-control" name="tanggal_tutup" id="close_date" value="<?= date('d-m-Y', strtotime($getdata['tanggal_tutup'])) ?>" onkeypress="return false" required>
+                        <input type="text" class="form-control" name="tanggal_tutup" id="close_date" value="<?= date('d-m-Y', strtotime($getdata['tanggal_tutup'])) ?>" onkeypress="return false" data-required-error="Data tidak boleh kosong" required>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                         </div>
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group has-feedback">
                     <label for="waktu_rekrutmen">Waktu</label>
-                    <select class="form-control" name="waktu_rekrutmen" id="waktu_lowogan" required>
+                    <select class="form-control" name="waktu_rekrutmen" id="waktu_lowogan" data-required-error="Data tidak boleh kosong" required>
                         <option value="">-Pilih Waktu</option>
                         <option value="FULL TIME" <?php if ($getdata['waktu_rekrutmen'] == "FULL TIME") echo 'selected' ?>>FULL TIME</option>
                         <option value="PART TIME" <?php if ($getdata['waktu_rekrutmen'] == "PART TIME") echo 'selected' ?>>PART TIME</option>

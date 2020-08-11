@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group has-feedback">
                     <label for="nama_divisi">Nama Divisi</label>
-                    <input type="text" id="nama_divisi" name="nama_divisi" class="form-control" required>
+                    <input type="text" id="nama_divisi" name="nama_divisi" class="form-control" data-required-error="Data tidak boleh kosong" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>

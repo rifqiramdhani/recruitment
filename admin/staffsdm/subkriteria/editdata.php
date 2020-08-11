@@ -36,14 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group has-feedback">
                     <label for="nama_subkriteria">Nama</label>
-                    <input type="nama_subkriteria" class="form-control" id="nama_subkriteria" name="nama_subkriteria" value="<?= $getdata['nama_subkriteria'] ?>" required>
+                    <input type="nama_subkriteria" class="form-control" id="nama_subkriteria" name="nama_subkriteria" value="<?= $getdata['nama_subkriteria'] ?>" data-required-error="Data tidak boleh kosong" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>
 
                 <div class="form-group has-feedback">
                     <label for="bobot_subkriteria">Bobot</label>
-                    <input type="bobot_subkriteria" class="form-control" id="bobot_subkriteria" name="bobot_subkriteria" value="<?= $getdata['bobot_subkriteria'] ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
+                    <input type="bobot_subkriteria" class="form-control" id="bobot_subkriteria" name="bobot_subkriteria" value="<?= $getdata['bobot_subkriteria'] ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" data-required-error="Data tidak boleh kosong" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>

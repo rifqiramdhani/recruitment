@@ -147,20 +147,6 @@
                         </span>
                     </div>
                 </div>
-                <div class="form-group row border-bottom">
-                    <div class="col-5 text-left">
-                        <label for="">Keterampilan Khusus</label>
-                        <span class="float-right">
-                            :
-                        </span>
-                    </div>
-                    <div class="col-7">
-
-                        <span class="">
-                            <?= $getdata['keterampilan_khusus'] ?>
-                        </span>
-                    </div>
-                </div>
 
                 <div class="form-group row border-bottom">
                     <div class="col-5">

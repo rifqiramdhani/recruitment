@@ -1,5 +1,5 @@
 <?php
-$query = mysqli_query($koneksi, "SELECT * FROM `rekrutmen` WHERE status_rekrutmen = 1");
+$query = mysqli_query($koneksi, "SELECT * FROM `rekrutmen` WHERE status_rekrutmen = 0");
 
 $queryrek = mysqli_query($koneksi, "SELECT id_rekrutmen FROM `rekrutmen` WHERE status_rekrutmen = 1 ORDER BY id_rekrutmen ASC LIMIT 1");
 $getrek = mysqli_fetch_assoc($queryrek);
@@ -46,6 +46,7 @@ $queryck = mysqli_query($koneksi, "SELECT calon_karyawan.*, id_rekrutmen FROM `p
                             <th>Tempat, Tanggal Lahir</th>
                             <th>Alamat</th>
                             <th>Telah Dinilai</th>
+                            <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>

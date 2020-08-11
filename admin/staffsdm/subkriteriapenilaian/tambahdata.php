@@ -61,7 +61,7 @@ endif;
 
                 <div class="form-group has-feedback">
                     <label for="nama_subkriteria_penilaian">Nama Subkriteria</label>
-                    <input type="text" class="form-control" id="nama_subkriteria_penilaian" name="nama_subkriteria_penilaian" required>
+                    <input type="text" class="form-control" id="nama_subkriteria_penilaian" name="nama_subkriteria_penilaian" data-required-error="Data tidak boleh kosong" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>

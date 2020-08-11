@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="PT Bonli Cipta Sejahtera website pembukaan lowongan pekerjaan ">
     <title>PT Bonli Cipta Sejahtera</title>
     <!-- favicon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?= BASE_URL . 'assets/img/favicons.png' ?>">

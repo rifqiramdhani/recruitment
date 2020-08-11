@@ -11,17 +11,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama_subkriteria = htmlspecialchars($_POST['nama_subkriteria']);
     $bobot_subkriteria = htmlspecialchars($_POST['bobot_subkriteria']);
 
-    $sql = mysqli_query($koneksi, "UPDATE `subkriteria_rekrutmen` SET `nama_subkriteria`='$nama_subkriteria',`bobot_subkriteria`='$bobot_subkriteria' WHERE id_subkriteria_rekrutmen = '$id'");
+    $queryCek = mysqli_query($koneksi, "SELECT * FROM subkriteria_rekrutmen WHERE nama_subkriteria = '$nama_subkriteria' AND id_kriteria_rekrutmen = '$id_kriteria'");
 
-    if ($sql) {
-        $_SESSION['message'] = 'Data berhasil diperbaharui';
-        $_SESSION['title'] = 'Data Subkriteria';
-        $_SESSION['type'] = 'success';
-    } else {
-        $_SESSION['message'] = 'Data gagal diperbaharui';
-        $_SESSION['title'] = 'Data Subkriteria';
+    if (mysqli_num_rows($queryCek) == 0) {
+        $sql = mysqli_query($koneksi, "UPDATE `subkriteria_rekrutmen` SET `nama_subkriteria`='$nama_subkriteria',`bobot_subkriteria`='$bobot_subkriteria' WHERE id_subkriteria_rekrutmen = '$id'");
+
+        if ($sql) {
+            $_SESSION['message'] = 'Data berhasil diperbaharui';
+            $_SESSION['title'] = 'Data Subkriteria';
+            $_SESSION['type'] = 'success';
+        } else {
+            $_SESSION['message'] = 'Data gagal diperbaharui';
+            $_SESSION['title'] = 'Data Subkriteria';
+            $_SESSION['type'] = 'error';
+        }
+    }else{
+        $_SESSION['message'] = 'Data subkriteria sudah ada, data gagal ditambahkan';
+        $_SESSION['title'] = 'Data subkriteria';
         $_SESSION['type'] = 'error';
     }
+
+
+    
 
     echo "<script>window.location.href = '?page=subkriteria&penerimaan=" . $id_lowongan . "&kriteria=" . $id_kriteria . "';</script>";
 }
@@ -30,20 +41,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!-- <div class="flash-data" data-flashdata=""></div> -->
 <div class="col-6">
     <div class="card card-accent-success">
-        <div class="card-header"><strong>Edit Data Subkriteria</strong></div>
+        <div class="card-header"><strong>Ubah data Subkriteria</strong></div>
         <div class="card-body">
             <form action="#" method="post" data-toggle="validator" role="form">
 
                 <div class="form-group has-feedback">
                     <label for="nama_subkriteria">Nama</label>
-                    <input type="nama_subkriteria" class="form-control" id="nama_subkriteria" name="nama_subkriteria" value="<?= $getdata['nama_subkriteria'] ?>" required>
+                    <input type="nama_subkriteria" class="form-control" id="nama_subkriteria" name="nama_subkriteria" value="<?= $getdata['nama_subkriteria'] ?>" data-required-error="Data tidak boleh kosong" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>
 
                 <div class="form-group has-feedback">
                     <label for="bobot_subkriteria">Bobot</label>
-                    <input type="bobot_subkriteria" class="form-control" id="bobot_subkriteria" name="bobot_subkriteria" value="<?= $getdata['bobot_subkriteria'] ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
+                    <input type="bobot_subkriteria" class="form-control" id="bobot_subkriteria" name="bobot_subkriteria" value="<?= $getdata['bobot_subkriteria'] ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" data-required-error="Data tidak boleh kosong" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>

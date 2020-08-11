@@ -4,9 +4,6 @@ $query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan, nama_divisi FR
 
 <!-- <div class="flash-data" data-flashdata=""></div> -->
 <div class="col-12">
-    <a href="<?= BASE_URL . 'admin/index.php?page=karyawan&action=tambahdata' ?>" class="btn btn-success mt-3 mb-3">
-        <i class="fas fa-plus"></i> Tambah
-    </a>
 
     <!-- show sweet alert -->
     <?php if (isset($_SESSION['message'])) : ?>
@@ -34,7 +31,6 @@ $query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan, nama_divisi FR
                             <th>Email</th>
                             <th>Jabatan</th>
                             <th>Divisi</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,10 +46,6 @@ $query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan, nama_divisi FR
                                 <td><?= $getdata['email_karyawan'] ?></td>
                                 <td><?= $getdata['nama_jabatan'] ?></td>
                                 <td><?= $getdata['nama_divisi'] ?></td>
-                                <td>
-                                    <a href="<?= BASE_URL . 'admin/index.php?page=karyawan&action=editdata&id=' . $getdata['id_karyawan'] ?>" class="btn btn-sm btn-primary mt-1"><i class="fas fa-edit"></i></a>
-                                    <button type="button" data-id="<?= $getdata['id_karyawan'] ?>" data-nama="<?= $getdata['nama_karyawan'] ?>" class="btn btn-sm btn-danger remove mt-1"><i class="fas fa-trash"></i></button>
-                                </td>
                             </tr>
                         <?php endwhile ?>
                     </tbody>

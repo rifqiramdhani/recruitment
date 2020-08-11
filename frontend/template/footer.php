@@ -86,24 +86,37 @@
 
         //wizard multistep form
         // Toolbar extra buttons
-        var btnFinish = $('<button></button>').text('Finish')
+        var btnFinish = $('<button type="button"></button>').text('Finish')
             .addClass('btn btn-info')
             .on('click', function() {
-                if (!$(this).hasClass('disabled')) {
-                    var elmForm = $("#myForm");
-                    if (elmForm) {
-                        elmForm.validator('validate');
-                        var elmErr = elmForm.find('.has-error');
-                        if (elmErr && elmErr.length > 0) {
-                            alert('Tolong lengkapi data di form');
-                            return false;
-                        } else {
-                            elmForm.submit();
-                            return false;
+                Swal.fire({
+                    title: 'Peringatan!',
+                    text: "Harap periksa kembali berkas yang anda masukan, karena berkas yang telah dimasukan tidak dapat diubah kembali. Jika berkas yang anda masukan telah sesuai silahkan tekan tombol simpan.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: "Simpan",
+                    cancelButtonText: "Kembali",
+                }).then((result) => {
+                    if (result.value) {
+                        if (!$(this).hasClass('disabled')) {
+                            var elmForm = $("#myForm");
+                            if (elmForm) {
+                                elmForm.validator('validate');
+                                var elmErr = elmForm.find('.has-error');
+                                if (elmErr && elmErr.length > 0) {
+                                    alert('Tolong lengkapi data di form');
+                                    return false;
+                                } else {
+                                    elmForm.submit();
+                                    return false;
+                                }
+                            }
                         }
                     }
-                }
+                })
             });
+
+
 
         var btnCancel = $('<button></button>').text('Cancel')
             .addClass('btn btn-danger')

@@ -6,20 +6,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $divisi = $_POST['divisi'];
     $jumlah_jabatan = $_POST['jumlah_jabatan'];
 
-    $sql = mysqli_query($koneksi, "INSERT INTO `jabatan`(`nama_jabatan`, `id_divisi`, `jumlah_jabatan`) VALUES ('$jabatan','$divisi','$jumlah_jabatan')");
+    $queryCek = mysqli_query($koneksi, "SELECT * FROM `jabatan` WHERE nama_jabatan = '$jabatan' AND id_divisi = $divisi");
+
+    if (mysqli_num_rows($queryCek) == 0) {
+        $sql = mysqli_query($koneksi, "INSERT INTO `jabatan`(`nama_jabatan`, `id_divisi`, `jumlah_jabatan`) VALUES ('$jabatan','$divisi','$jumlah_jabatan')");
 
 
-    if (isset($sql)) {
-        if ($sql) {
-            $_SESSION['message'] = 'Data berhasil di tambahkan';
-            $_SESSION['title'] = 'Data Jabatan';
-            $_SESSION['type'] = 'success';
-        } else {
-            $_SESSION['message'] = 'Data gagal di tambahkan';
-            $_SESSION['title'] = 'Data Jabatan';
-            $_SESSION['type'] = 'error';
+        if (isset($sql)) {
+            if ($sql) {
+                $_SESSION['message'] = 'Data berhasil di tambahkan';
+                $_SESSION['title'] = 'Data Jabatan';
+                $_SESSION['type'] = 'success';
+            } else {
+                $_SESSION['message'] = 'Data gagal di tambahkan';
+                $_SESSION['title'] = 'Data Jabatan';
+                $_SESSION['type'] = 'error';
+            }
         }
+    } else {
+        $_SESSION['message'] = 'Data jabatan sudah ada';
+        $_SESSION['title'] = 'Data Jabatan';
+        $_SESSION['type'] = 'error';
     }
+
+
 
     echo "<script>window.location.href = '?page=jabatan';</script>";
 }
@@ -34,14 +44,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group has-feedback">
                     <label for="jabatan">Jabatan</label>
-                    <input type="text" name="jabatan" id="jabatan" class="form-control">
+                    <input type="text" name="jabatan" id="jabatan" class="form-control" pattern="^[_A-z]{1,}$" data-pattern-error="Data hanya boleh huruf saja">
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>
 
                 <div class="form-group has-feedback">
                     <label for="divisi">Divisi</label>
-                    <select name="divisi" id="divisi" class="form-control" required>
+                    <select name="divisi" id="divisi" class="form-control" data-required-error="Data tidak boleh kosong" required>
                         <option value="">-Pilih Divisi-</option>
                         <?php while ($getdivisi = mysqli_fetch_assoc($queryDivisi)) : ?>
                             <option value="<?= $getdivisi['id_divisi'] ?>"><?= $getdivisi['nama_divisi'] ?></option>
@@ -53,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group has-feedback">
                     <label for="jumlah_jabatan">Jumlah Jabatan</label>
-                    <input type="text" id="jumlah_jabatan" name="jumlah_jabatan" class="form-control" required>
+                    <input type="text" id="jumlah_jabatan" name="jumlah_jabatan" class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" data-required-error="Data tidak boleh kosong" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>

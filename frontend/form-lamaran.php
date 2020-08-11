@@ -29,7 +29,7 @@ if (mysqli_num_rows($query) == 0) {
 $getdata = mysqli_fetch_assoc($query);
 ?>
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="index.php"><span>Home</span></a></li>
+    <li class="breadcrumb-item"><a href="index.php"><span>Beranda</span></a></li>
     <li class="breadcrumb-item active"><span>Form Lamaran</span></li>
 </ol>
 <section id="content-section">
@@ -65,7 +65,7 @@ $getdata = mysqli_fetch_assoc($query);
                                                 <div class="form-group row has-feedback">
                                                     <label class="col-sm-3 col-form-label" for="nama_calon_karyawan">Nama <span style="font-family: cursive; color: red">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="nama_calon_karyawan" name="nama_calon_karyawan" required>
+                                                        <input type="text" class="form-control" id="nama_calon_karyawan" name="nama_calon_karyawan" data-required-error="Data tidak boleh kosong" required>
                                                         <span class="help-block with-errors"></span>
                                                     </div>
                                                     <div class="col sm-1">
@@ -76,7 +76,7 @@ $getdata = mysqli_fetch_assoc($query);
                                                 <div class="form-group row has-feedback">
                                                     <label class="col-sm-3 col-form-label" for="alamat_calon_karyawan">Alamat Lengkap <span style="font-family: cursive; color: red">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <input type="alamat_calon_karyawan" class="form-control" id="alamat_calon_karyawan" name="alamat_calon_karyawan" required>
+                                                        <input type="alamat_calon_karyawan" class="form-control" id="alamat_calon_karyawan" name="alamat_calon_karyawan" data-required-error="Data tidak boleh kosong" required>
                                                         <span class="help-block with-errors"></span>
                                                     </div>
                                                     <div class="col sm-1">
@@ -87,7 +87,7 @@ $getdata = mysqli_fetch_assoc($query);
                                                 <div class="form-group row has-feedback">
                                                     <label class="col-sm-3 col-form-label" for="kodepos_calon_karyawan">Kode pos<span style="font-family: cursive; color: red">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <input type="kodepos_calon_karyawan" class="form-control" id="kodepos_calon_karyawan" name="kodepos_calon_karyawan" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
+                                                        <input type="kodepos_calon_karyawan" class="form-control" id="kodepos_calon_karyawan" name="kodepos_calon_karyawan" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" data-required-error="Data tidak boleh kosong" required>
                                                         <span class="help-block with-errors"></span>
                                                     </div>
                                                     <div class="col sm-1">
@@ -98,7 +98,7 @@ $getdata = mysqli_fetch_assoc($query);
                                                 <div class="form-group row has-feedback">
                                                     <label class="col-sm-3 col-form-label" for="telp_calon_karyawan">No telepon<span style="font-family: cursive; color: red">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <input type="telp_calon_karyawan" class="form-control" id="telp_calon_karyawan" name="telp_calon_karyawan" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
+                                                        <input type="telp_calon_karyawan" class="form-control" id="telp_calon_karyawan" name="telp_calon_karyawan" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" data-required-error="Data tidak boleh kosong" required>
                                                         <span class="help-block with-errors"></span>
                                                     </div>
                                                     <div class="col sm-1">
@@ -109,7 +109,7 @@ $getdata = mysqli_fetch_assoc($query);
                                                 <div class="form-group row has-feedback">
                                                     <label class="col-sm-3 col-form-label" for="ttl_calon_karyawan">Tempat, tanggal lahir<span style="font-family: cursive; color: red">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <input type="ttl_calon_karyawan" class="form-control" id="ttl_calon_karyawan" name="ttl_calon_karyawan" required>
+                                                        <input type="ttl_calon_karyawan" class="form-control" id="ttl_calon_karyawan" name="ttl_calon_karyawan" data-required-error="Data tidak boleh kosong" required>
                                                         <span class="help-block with-errors"></span>
                                                     </div>
                                                     <div class="col sm-1">
@@ -120,7 +120,7 @@ $getdata = mysqli_fetch_assoc($query);
                                                 <div class="form-group row has-feedback">
                                                     <label class="col-sm-3 col-form-label" for="status_pernikahan">Status Pernikahan<span style="font-family: cursive; color: red">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <select required class="form-control" name="status_pernikahan" id="status_pernikahan">
+                                                        <select data-required-error="Data tidak boleh kosong" required class="form-control" name="status_pernikahan" id="status_pernikahan">
                                                             <option value="">-Pilih Status Pernikahan-</option>
                                                             <option value="Menikah">Menikah</option>
                                                             <option value="Belum menikah">Belum menikah</option>
@@ -135,7 +135,7 @@ $getdata = mysqli_fetch_assoc($query);
                                                 <div class="form-group row has-feedback">
                                                     <label class="col-sm-3 col-form-label" for="status_pendidikan">Status Pendidikan<span style="font-family: cursive; color: red">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <select required class="form-control" name="status_pendidikan" id="status_pendidikan">
+                                                        <select data-required-error="Data tidak boleh kosong" required class="form-control" name="status_pendidikan" id="status_pendidikan">
                                                             <option value="">-Pilih Status Pendidikan-</option>
                                                             <option value="SMU/SMK/SMA">SMU/SMK/SMA</option>
                                                             <option value="D1">D1</option>
@@ -153,7 +153,7 @@ $getdata = mysqli_fetch_assoc($query);
                                                 <div class="form-group row has-feedback">
                                                     <label class="col-sm-3 col-form-label" for="agama">Agama<span style="font-family: cursive; color: red">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <select required class="form-control" name="agama" id="agama">
+                                                        <select data-required-error="Data tidak boleh kosong" required class="form-control" name="agama" id="agama">
                                                             <option value="">-Pilih Agama-</option>
                                                             <option value="Islam">Islam</option>
                                                             <option value="Protestan">Protestan</option>
@@ -173,7 +173,7 @@ $getdata = mysqli_fetch_assoc($query);
                                                 <div class="form-group row has-feedback">
                                                     <label class="col-sm-3 col-form-label" for="email">Email<span style="font-family: cursive; color: red">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <input type="email" class="form-control" id="email" name="email" required>
+                                                        <input type="email" class="form-control" id="email" name="email" data-required-error="Data tidak boleh kosong" required>
                                                         <span class="help-block with-errors"></span>
                                                     </div>
                                                     <div class="col sm-1">
@@ -193,7 +193,7 @@ $getdata = mysqli_fetch_assoc($query);
                                                     <div class="form-group row has-feedback kebawah">
                                                         <label class="col-sm-3 col-form-label">Formulir Lamaran <span style="font-family: cursive; color: red">*</span></label>
                                                         <div class="col-sm-8 custom-file">
-                                                            <input type="file" id="formulir_lamaran" name="formulir_lamaran" class=" custom-file-input" onchange="validate(this);" required>
+                                                            <input type="file" id="formulir_lamaran" name="formulir_lamaran" class=" custom-file-input" onchange="validate(this);" data-required-error="Data tidak boleh kosong" required>
                                                             <label class="custom-file-label" for="formulir_lamaran">
                                                                 <span class="d-inline-block text-truncate w-75">Choose file<br>
                                                                 </span>
@@ -209,7 +209,7 @@ $getdata = mysqli_fetch_assoc($query);
                                                     <div class="form-group row has-feedback kebawah">
                                                         <label class="col-sm-3 col-form-label">CV (Curiculu Vitae) <span style="font-family: cursive; color: red">*</span></label>
                                                         <div class="col-sm-8 custom-file">
-                                                            <input type="file" id="cv" name="cv" class=" custom-file-input" onchange="validate(this);" required>
+                                                            <input type="file" id="cv" name="cv" class=" custom-file-input" onchange="validate(this);" data-required-error="Data tidak boleh kosong" required>
                                                             <label class="custom-file-label" for="cv">
                                                                 <span class="d-inline-block text-truncate w-75">Choose file<br>
                                                                 </span>
@@ -225,7 +225,7 @@ $getdata = mysqli_fetch_assoc($query);
                                                     <div class="form-group row has-feedback kebawah">
                                                         <label class="col-sm-3 col-form-label">KTP (Kartu Tanda Penduduk) <span style="font-family: cursive; color: red">*</span></label>
                                                         <div class="col-sm-8 custom-file">
-                                                            <input type="file" id="ktp" name="ktp" class=" custom-file-input" onchange="validate(this);" required>
+                                                            <input type="file" id="ktp" name="ktp" class=" custom-file-input" onchange="validate(this);" data-required-error="Data tidak boleh kosong" required>
                                                             <label class="custom-file-label" for="ktp">
                                                                 <span class="d-inline-block text-truncate w-75">Choose file<br>
                                                                 </span>
@@ -241,7 +241,7 @@ $getdata = mysqli_fetch_assoc($query);
                                                     <div class="form-group row has-feedback kebawah">
                                                         <label class="col-sm-3 col-form-label">Akta Kelahiran <span style="font-family: cursive; color: red">*</span></label>
                                                         <div class="col-sm-8 custom-file">
-                                                            <input type="file" id="akta_kelahiran" name="akta_kelahiran" class=" custom-file-input" onchange="validate(this);" required>
+                                                            <input type="file" id="akta_kelahiran" name="akta_kelahiran" class=" custom-file-input" onchange="validate(this);" data-required-error="Data tidak boleh kosong" required>
                                                             <label class="custom-file-label" for="akta_kelahiran">
                                                                 <span class="d-inline-block text-truncate w-75">Choose file<br>
                                                                 </span>
@@ -257,7 +257,7 @@ $getdata = mysqli_fetch_assoc($query);
                                                     <div class="form-group row has-feedback kebawah">
                                                         <label class="col-sm-3 col-form-label">KK (Kartu Keluarga) <span style="font-family: cursive; color: red">*</span></label>
                                                         <div class="col-sm-8 custom-file">
-                                                            <input type="file" id="kartu_keluarga" name="kartu_keluarga" class=" custom-file-input" onchange="validate(this);" required>
+                                                            <input type="file" id="kartu_keluarga" name="kartu_keluarga" class=" custom-file-input" onchange="validate(this);" data-required-error="Data tidak boleh kosong" required>
                                                             <label class="custom-file-label" for="kartu_keluarga">
                                                                 <span class="d-inline-block text-truncate w-75">Choose file<br>
                                                                 </span>
@@ -273,7 +273,7 @@ $getdata = mysqli_fetch_assoc($query);
                                                     <div class="form-group row has-feedback">
                                                         <label class="col-sm-3 col-form-label">Lembar Ijazah dan Transkrip Nilai <span style="font-family: cursive; color: red">*</span></label>
                                                         <div class="col-sm-8 custom-file">
-                                                            <input type="file" id="ijazah" name="ijazah" class=" custom-file-input" onchange="validate(this);" required>
+                                                            <input type="file" id="ijazah" name="ijazah" class=" custom-file-input" onchange="validate(this);" data-required-error="Data tidak boleh kosong" required>
                                                             <label class="custom-file-label" for="ijazah">
                                                                 <span class="d-inline-block text-truncate w-75">Choose file<br>
                                                                 </span>
@@ -289,7 +289,7 @@ $getdata = mysqli_fetch_assoc($query);
                                                     <div class="form-group row has-feedback">
                                                         <label class="col-sm-3 col-form-label">Surat Keterangan Pengalaman Kerja <span style="font-family: cursive; color: red">*</span></label>
                                                         <div class="col-sm-8 custom-file">
-                                                            <input type="file" id="skpk" name="skpk" class=" custom-file-input" onchange="validate(this);" required>
+                                                            <input type="file" id="skpk" name="skpk" class=" custom-file-input" onchange="validate(this);" data-required-error="Data tidak boleh kosong" required>
                                                             <label class="custom-file-label" for="skpk">
                                                                 <span class="d-inline-block text-truncate w-75">Choose file<br>
                                                                 </span>
@@ -305,7 +305,7 @@ $getdata = mysqli_fetch_assoc($query);
                                                     <div class="form-group row has-feedback ">
                                                         <label class="col-sm-3 col-form-label">Pas Foto 3x4 Berwarna <span style="font-family: cursive; color: red">*</span></label>
                                                         <div class="col-sm-8 custom-file">
-                                                            <input type="file" id="pas_foto" name="pas_foto" class=" custom-file-input" onchange="validate(this);" required>
+                                                            <input type="file" id="pas_foto" name="pas_foto" class=" custom-file-input" onchange="validate(this);" data-required-error="Data tidak boleh kosong" required>
                                                             <label class="custom-file-label" for="pas_foto">
                                                                 <span class="d-inline-block text-truncate w-75">Choose file<br>
                                                                 </span>

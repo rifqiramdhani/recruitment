@@ -7,7 +7,7 @@ $queryJabatan = mysqli_query($koneksi, "SELECT * FROM `jabatan`");
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_fpkb = htmlspecialchars($_POST['id_fpkb']);
     // $gaji_recruitment = htmlspecialchars($_POST['gaji_recruitment']);
-    $waktu_recruitment = htmlspecialchars($_POST['waktu_recruitment']);
+    // $waktu_recruitment = htmlspecialchars($_POST['waktu_recruitment']);
     $tanggal_buka = htmlspecialchars(date('Y-m-d', strtotime($_POST['tanggal_buka'])));
     $tanggal_tutup = htmlspecialchars(date('Y-m-d', strtotime($_POST['tanggal_tutup'])));
 
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $getPosisiFpkb = mysqli_fetch_assoc($queryPosisiFpkb);
     $nama_recruitment = $getPosisiFpkb['posisi_dibutuhkan'];
 
-    $sql = mysqli_query($koneksi, "INSERT INTO `rekrutmen`(`id_fpkb`,`nama_rekrutmen`, `waktu_rekrutmen`, `tanggal_buka`, `tanggal_tutup`) VALUES ('$id_fpkb','$nama_recruitment', '$waktu_recruitment', '$tanggal_buka', '$tanggal_tutup')");
+    $sql = mysqli_query($koneksi, "INSERT INTO `rekrutmen`(`id_fpkb`,`nama_rekrutmen`, `tanggal_buka`, `tanggal_tutup`) VALUES ('$id_fpkb','$nama_recruitment', '$tanggal_buka', '$tanggal_tutup')");
 
     $kriteria = mysqli_query($koneksi, "SELECT * FROM `kriteria_rekrutmen` LIMIT 11");
 
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $getrecruitment = mysqli_fetch_assoc($recruitment);
     //id baru recruitment
-    echo $newid_recruitment = $getrecruitment['id_rekrutmen'];
+    $newid_recruitment = $getrecruitment['id_rekrutmen'];
 
 
     //insert ke table desk_recruitment
@@ -49,11 +49,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_pendidikan = $getnewkriteria['id_krt_rekt'];
         } else if ($plus == 2) {
             $id_pengalamankerja = $getnewkriteria['id_krt_rekt'];
-        } else if ($plus == 3) {
+        }
+        else if ($plus == 3) {
             $id_status = $getnewkriteria['id_krt_rekt'];
-        } else if ($plus == 4) {
+        }
+        else if ($plus == 4) {
             $id_usia = $getnewkriteria['id_krt_rekt'];
-        } else if ($plus == 11) {
+        }
+        else if ($plus == 11) {
             $id_kesehatan = $getnewkriteria['id_krt_rekt'];
         }
         $plus++;
@@ -72,15 +75,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // echo $nama_subkriteria. '<br>';
             //pengalaman kerja
             mysqli_query($koneksi, "INSERT INTO `subkriteria_rekrutmen`(`id_kriteria_rekrutmen`, `nama_subkriteria`, `bobot_subkriteria`) VALUES ('$id_pengalamankerja', '$nama_subkriteria', '$bobot_subkriteria')");
-        } else if ($counter < 11) {
+        }
+        else if ($counter < 11) {
             // echo $nama_subkriteria. '<br>';
             //status
             mysqli_query($koneksi, "INSERT INTO `subkriteria_rekrutmen`(`id_kriteria_rekrutmen`, `nama_subkriteria`, `bobot_subkriteria`) VALUES ('$id_status', '$nama_subkriteria', '$bobot_subkriteria')");
-        } else if ($counter < 16) {
+        }
+        else if ($counter < 16) {
             // echo $nama_subkriteria. '<br>';
             //usia
             mysqli_query($koneksi, "INSERT INTO `subkriteria_rekrutmen`(`id_kriteria_rekrutmen`, `nama_subkriteria`, `bobot_subkriteria`) VALUES ('$id_usia', '$nama_subkriteria', '$bobot_subkriteria')");
-        } else if ($counter < 18) {
+        }
+        else if ($counter < 18) {
             // echo $nama_subkriteria. '<br>';
             //kesehatan
             mysqli_query($koneksi, "INSERT INTO `subkriteria_rekrutmen`(`id_kriteria_rekrutmen`, `nama_subkriteria`, `bobot_subkriteria`) VALUES ('$id_kesehatan', '$nama_subkriteria', '$bobot_subkriteria')");
@@ -112,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group has-feedback">
                     <label for="id_fpkb">Nama</label>
-                    <select name="id_fpkb" id="id_fpkb" class="form-control" required>
+                    <select name="id_fpkb" id="id_fpkb" class="form-control" data-required-error="Data tidak boleh kosong" required>
                         <option value="">-Pilih nama-</option>
                         <?php while ($getFpkb = mysqli_fetch_assoc($queryFpkb)) : ?>
                             <option value="<?= $getFpkb['id_fpkb'] ?>"><?= $getFpkb['posisi_dibutuhkan'] ?></option>
@@ -125,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-group has-feedback" id="tanggal_buka">
                     <label for="open_date">Tanggal Buka</label>
                     <div class="input-group date mb-3">
-                        <input type="text" class="form-control" name="tanggal_buka" id="open_date" onkeypress="return false" required>
+                        <input type="text" class="form-control" name="tanggal_buka" id="open_date" onkeypress="return false" data-required-error="Data tidak boleh kosong" required>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                         </div>
@@ -136,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-group has-feedback" id="tanggal_tutup">
                     <label for="close_date">Tanggal Tutup</label>
                     <div class="input-group date mb-3">
-                        <input type="text" class="form-control" name="tanggal_tutup" id="close_date" onkeypress="return false" required>
+                        <input type="text" class="form-control" name="tanggal_tutup" id="close_date" onkeypress="return false" data-required-error="Data tidak boleh kosong" required>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                         </div>
@@ -144,16 +150,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <span class="help-block with-errors"></span>
                 </div>
 
-                <div class="form-group has-feedback">
+                <!-- <div class="form-group has-feedback">
                     <label for="waktu_recruitment">Waktu</label>
-                    <select class="form-control" name="waktu_recruitment" id="waktu_recruitment" required>
+                    <select class="form-control" name="waktu_recruitment" id="waktu_recruitment" data-required-error="Data tidak boleh kosong" required>
                         <option value="">-Pilih Waktu</option>
                         <option value="FULL TIME">Full Time</option>
                         <option value="PART TIME">Part Time</option>
                     </select>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
-                </div>
+                </div> -->
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Simpan</button>

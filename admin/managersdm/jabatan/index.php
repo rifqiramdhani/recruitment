@@ -7,10 +7,6 @@ $query = mysqli_query($koneksi, "SELECT * FROM `jabatan` JOIN divisi USING(id_di
 <!-- <div class="flash-data" data-flashdata=""></div> -->
 <div class="col-12">
 
-    <a href="?page=jabatan&action=tambahdata" class="btn btn-success mt-3 mb-3">
-        <i class="fas fa-plus"></i> Tambah
-    </a>
-
     <!-- show sweet alert -->
     <?php if (isset($_SESSION['message'])) : ?>
         <div class="flash-data" data-flashdata="<?= $_SESSION['message'] ?>" data-title="<?= $_SESSION['title'] ?>" data-type="<?= $_SESSION['type'] ?>"></div>
@@ -33,7 +29,6 @@ $query = mysqli_query($koneksi, "SELECT * FROM `jabatan` JOIN divisi USING(id_di
                             <th>Kebutuhan Karyawan</th>
                             <th>Karyawan yang ada</th>
                             <th>Kekosongan</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -73,11 +68,6 @@ $query = mysqli_query($koneksi, "SELECT * FROM `jabatan` JOIN divisi USING(id_di
                                     ?>
 
                                 </td>
-                                <td>
-                                    <a href="?page=jabatan&action=editdata&jabatan=<?= $getdata['id_jabatan'] ?>" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                                    <button type="button" data-id="<?= $getdata['id_jabatan'] ?>" data-nama="<?= $getdata['nama_jabatan']  ?>" class="btn btn-sm btn-danger remove"><i class="fas fa-trash"></i></button>
-                                </td>
-
                             </tr>
 
                         <?php endwhile ?>

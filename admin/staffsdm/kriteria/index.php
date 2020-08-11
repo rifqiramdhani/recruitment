@@ -10,6 +10,9 @@ $query = mysqli_query($koneksi, "SELECT * FROM `kriteria_rekrutmen` JOIN detail_
 
 <!-- <div class="flash-data" data-flashdata=""></div> -->
 <div class="col-12">
+    <a href="?page=kriteria&action=tambahdata&penerimaan=<?= $id_lowongan ?>" class="btn btn-success mt-3 mb-3">
+        <i class="fas fa-plus"></i> Tambah
+    </a>
     <a href="<?= BASE_URL . 'admin/index.php?page=penerimaan' ?>" class="btn btn-warning mt-3 mb-3">
         <i class="fas fa-reply"></i> Kembali
     </a>
@@ -35,6 +38,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM `kriteria_rekrutmen` JOIN detail_
                             <th>Nama</th>
                             <th>Bobot</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,7 +47,10 @@ $query = mysqli_query($koneksi, "SELECT * FROM `kriteria_rekrutmen` JOIN detail_
                                 <td><?= $getdata['id_dt_krt_rekt'] ?></td>
                                 <td><?= $getdata['nama_kriteria_rekrutmen'] ?></td>
                                 <td><?= $getdata['bobot_kriteria'] ?></td>
-                               
+                                <td>
+                                    <a href="?page=kriteria&action=editdata&id=<?= $getdata['id_krt_rekt'] ?>&penerimaan=<?= $id_lowongan ?>" class="btn btn-sm btn-primary text-white"><i class="fas fa-edit"></i></a>
+                                    <button type="button" class="btn btn-sm btn-danger remove" title="Hapus" data-id="<?= $getdata['id_krt_rekt'] ?>" data-nama="<?= $getdata['nama_kriteria_rekrutmen'] ?>"><i class="fas fa-trash"></i></button>
+                                </td>
                                 <td>
                                     <a href="?page=subkriteria&penerimaan=<?= $id_lowongan ?>&kriteria=<?= $getdata['id_krt_rekt'] ?>" class="btn btn-sm btn-secondary">Sub Kriteria</a>
                                 </td>

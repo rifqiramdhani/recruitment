@@ -168,7 +168,7 @@
                         // schedule updating xlink:href
                         xhr = cache[base];
                         if (xhr !== true) {
-                            // true signifies that prepending the SVG was not required
+                            // true signifies that prepending the SVG was not data-required-error="Data tidak boleh kosong" required
                             setTimeout(attrUpdateFunc({
                                 useEl: uses[i],
                                 base: base,

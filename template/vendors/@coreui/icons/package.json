@@ -16,7 +16,7 @@
     "saveSpec": null,
     "fetchSpec": "latest"
   },
-  "_requiredBy": [
+  "_data-required-error="Data tidak boleh kosong" requiredBy": [
     "#USER",
     "/"
   ],

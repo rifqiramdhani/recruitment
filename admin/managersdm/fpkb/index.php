@@ -1,6 +1,6 @@
 <?php
 // $query = mysqli_query($koneksi, "SELECT fpkb.*, nama_karyawan FROM `fpkb` JOIN karyawan ON fpkb.id_karyawan = karyawan.id_karyawan");
-$query = mysqli_query($koneksi, "SELECT fpkb.*, nama_karyawan, nama_jabatan, nama_divisi FROM `fpkb` JOIN karyawan USING(id_karyawan) JOIN jabatan ON karyawan.id_jabatan = jabatan.id_jabatan JOIN divisi USING(id_divisi)  WHERE status_fpkb >= 1 ORDER BY tanggal_permintaan DESC");
+$query = mysqli_query($koneksi, "SELECT fpkb.*, nama_karyawan, nama_jabatan, nama_divisi FROM `fpkb` JOIN karyawan USING(id_karyawan) JOIN jabatan ON karyawan.id_jabatan = jabatan.id_jabatan JOIN divisi USING(id_divisi)  WHERE status_fpkb >= 1 ORDER BY id_fpkb DESC");
 ?>
 
 <!-- <div class="flash-data" data-flashdata=""></div> -->

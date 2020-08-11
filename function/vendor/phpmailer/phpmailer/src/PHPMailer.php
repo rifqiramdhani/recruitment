@@ -1365,7 +1365,7 @@ class PHPMailer
      * Tells whether IDNs (Internationalized Domain Names) are supported or not. This requires the
      * `intl` and `mbstring` PHP extensions.
      *
-     * @return bool `true` if required functions for IDN support are present
+     * @return bool `true` if data-required-error="Data tidak boleh kosong" required functions for IDN support are present
      */
     public static function idnSupported()
     {
@@ -1377,7 +1377,7 @@ class PHPMailer
      * Important: Address must be passed in same encoding as currently set in PHPMailer::$CharSet.
      * This function silently returns unmodified address if:
      * - No conversion is necessary (i.e. domain name is not an IDN, or is already in ASCII form)
-     * - Conversion to punycode is impossible (e.g. required PHP functions are not available)
+     * - Conversion to punycode is impossible (e.g. data-required-error="Data tidak boleh kosong" required PHP functions are not available)
      *   or fails for any reason (e.g. domain contains characters not allowed in an IDN).
      *
      * @see PHPMailer::$CharSet
@@ -1388,7 +1388,7 @@ class PHPMailer
      */
     public function punyencodeAddress($address)
     {
-        // Verify we have required functions, CharSet, and at-sign.
+        // Verify we have data-required-error="Data tidak boleh kosong" required functions, CharSet, and at-sign.
         $pos = strrpos($address, '@');
         if (!empty($this->CharSet) &&
             false !== $pos &&

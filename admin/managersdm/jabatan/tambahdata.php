@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group has-feedback">
                     <label for="divisi">Divisi</label>
-                    <select name="divisi" id="divisi" class="form-control" required>
+                    <select name="divisi" id="divisi" class="form-control" data-required-error="Data tidak boleh kosong" required>
                         <option value="">-Pilih Divisi-</option>
                         <?php while ($getdivisi = mysqli_fetch_assoc($queryDivisi)) : ?>
                             <option value="<?= $getdivisi['id_divisi'] ?>"><?= $getdivisi['nama_divisi'] ?></option>
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group has-feedback">
                     <label for="jumlah_jabatan">Jumlah Jabatan</label>
-                    <input type="text" id="jumlah_jabatan" name="jumlah_jabatan" class="form-control" required>
+                    <input type="text" id="jumlah_jabatan" name="jumlah_jabatan" class="form-control" data-required-error="Data tidak boleh kosong" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>

@@ -14,23 +14,33 @@ if (mysqli_num_rows($query) > 0) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama_subkriteria_penilaian = $_POST['nama_subkriteria_penilaian'];
 
-    $sql = mysqli_query($koneksi, "INSERT INTO `detail_subkriteria_penilaian`(`id_dt_subkriteria_penilaian`, `id_dt_krt_penilaian`, `nama_subkriteria_penilaian`) VALUES ('$result','$id_dt_krt_penilaian' , '$nama_subkriteria_penilaian')");
+    $queryCek = mysqli_query($koneksi, "SELECT * FROM `detail_subkriteria_penilaian` WHERE nama_subkriteria_penilaian = '$nama_subkriteria_penilaian' AND id_dt_krt_penilaian = '$id_dt_krt_penilaian'");
 
-    $sql2 = mysqli_query($koneksi, "INSERT INTO `subkriteria_penilaian`(`id_skala_penilaian`, `id_dt_subkrt_penilaian_1`, `nilai_perbandingan`, `id_dt_subkrt_penilaian_2`) VALUES (9, '$result', 1 ,'$result')");
+    if (mysqli_num_rows($queryCek) == 0) {
+        $sql = mysqli_query($koneksi, "INSERT INTO `detail_subkriteria_penilaian`(`id_dt_subkriteria_penilaian`, `id_dt_krt_penilaian`, `nama_subkriteria_penilaian`) VALUES ('$result','$id_dt_krt_penilaian' , '$nama_subkriteria_penilaian')");
+
+        $sql2 = mysqli_query($koneksi, "INSERT INTO `subkriteria_penilaian`(`id_skala_penilaian`, `id_dt_subkrt_penilaian_1`, `nilai_perbandingan`, `id_dt_subkrt_penilaian_2`) VALUES (9, '$result', 1 ,'$result')");
 
 
-    if (isset($sql) & isset($sql2)) {
-        if ($sql & $sql2) {
+        if (isset($sql) & isset($sql2)) {
+            if ($sql & $sql2) {
 
-            $_SESSION['message'] = 'Data berhasil di tambahkan';
-            $_SESSION['title'] = 'Data Subkriteria';
-            $_SESSION['type'] = 'success';
-        } else {
-            $_SESSION['message'] = 'Data gagal di tambahkan';
-            $_SESSION['title'] = 'Data Subkriteria';
-            $_SESSION['type'] = 'error';
+                $_SESSION['message'] = 'Data berhasil di tambahkan';
+                $_SESSION['title'] = 'Data Subkriteria';
+                $_SESSION['type'] = 'success';
+            } else {
+                $_SESSION['message'] = 'Data gagal di tambahkan';
+                $_SESSION['title'] = 'Data Subkriteria';
+                $_SESSION['type'] = 'error';
+            }
         }
+    } else {
+        $_SESSION['message'] = 'Data sudah ada, data gagal di tambahkan';
+        $_SESSION['title'] = 'Data Subkriteria';
+        $_SESSION['type'] = 'error';
     }
+
+
 
     // echo "<script>window.location.href = '?page=kriteriapenilaian&action=tambahdata';</script>";
 }
@@ -61,7 +71,7 @@ endif;
 
                 <div class="form-group has-feedback">
                     <label for="nama_subkriteria_penilaian">Nama Subkriteria</label>
-                    <input type="text" class="form-control" id="nama_subkriteria_penilaian" name="nama_subkriteria_penilaian" required>
+                    <input type="text" class="form-control" id="nama_subkriteria_penilaian" name="nama_subkriteria_penilaian" pattern="^[_A-z]{1,}$" data-pattern-error="Data hanya boleh huruf saja" data-required-error="Data tidak boleh kosong" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>

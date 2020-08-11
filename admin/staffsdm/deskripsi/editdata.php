@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div id="field1">
                         <div class="form-group">
                             <label for="deskripsi">Persyaratan</label>
-                            <input type="text" class="form-control" id="deskripsi" name="deskripsi" value="<?= $getdata['deskripsi'] ?>" required>
+                            <input type="text" class="form-control" id="deskripsi" name="deskripsi" value="<?= $getdata['deskripsi'] ?>" data-required-error="Data tidak boleh kosong" required>
                         </div>
                     </div>
                 </div>

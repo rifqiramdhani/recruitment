@@ -21,7 +21,8 @@
                     <strong>Account</strong>
                 </div>
                 <a class="dropdown-item" href="<?= BASE_URL . 'login/proses_logout.php' ?>">
-                    <i class="fa fa-lock"></i> Logout</a>
+                    <i class="fa fa-lock"></i> Logout
+                </a>
             </div>
         </li>
     </ul>

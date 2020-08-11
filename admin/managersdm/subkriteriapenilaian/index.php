@@ -50,7 +50,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM `detail_subkriteria_penilaian` WH
                                 <td><?= ($getdata['nama_subkriteria_penilaian']) ?></td>
                                 <td><?= $getdata['nilai_prioritas_subkriteria'] ?></td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-primary text-white"><i class="fas fa-edit"></i></a>
+                                    <a href="?page=subkriteriapenilaian&action=editdata&id=<?= $getdata['id_dt_subkriteria_penilaian'] ?>&kriteria=<?= $id_kriteria ?>" class="btn btn-sm btn-primary text-white"><i class="fas fa-edit"></i></a>
                                     <a href="#" class="btn btn-sm btn-danger remove" title="Hapus" data-id="<?= $getdata['id_dt_subkriteria_penilaian'] ?>" data-nama="<?= $getdata['nama_subkriteria_penilaian'] ?>"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>

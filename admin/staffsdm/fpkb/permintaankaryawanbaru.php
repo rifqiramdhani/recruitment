@@ -43,21 +43,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group has-feedback">
                     <label for="posisi_dibutuhkan">Posisi yang dibutuhkan</label>
-                    <input type="posisi_dibutuhkan" class="form-control" id="posisi_dibutuhkan" name="posisi_dibutuhkan" value="<?= $getdata['nama_jabatan'] . ' ' . $getdata['nama_divisi'] ?>" required readonly>
+                    <input type="posisi_dibutuhkan" class="form-control" id="posisi_dibutuhkan" name="posisi_dibutuhkan" value="<?= $getdata['nama_jabatan'] . ' ' . $getdata['nama_divisi'] ?>" data-required-error="Data tidak boleh kosong" required readonly>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>
 
                 <div class="form-group has-feedback">
                     <label for="jumlah_dibutuhkan">Jumlah yang dibutuhkan </label>
-                    <input type="jumlah_dibutuhkan" class="form-control" id="jumlah_dibutuhkan" name="jumlah_dibutuhkan" value="<?= $kekosongan ?>" required readonly>
+                    <input type="jumlah_dibutuhkan" class="form-control" id="jumlah_dibutuhkan" name="jumlah_dibutuhkan" value="<?= $kekosongan ?>" data-required-error="Data tidak boleh kosong" required readonly>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>
 
                 <div class="form-group has-feedback">
                     <label for="jumlah_karyawan_sekarang">Jumlah karyawan sekarang </label>
-                    <input type="jumlah_karyawan_sekarang" class="form-control" id="jumlah_karyawan_sekarang" name="jumlah_karyawan_sekarang" value="<?= $getjumlahkaryawan['jumlah'] ?>" required readonly>
+                    <input type="jumlah_karyawan_sekarang" class="form-control" id="jumlah_karyawan_sekarang" name="jumlah_karyawan_sekarang" value="<?= $getjumlahkaryawan['jumlah'] ?>" data-required-error="Data tidak boleh kosong" required readonly>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-group has-feedback">
                     <label for="file_fpkb">File FPKB </label>
                     <div class="col-sm-12 custom-file">
-                        <input type="file" id="file_fpkb" name="file_fpkb" class=" custom-file-input" onchange="validate(this);" required>
+                        <input type="file" id="file_fpkb" name="file_fpkb" class=" custom-file-input" onchange="validate(this);" data-required-error="Data tidak boleh kosong" required>
                         <label class="custom-file-label" for="skpk">
                             <span class="d-inline-block text-truncate w-75">Choose file<br>
                             </span>

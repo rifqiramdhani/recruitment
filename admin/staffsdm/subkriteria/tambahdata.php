@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['type'] = 'error';
     }
 
-    echo "<script>window.location.href = '?page=subkriteria&penerimaan=".$id_lowongan ."&kriteria=". $id_kriteria ."';</script>";
+    echo "<script>window.location.href = '?page=subkriteria&penerimaan=" . $id_lowongan . "&kriteria=" . $id_kriteria . "';</script>";
 }
 ?>
 
@@ -33,14 +33,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group has-feedback">
                     <label for="nama_subkriteria">Nama</label>
-                    <input type="nama_subkriteria" class="form-control" id="nama_subkriteria" name="nama_subkriteria" required>
+                    <input type="nama_subkriteria" class="form-control" id="nama_subkriteria" name="nama_subkriteria" data-required-error="Data tidak boleh kosong" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>
 
                 <div class="form-group has-feedback">
                     <label for="bobot_subkriteria">Bobot</label>
-                    <input type="bobot_subkriteria" class="form-control" id="bobot_subkriteria" name="bobot_subkriteria" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
+                    <select name="bobot_subkriteria" id="bobot_subkriteria" class="form-control" data-data-required-error="Data tidak boleh kosong" required-error="Tolong pilih salah satu opsi" data-required-error="Data tidak boleh kosong" required>
+                        <option value="">-Pilih Bobot-</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>

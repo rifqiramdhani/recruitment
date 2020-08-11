@@ -34,7 +34,7 @@
                 <div class="clearfix">
                     <h1 class="float-left display-3 mr-4">403</h1>
                     <h4 class="pt-3">Oops! Access Forbidden</h4>
-                    <p class="text-muted">Unfortunately you don't have the permissions required to access this page.</p>
+                    <p class="text-muted">Unfortunately you don't have the permissions data-required-error="Data tidak boleh kosong" required to access this page.</p>
                 </div>
                 <?php $level = strtolower($this->session->userdata('level'))  ?>
                 <a href="<?= base_url() . $level .'/page/dashboard' ?>" class="btn btn-block btn-light">Go home</a>

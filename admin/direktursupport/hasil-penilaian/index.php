@@ -1,5 +1,5 @@
 <?php
-$query = mysqli_query($koneksi, "SELECT karyawan.* FROM `penilaian_kmp` JOIN karyawan USING(id_karyawan) WHERE status = 1 ORDER BY `id_penilaian_kmp` ASC");
+$query = mysqli_query($koneksi, "SELECT karyawan.*, nama_divisi, id_penilaian_kmp, status FROM `penilaian_kmp` JOIN karyawan USING(id_karyawan) JOIN jabatan USING(id_jabatan) JOIN divisi USING(id_divisi) WHERE status = 1 OR status = 4 ORDER BY `id_penilaian_kmp` ASC");
 ?>
 
 <!-- <div class="flash-data" data-flashdata=""></div> -->
@@ -29,7 +29,8 @@ $query = mysqli_query($koneksi, "SELECT karyawan.* FROM `penilaian_kmp` JOIN kar
                             <th>No Telepon</th>
                             <th>Tempat, Tanggal Lahir</th>
                             <th>Alamat</th>
-                            <th>Status</th>
+                            <th>Divisi</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,10 +44,8 @@ $query = mysqli_query($koneksi, "SELECT karyawan.* FROM `penilaian_kmp` JOIN kar
                                 <td><?= $getdata['telp_karyawan'] ?></td>
                                 <td><?= $getdata['ttl_karyawan'] ?></td>
                                 <td><?= $getdata['alamat_karyawan'] ?></td>
-                                <td>
-                                    <button class="btn btn-block btn-default col-green font-weight-bold">Diterima</button>
-                                </td>
-
+                                <td><?= $getdata['nama_divisi'] ?></td>
+                                <th><a href="direktursupport/hasil-penilaian/penyetujuan.php?id=<?= $getdata['id_penilaian_kmp'] ?>" class="btn btn-success btn-sm <?= $getdata['status'] == 4 ? 'disabled' : '' ?>"><i class="fas fa-check"></i></a></th>
                             </tr>
                         <?php endwhile ?>
                     </tbody>

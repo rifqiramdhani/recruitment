@@ -137,7 +137,7 @@ $getnilai = mysqli_fetch_assoc($querynilai);
                                 $querysubkrit = mysqli_query($koneksi, "SELECT * FROM `subkriteria_rekrutmen` WHERE id_kriteria_rekrutmen = '$id_kriteria' ORDER BY nama_subkriteria ASC");
                                 ?>
                                 <?php if (mysqli_num_rows($querysubkrit) > 0) : ?>
-                                    <select name="nilaisub[]" class="form-control" required>
+                                    <select name="nilaisub[]" class="form-control" data-required-error="Data tidak boleh kosong" required>
                                         <option value="">-Pilih <?= $getkrit['nama_kriteria_rekrutmen'] ?> -</option>
                                         <?php while ($getsubkrit = mysqli_fetch_assoc($querysubkrit)) : ?>
                                             <option value="<?= $getsubkrit['id_subkriteria_rekrutmen'] ?>"><?= $getsubkrit['nama_subkriteria'] ?></option>
@@ -146,7 +146,7 @@ $getnilai = mysqli_fetch_assoc($querynilai);
                                 <?php elseif ($getkrit['id_dt_krt_rekt'] == 'K010') : ?>
                                     <input type="text" name="nilaipsikotes" class="form-control" placeholder="Masukkan Nilai" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                                 <?php else : ?>
-                                    <select name="nilai[]" class="form-control" required>
+                                    <select name="nilai[]" class="form-control" data-required-error="Data tidak boleh kosong" required>
                                         <option value="">-Pilih Nilai-</option>
                                         <option value="1">Sangat Kurang</option>
                                         <option value="2">Kurang</option>

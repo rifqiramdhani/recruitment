@@ -31,6 +31,7 @@ $query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan, nama_divisi FR
                             <th>No Telepon</th>
                             <th>Tempat, Tanggal Lahir</th>
                             <th>Alamat</th>
+                            <th>Tanggal Masuk</th>
                             <th>Email</th>
                             <th>Jabatan</th>
                             <th>Divisi</th>
@@ -47,6 +48,7 @@ $query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan, nama_divisi FR
                                 <td><?= $getdata['telp_karyawan'] ?></td>
                                 <td><?= $getdata['ttl_karyawan'] ?></td>
                                 <td><?= $getdata['alamat_karyawan'] ?></td>
+                                <td><?= date('d-m-Y', strtotime($getdata['tanggal_masuk'])) ?></td>
                                 <td><?= $getdata['email_karyawan'] ?></td>
                                 <td><?= $getdata['nama_jabatan'] ?></td>
                                 <td><?= $getdata['nama_divisi'] ?></td>

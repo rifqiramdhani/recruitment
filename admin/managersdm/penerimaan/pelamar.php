@@ -36,7 +36,6 @@ $getrek = mysqli_fetch_assoc($queryrek);
                             <th>No Telepon</th>
                             <th>Tempat, Tanggal Lahir</th>
                             <th>Alamat</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,9 +48,7 @@ $getrek = mysqli_fetch_assoc($queryrek);
                                 <td><?= $getdata['telp_calon_karyawan'] ?></td>
                                 <td><?= $getdata['ttl_calon_karyawan'] ?></td>
                                 <td><?= $getdata['alamat_calon_karyawan'] ?></td>
-                                <td>
-                                    <button type="button" data-toggle="modal" data-target="#modalmail<?= $getdata['id_calon_karyawan'] ?>" class="btn btn-sm btn-warning"><i class="fas fa-envelope"></i></button>
-                                </td>
+                               
                             </tr>
                         <?php include('modalmail.php');
                         endwhile; ?>

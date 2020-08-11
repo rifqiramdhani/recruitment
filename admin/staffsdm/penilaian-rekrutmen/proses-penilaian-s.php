@@ -42,18 +42,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $querykrit = mysqli_query($koneksi, "SELECT kriteria_rekrutmen.*, nama_kriteria_rekrutmen FROM `kriteria_rekrutmen` JOIN detail_kriteria_rekrutmen ON kriteria_rekrutmen.id_dt_krt_rekt = detail_kriteria_rekrutmen.id_dt_krt_rekt WHERE id_rekrutmen = '$id_recruitment' AND status_kriteria = 1");
 
-    $i=0;
-    $j=0;
-    $s=0;
-    $t=0;
-    $key=0;
-    while ($getkrit = mysqli_fetch_assoc($querykrit)){
+    $i = 0;
+    $j = 0;
+    $s = 0;
+    $t = 0;
+    $key = 0;
+    while ($getkrit = mysqli_fetch_assoc($querykrit)) {
         $id_kriteria = $getkrit['id_krt_rekt'];
         $querysubkrit = mysqli_query($koneksi, "SELECT * FROM `subkriteria_rekrutmen` WHERE id_kriteria_rekrutmen = '$id_kriteria' ORDER BY nama_subkriteria ASC");
 
-        if (mysqli_num_rows($querysubkrit) > 0){
-            while ($getsubkrit = mysqli_fetch_assoc($querysubkrit)){
-                if($getsubkrit['id_subkriteria_rekrutmen'] == $nilaisub[$i]){
+        if (mysqli_num_rows($querysubkrit) > 0) {
+            while ($getsubkrit = mysqli_fetch_assoc($querysubkrit)) {
+                if ($getsubkrit['id_subkriteria_rekrutmen'] == $nilaisub[$i]) {
                     $s += round(pow($getsubkrit['bobot_subkriteria'], $warray[$key]), 2);
                     $id_subkriteria_rekrutmen = $nilaisub[$i];
 
@@ -62,13 +62,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     mysqli_query($koneksi, "INSERT INTO `detail_penilaian_rekrutmen`(`id_penilaian_rekrutmen`, `id_kriteria_rekrutmen`, `id_subkriteria_rekrutmen`) VALUES ('$id_penilaian_rekrutmen', '$id_kriteria', '$id_subkriteria_rekrutmen')");
                 }
             }
-        $i++;
-        }elseif ($getkrit['id_dt_krt_rekt'] == 'K010'){
+            $i++;
+        } elseif ($getkrit['id_dt_krt_rekt'] == 'K010') {
             $s += round(pow($nilaipsikotes, $warray[$key]), 2);
             // echo $id_calon_karyawan . ' ' . $id_kriteria . ' ' . $nilaipsikotes.' | ';
 
             mysqli_query($koneksi, "INSERT INTO `detail_penilaian_rekrutmen`(`id_penilaian_rekrutmen`, `id_kriteria_rekrutmen`, `id_subkriteria_rekrutmen`) VALUES ('$id_penilaian_rekrutmen', '$id_kriteria', '$nilaipsikotes')");
-        }else{
+        } else {
             $s += round(pow($nilai[$j], $warray[$key]), 2);
             // echo $id_calon_karyawan . ' ' . $id_kriteria . ' ' . $nilai[$j].' | ';
 
@@ -107,6 +107,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['type'] = 'error';
     }
 
-    echo "<script>window.location.href = '../../index.php?page=penilaian-rekrutmen&action=nilai&calon_karyawan=". $id_calon_karyawan . "&penerimaan=". $id_recruitment."';</script>";
-
+    echo "<script>window.location.href = '../../index.php?page=penilaian-rekrutmen&action=nilai&calon_karyawan=" . $id_calon_karyawan . "&penerimaan=" . $id_recruitment . "';</script>";
 }

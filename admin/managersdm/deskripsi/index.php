@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <label for="deskripsi">Deskripsi Pekerjaan</label>
                             <input type="hidden" name="id_desk_rekrutmen" value="<?= $getdesk['id_desk_rekrutmen'] ?>">
                             <input type="hidden" name="id_lowongan" value="<?= $id_lowongan ?>">
-                            <textarea class="form-control" id="deskripsi" rows="5" name="deskripsi" required><?= $getdesk['deskripsi'] ?></textarea>
+                            <textarea class="form-control" id="deskripsi" rows="5" name="deskripsi" data-required-error="Data tidak boleh kosong" required><?= $getdesk['deskripsi'] ?></textarea>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <span class="help-block with-errors"></span>
                         </div>

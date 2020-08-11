@@ -1,0 +1,165 @@
+-Manager SDM
+	.sidebar sama kaya staff sdm, bedanya cmn fpkb *
+	.bisa ngajuin fpkb dan ngeacc fpkb *
+	.ngeacc penerimaan calon karyawan diterima/ngga *
+	.bisa ngelihat nilai  *
+	.ga bisa buka rekrutmen *
+
+-Staff SDM
+	.psikotes nilai dengan angka *
+
+-table jabatan
+	.1 divisi memiliki banyak jabatan *
+
+-Direktur utama & Direktur support bisa lihat siapa saja yang di acc manager sdm *
+
+-table fpkb berelasi dengan table rekrutmen *
+
+-hitung subkriteria belum diredirect*
+
+- jika nilai >= 60 angkat, jika nilai <= 35 diberhentikan, 
+
+Manajer Divisi: 
+- input nilai penilaian *
+
+ 
++Penilaian
+	-sebelum ngitung bisa liat hasil inputan dulu *
+
+	
+Direktur:
+	- bisa liat hasil keputusan dari manajer SDM buat rekrutmen sama buat hasil penilaian
+
+-Crud divisi dan jabatan*
+
+Semua tombol cancel jadi kembali (yang di hapus ketauanya) *
+_______________________________________________________________________________
+(ini semua si staff sdm ma manajer)
+penilaian rekrutmen
+- ga ada tombol kembalinya *
+
+Rekrumen:
+- edit persyaratan ga bisa *
+-bagian halaman email pelamar ga ada button kembalinya *
+
+kriteria
+-pas mau tambah kriteria, penjelasannya kode, tapi pilihan kriterianya nama kriterianya, jadi ganti kode jadi nama
+subkriteria *
+-nama atasnya itu data kriteria, harusnya data subkriteria *
+-pas nambah nama tabelnya tambah data penerimaan, harusnya tambah data subkriteria *
+______________________________________________________________________________
+Detail Kriteria
+nama tabelnya jadi detail kriteria rekrutmen *
+_________________
+Kriteria penilaian
+- ga ada tombol kembali ?
+-Subkriteria penilaian ga bisa diedit ?
+
+Penilaian
+-pas hitung tombol submit ganti simpan
+-staff sdm ga bisa nentuin naik atau ga tapi butuh bisa liat tampil nilainya*
+__________________
+perbandingan kriteria
+-nama tabelnya data penilaian rekrutmen, harusnya data perbandingan kriteria*
+
+Direktur:
+dashboard nya sama kayak manajer SDM*
+tambah dashboard karyawan (ga pake crud cuman liat aja)*
+namanya jangan calon karyawan, hasil rekrutmen*
+hasil penilaian karyawan masa percobaan*
+________
+
+----------------------------09/02/2020------------------------------
+
+Halaman utaman
+Manajer SDM dan DIrektur Support:
+- grafik jumlah keseluruhan pegawai perusahaan
+- monitoring jumlah karyawan disetiap divisi, ada berapa , kosong berapa, perperiode (monitoring jabatan divisi ...) *
+- Monitoring jumlah karyawan per-divisi perperiode (ngejumlahin jabatan yang kurang	 / divisi dan kurang) *
+
+Manajer Divisi
+-grafik jumlah keseluruhan pegawai divisinya *
+-monitoring jumlah karyawan ada berapa , kosong berapa. *
+
+Direktur Utama
+- grafik jumlah keseluruhan pegawai perusahaan *
+- monitoring jumlah karyawan perusahaan, ada berapa , kosong berapa. *
+
+Staff SDM
+- monitoring jumlah karyawan  perusahaan  *
+
+--------------------------------------------------------------------------------------------------------
+FPKB:
+-Dari manajer divisi ga usah serahkan ke staff langsung aja manajer SDM *
+-Direktur utama ga menyetujui *
+---------------------------------------------------------------------------------------------------------
+Admin:
+-pengolahan data user, jadi klo mau nambah user yg masuk ke sistem ke admin *
+
+Staff sdm: 
+- ga ada crud kriteria dan teman" *
+- ga ada crud user |
+- ga ada hapus fpkb *
+-halaman utama bukan monitoring *
+
+Manajer sdm:
+-ga ada crud karyawan, calon, jabatan divisi *
+
+Direktur utama:
+-ga menyetujui *
+
+---------------------
+divisi udah ada semua *
+ga satu divisi aja *
+-cuman liat hasil dari rekrutmen, penilaian, lowongan yang dibuka *
+
+---------------------------------------------------------------------------------------------------------
+Bagian rekrutmen ga ada gaji, ga usah login ataupun register *
+---------------------------------------------------------------------------------------------------------
+-Alur pembukaan rekrutmen jangan pake upload file fpkb, pindahin fpkb nye ke sistem jadi tinggal input" *
+
+-validasi tanggal masuk dan  batas disetujuin, kalau sudah 3 hari ga ditanggepin harusnya auto tidak setuju +
+ 
+-penutupan info lowongan kerja otomatis jangan pake staff, jadi harus ada tanggal dibuka, tanggal ditutup +
+---------------------------------------------------------------------------------------------------------
+
+status FPKB :
+1. -
+2. Disetujui Manager SDM
+3. Disetujui
+4. Ditolak
+
+
+script :
+	-jika fpkb > 3 hari tidak ada respon maka fpkb ditolak
+	-tanggal buka rekrutmen tanggal tutup rekturmen
+
+------------------------------------13/07/2020-----------------------------------
+staffsdm
+	-dapat lihat hasil penilaian managersdm rekrutmen
+
+karyawan masa percobaan bisa login dan melihat hasil nilai 
+
+managersdm 
+	-
+
+-----------------------------------14/07/2020-------------------------------------
+Staff SDM masih ada menu kriteria penilaian jadi bisa crud hapus sajaaah*
+yang perbandingan nilai jugaa*
+
+Nik: cuman bisa 7*
+
+klo data di kosongin tulisannya Data tidak boleh kosong*
+
+Data Jabatan
+data jabatan bisa diinput dua kali, jadi aku nambah staff sdm, padahal udah ada tetep bisa ketambah*
+data jabatan klo dimasukin selain angka ga bisa menampilkan pesan data gagal diperbaharui*
+
+Data divisi
+pas nambah divisi yang namanya udah ada tetep bisa harusnya ga, menampilkan pesan data sudah ada, gagal menambahkan data*
+
+Data Kriteria Penilaian
+pas nambah kriteria yang namanya udah ada tetep bisa harusnya ga, menampilkan pesan data sudah ada, gagal menambahkan data*
+
+Data Subkriteria Penilaian
+pas nambah subkriteria yang namanya udah ada tetep bisa harusnya ga, menampilkan pesan data sudah ada, gagal menambahkan data*

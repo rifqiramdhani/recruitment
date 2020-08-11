@@ -4,9 +4,9 @@ $query = mysqli_query($koneksi, "SELECT * FROM `detail_kriteria_penilaian`");
 
 <!-- <div class="flash-data" data-flashdata=""></div> -->
 <div class="col-12">
-    <a href="?page=kriteriapenilaian&action=tambahdata" class="btn btn-success mt-3 mb-3">
+    <!-- <a href="?page=kriteriapenilaian&action=tambahdata" class="btn btn-success mt-3 mb-3">
         <i class="fas fa-plus"></i> Tambah
-    </a>
+    </a> -->
 
 
     <!-- show sweet alert -->
@@ -40,7 +40,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM `detail_kriteria_penilaian`");
                                 <td><?= $getdata['nama_kriteria_penilaian'] ?></td>
                                 <td><?= $getdata['nilai_prioritas_kriteria'] ?></td>
                                 <td>
-                                    <a href="?page=kriteriapenilaian&action=editdata&id=<?= $getdata['id_dt_kriteria_penilaian'] ?>" class="btn btn-sm btn-primary text-white"><i class="fas fa-edit"></i></a>
+                                    <!-- <a href="?page=kriteriapenilaian&action=editdata&id=<?= $getdata['id_dt_kriteria_penilaian'] ?>" class="btn btn-sm btn-primary text-white"><i class="fas fa-edit"></i></a> -->
                                     <button type="button" class="btn btn-sm btn-danger remove" title="Hapus" data-id="<?= $getdata['id_dt_kriteria_penilaian'] ?>" data-nama="<?= $getdata['nama_kriteria_penilaian'] ?>"><i class="fas fa-trash"></i></button>
                                 </td>
                                 <td>

@@ -34,8 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //  echo '<br>';
     }
 
-    die;
-    
     $sql = mysqli_query($koneksi, "UPDATE `penilaian_rekrutmen` SET `vector_s`='$s' WHERE `id_rekrutmen` = '$id_recruitment' AND `id_calon_karyawan` = '$id_calon_karyawan'");
 
     if ($sql) {

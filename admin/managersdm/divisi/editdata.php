@@ -27,13 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!-- <div class="flash-data" data-flashdata=""></div> -->
 <div class="col-lg-6 col-md-12 ">
     <div class="card card-accent-success">
-        <div class="card-header"><strong>Edit Data Divisi</strong></div>
+        <div class="card-header"><strong>Ubah data Divisi</strong></div>
         <div class="card-body">
             <form action="#" method="post" data-toggle="validator" role="form">
 
                 <div class="form-group has-feedback">
                     <label for="nama_divisi">Nama Divisi</label>
-                    <input type="text" id="nama_divisi" value="<?= $getdata['nama_divisi'] ?>" name="nama_divisi" class="form-control" required>
+                    <input type="text" id="nama_divisi" value="<?= $getdata['nama_divisi'] ?>" name="nama_divisi" class="form-control" data-required-error="Data tidak boleh kosong" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>

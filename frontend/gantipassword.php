@@ -43,7 +43,7 @@ $email = $_SESSION['email_calon_karyawan'];
     unset($_SESSION['type']);
 endif ?>
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="index.php"><span>Home</span></a></li>
+    <li class="breadcrumb-item"><a href="index.php"><span>Beranda</span></a></li>
     <li class="breadcrumb-item active"><span>Ubah Password</span></li>
 </ol>
 <section id="content-section">
@@ -59,7 +59,7 @@ endif ?>
                                 <!-- email -->
                                 <div class="form-group has-feedback">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" value="<?= $email ?>" required readonly>
+                                    <input type="email" class="form-control" id="email" name="email" value="<?= $email ?>" data-required-error="Data tidak boleh kosong" required readonly>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <span class="help-block with-errors"></span>
                                 </div>
@@ -67,7 +67,7 @@ endif ?>
                                 <!-- oldpass -->
                                 <div class="form-group has-feedback">
                                     <label for="oldpassword">Password Lama</label>
-                                    <input type="password" name="oldpassword" class="form-control" id="oldpassword" placeholder="Password Lama" required>
+                                    <input type="password" name="oldpassword" class="form-control" id="oldpassword" placeholder="Password Lama" data-required-error="Data tidak boleh kosong" required>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <span class="help-block with-errors"></span>
                                 </div>
@@ -75,14 +75,14 @@ endif ?>
                                 <!-- new_pass -->
                                 <div class="form-group has-feedback">
                                     <label for="password">Password Baru</label>
-                                    <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password" data-minlength="8" data-minlength-error="Minimal 8 karakter" required>
+                                    <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password" data-minlength="8" data-minlength-error="Minimal 8 karakter" data-required-error="Data tidak boleh kosong" required>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <span class="help-block with-errors"></span>
                                 </div>
 
                                 <div class="form-group has-feedback">
                                     <label for="inputPasswordConfirm">Konfirmasi Password</label>
-                                    <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Maaf konfirmasi password tidak sama" placeholder="Confirm" required>
+                                    <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Maaf konfirmasi password tidak sama" placeholder="Confirm" data-required-error="Data tidak boleh kosong" required>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <span class="help-block with-errors"></span>
                                 </div>

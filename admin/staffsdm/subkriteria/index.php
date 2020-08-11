@@ -12,6 +12,9 @@ $query = mysqli_query($koneksi, "SELECT * FROM `subkriteria_rekrutmen` WHERE id_
 
 <!-- <div class="flash-data" data-flashdata=""></div> -->
 <div class="col-6">
+    <a href="?page=subkriteria&action=tambahdata&penerimaan=<?= $id_lowongan ?>&kriteria=<?= $id_kriteria ?>" class="btn btn-success mt-3 mb-3">
+        <i class="fas fa-plus"></i> Tambah
+    </a>
     <a href="?page=kriteria&penerimaan=<?= $id_lowongan ?>" class="btn btn-warning mt-3 mb-3">
         <i class="fas fa-reply"></i> Kembali
     </a>
@@ -36,6 +39,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM `subkriteria_rekrutmen` WHERE id_
                             <th>#</th>
                             <th>Nama</th>
                             <th>Bobot</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,6 +49,10 @@ $query = mysqli_query($koneksi, "SELECT * FROM `subkriteria_rekrutmen` WHERE id_
                                 <td><?= $i++; ?></td>
                                 <td><?= ($getdata['nama_subkriteria']) ?></td>
                                 <td><?= $getdata['bobot_subkriteria'] ?></td>
+                                <td>
+                                    <a href="?page=subkriteria&action=editdata&id=<?= $getdata['id_subkriteria_rekrutmen'] ?>&penerimaan=<?= $id_lowongan ?>&kriteria=<?= $id_kriteria ?>" class="btn btn-sm btn-primary text-white"><i class="fas fa-edit"></i></a>
+                                    <a href="#" class="btn btn-sm btn-danger remove" title="Hapus" data-id="<?= $getdata['id_subkriteria_rekrutmen'] ?>" data-nama="<?= $getdata['nama_subkriteria'] ?>"><i class="fas fa-trash"></i></a>
+                                </td>
                             </tr>
                         <?php endwhile ?>
                     </tbody>

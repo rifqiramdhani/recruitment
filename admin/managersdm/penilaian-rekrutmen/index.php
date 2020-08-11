@@ -1,5 +1,5 @@
 <?php
-$query = mysqli_query($koneksi, "SELECT * FROM `rekrutmen` WHERE status_rekrutmen = 1");
+$query = mysqli_query($koneksi, "SELECT * FROM `rekrutmen` WHERE status_rekrutmen = 0");
 
 $queryrek = mysqli_query($koneksi, "SELECT id_rekrutmen FROM `rekrutmen` WHERE status_rekrutmen = 1 ORDER BY id_rekrutmen ASC LIMIT 1");
 $getrek = mysqli_fetch_assoc($queryrek);
@@ -7,7 +7,7 @@ $id_recruitment = $getrek['id_rekrutmen'];
 
 $queryck = mysqli_query($koneksi, "SELECT calon_karyawan.*, id_rekrutmen FROM `penilaian_rekrutmen` JOIN calon_karyawan ON penilaian_rekrutmen.id_calon_karyawan = calon_karyawan.id_calon_karyawan WHERE id_rekrutmen = '$id_recruitment'");
 
-?>
+?> 
 
 <!-- <div class="flash-data" data-flashdata=""></div> -->
 <div class="col-12">

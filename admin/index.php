@@ -19,18 +19,23 @@ $action = isset($_GET['action']) ? $_GET['action'] : false;
 
     <div class="app-body">
         <!-- load dynamic sidebar -->
-        <?php require($level . '/sidebar.php'); ?>
+        <?php 
+            $sidebar = $level . '/sidebar.php';
+            if(file_exists($sidebar)){
+                require($level . '/sidebar.php'); 
+            }
+        ?>
 
         <!-- Your content will be here-->
         <main class="main">
             <!-- Breadcrumb-->
             <ol class="breadcrumb">
                 <?php if ($action) : ?>
-                    <li class="breadcrumb-item">Admin</li>
+                    <li class="breadcrumb-item"><?= $level ?></li>
                     <li class="breadcrumb-item"><?= ucfirst($page) ?></li>
                     <li class="breadcrumb-item active"><?= ucfirst($action) ?></li>
                 <?php else : ?>
-                    <li class="breadcrumb-item">Admin</li>
+                    <li class="breadcrumb-item"><?= ucfirst($level) ?></li>
                     <li class="breadcrumb-item active"><?= ucfirst($page) ?></li>
                 <?php endif ?>
             </ol>

@@ -315,7 +315,7 @@ of these things:
     e) Verify that the user has already received a copy of these
     materials or that you have already sent this user a copy.
 
-  For an executable, the required form of the "work that uses the
+  For an executable, the data-required-error="Data tidak boleh kosong" required form of the "work that uses the
 Library" must include any data and utility programs needed for
 reproducing the executable from it.  However, as a special exception,
 the materials to be distributed need not include anything that is
@@ -354,7 +354,7 @@ rights under this License.  However, parties who have received copies,
 or rights, from you under this License will not have their licenses
 terminated so long as such parties remain in full compliance.
 
-  9. You are not required to accept this License, since you have not
+  9. You are not data-required-error="Data tidak boleh kosong" required to accept this License, since you have not
 signed it.  However, nothing else grants you permission to modify or
 distribute the Library or its derivative works.  These actions are
 prohibited by law if you do not accept this License.  Therefore, by
@@ -444,7 +444,7 @@ PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE
 LIBRARY IS WITH YOU.  SHOULD THE LIBRARY PROVE DEFECTIVE, YOU ASSUME
 THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
 
-  16. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN
+  16. IN NO EVENT UNLESS data-required-error="Data tidak boleh kosong" required BY APPLICABLE LAW OR AGREED TO IN
 WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY
 AND/OR REDISTRIBUTE THE LIBRARY AS PERMITTED ABOVE, BE LIABLE TO YOU
 FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR

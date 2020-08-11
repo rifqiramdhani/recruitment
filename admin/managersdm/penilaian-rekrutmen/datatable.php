@@ -2,7 +2,7 @@
 require_once("../../../function/koneksi.php");
 
 $id_recruitment = $_GET['id_recruitment'];
-$query = mysqli_query($koneksi, "SELECT calon_karyawan.*, id_rekrutmen, vector_s FROM `penilaian_rekrutmen` JOIN calon_karyawan ON penilaian_rekrutmen.id_calon_karyawan = calon_karyawan.id_calon_karyawan WHERE id_rekrutmen = '$id_recruitment'");
+$query = mysqli_query($koneksi, "SELECT calon_karyawan.*, id_rekrutmen, vector_s FROM `penilaian_rekrutmen` JOIN calon_karyawan ON penilaian_rekrutmen.id_calon_karyawan = calon_karyawan.id_calon_karyawan WHERE id_rekrutmen = '$id_recruitment' ");
 
 ?>
 

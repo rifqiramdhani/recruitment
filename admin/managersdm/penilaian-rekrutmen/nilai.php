@@ -17,6 +17,9 @@ $getnilai = mysqli_fetch_assoc($querynilai);
 ?>
 
 <!-- <div class="flash-data" data-flashdata=""></div> -->
+<div class="col-sm-12 mb-3">
+    <a href="?page=penilaian-rekrutmen" class="btn btn-warning btn-sm"><i class="fas fa-reply"></i> Kembali</a>
+</div>
 <div class="col-sm-6">
     <!-- show sweet alert -->
     <?php if (isset($_SESSION['message'])) : ?>
@@ -120,7 +123,7 @@ $getnilai = mysqli_fetch_assoc($querynilai);
     <div class="card card-accent-success">
         <div class="card-header"><strong>Penilaian - <?= $getdatack['nama_calon_karyawan'] ?></strong></div>
         <div class="card-body">
-            <form action="#" method="post" >
+            <form action="#" method="post">
                 <?php while ($getkrit = mysqli_fetch_assoc($querykrit)) : ?>
                     <div class="form-group row has-feedback">
                         <label class="col-sm-4 col-form-label"><?= $getkrit['nama_kriteria_rekrutmen'] ?></label>
@@ -135,22 +138,22 @@ $getnilai = mysqli_fetch_assoc($querynilai);
                             $querysubkrit = mysqli_query($koneksi, "SELECT * FROM `subkriteria_rekrutmen` WHERE id_kriteria_rekrutmen = '$id_kriteria' ORDER BY nama_subkriteria ASC");
                             ?>
                             <?php if (mysqli_num_rows($querysubkrit) > 0) : ?>
-                                <select name="nilaisub[]" class="form-control" required>
+                                <select name="nilaisub[]" class="form-control" data-required-error="Data tidak boleh kosong" required>
                                     <option value="">-Pilih <?= $getkrit['nama_kriteria_rekrutmen'] ?> -</option>
                                     <?php while ($getsubkrit = mysqli_fetch_assoc($querysubkrit)) : ?>
-                                        <option value="<?= $getsubkrit['id_subkriteria_rekrutmen'] ?>" <?php if($getDtNilai['id_subkriteria_rekrutmen'] == $getsubkrit['id_subkriteria_rekrutmen'])echo 'selected' ?>><?= $getsubkrit['nama_subkriteria'] ?></option>
+                                        <option value="<?= $getsubkrit['id_subkriteria_rekrutmen'] ?>" <?php if ($getDtNilai['id_subkriteria_rekrutmen'] == $getsubkrit['id_subkriteria_rekrutmen']) echo 'selected' ?>><?= $getsubkrit['nama_subkriteria'] ?></option>
                                     <?php endwhile ?>
                                 </select>
                             <?php elseif ($getkrit['id_dt_krt_rekt'] == 'K010') : ?>
                                 <input type="text" name="nilaipsikotes" value="<?= $getDtNilai['id_subkriteria_rekrutmen'] ?>" class="form-control" placeholder="Masukkan Nilai" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                             <?php else : ?>
-                                <select name="nilai[]" class="form-control" required>
+                                <select name="nilai[]" class="form-control" data-required-error="Data tidak boleh kosong" required>
                                     <option value="">-Pilih Nilai-</option>
-                                    <option value="1" <?php if($getDtNilai['id_subkriteria_rekrutmen'] == '1')echo 'selected' ?>>Sangat Kurang</option>
-                                    <option value="2" <?php if($getDtNilai['id_subkriteria_rekrutmen'] == '2')echo 'selected' ?>>Kurang</option>
-                                    <option value="3" <?php if($getDtNilai['id_subkriteria_rekrutmen'] == '3')echo 'selected' ?>>Cukup</option>
-                                    <option value="4" <?php if($getDtNilai['id_subkriteria_rekrutmen'] == '4')echo 'selected' ?>>Baik</option>
-                                    <option value="5" <?php if($getDtNilai['id_subkriteria_rekrutmen'] == '5')echo 'selected' ?>>Sangat Baik</option>
+                                    <option value="1" <?php if ($getDtNilai['id_subkriteria_rekrutmen'] == '1') echo 'selected' ?>>Sangat Kurang</option>
+                                    <option value="2" <?php if ($getDtNilai['id_subkriteria_rekrutmen'] == '2') echo 'selected' ?>>Kurang</option>
+                                    <option value="3" <?php if ($getDtNilai['id_subkriteria_rekrutmen'] == '3') echo 'selected' ?>>Cukup</option>
+                                    <option value="4" <?php if ($getDtNilai['id_subkriteria_rekrutmen'] == '4') echo 'selected' ?>>Baik</option>
+                                    <option value="5" <?php if ($getDtNilai['id_subkriteria_rekrutmen'] == '5') echo 'selected' ?>>Sangat Baik</option>
                                 </select>
 
                             <?php endif ?>

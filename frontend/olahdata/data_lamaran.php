@@ -4,10 +4,10 @@ require_once('../../function/koneksi.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $nama_calon_karyawan = htmlspecialchars($_POST['nama_calon_karyawan']);
-    $alamat_calon_karyawan = htmlspecialchars($_POST['alamat_calon_karyawan']);
+    $nama_calon_karyawan = htmlspecialchars(ucwords($_POST['nama_calon_karyawan']));
+    $alamat_calon_karyawan = htmlspecialchars(ucwords($_POST['alamat_calon_karyawan']));
     $telp_calon_karyawan = htmlspecialchars($_POST['telp_calon_karyawan']);
-    $ttl_calon_karyawan = htmlspecialchars($_POST['ttl_calon_karyawan']);
+    $ttl_calon_karyawan = htmlspecialchars(ucwords($_POST['ttl_calon_karyawan']));
 
     $kodepos_calon_karyawan = htmlspecialchars($_POST['kodepos_calon_karyawan']);
     $status_pernikahan = htmlspecialchars($_POST['status_pernikahan']);
@@ -17,16 +17,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = htmlspecialchars($_POST['email']);
 
     $query = mysqli_query($koneksi, "SELECT * FROM `calon_karyawan` WHERE email_calon_karyawan = '$email'");
-
+    
     if (mysqli_num_rows($query) == 0) {
-        $sql = mysqli_query($koneksi, "INSERT INTO `calon_karyawan`(`nama_calon_karyawan`, 
+        $querytelp = mysqli_query($koneksi, "SELECT * FROM `calon_karyawan` WHERE telp_calon_karyawan = '$telp_calon_karyawan'");
+        
+        if(mysqli_num_rows($querytelp) == 0){
+            $sql = mysqli_query($koneksi, "INSERT INTO `calon_karyawan`(`nama_calon_karyawan`, 
             `email_calon_karyawan`, `telp_calon_karyawan`, 
             `ttl_calon_karyawan`, `alamat_calon_karyawan`,  `status_calon_karyawan`, `kodepos_calon_karyawan`, `status_pernikahan`, `status_pendidikan`, `agama`) VALUES ('$nama_calon_karyawan','$email','$telp_calon_karyawan','$ttl_calon_karyawan',
             '$alamat_calon_karyawan', 1, '$kodepos_calon_karyawan','$status_pernikahan','$status_pendidikan','$agama')");
+
+            $query = mysqli_query($koneksi, "SELECT * FROM `calon_karyawan` ORDER BY id_calon_karyawan DESC LIMIT 1");
+            $getdata = mysqli_fetch_assoc($query);
+            $id_calon_karyawan_fore = $getdata['id_calon_karyawan'];
+
+        }else{
+            $getdata = mysqli_fetch_assoc($querytelp);
+            $id_calon_karyawan_fore = $getdata['id_calon_karyawan'];
+        }
         
-        $query = mysqli_query($koneksi, "SELECT * FROM `calon_karyawan` ORDER BY id_calon_karyawan DESC LIMIT 1");
-        $getdata = mysqli_fetch_assoc($query);
-        $id_calon_karyawan_fore = $getdata['id_calon_karyawan'];
     }else{
         $getdata = mysqli_fetch_assoc($query);
         $id_calon_karyawan_fore = $getdata['id_calon_karyawan'];
@@ -97,16 +106,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $folder = "../assets/file/";
 
     if ($cek_eks_formulir_lamaran & $cek_eks_cv & $cek_eks_ktp & $cek_eks_akta_kelahiran & $cek_eks_kartu_keluarga & $cek_eks_ijazah & $cek_eks_skpk) {
-        echo $random_formulir_lamaran . '<br>';
-        echo $random_cv . '<br>';
-        echo $random_ktp . '<br>';
-        echo $random_akta_kelahiran . '<br>';
-        echo $random_kartu_keluarga . '<br>';
-        echo $random_ijazah . '<br>';
-        echo $random_skpk . '<br>';
-        echo $random_pas_foto . '<br>';
-        echo $id_calon_karyawan_fore . '<br>';
-        echo $id_recruitment_fore;
+        // echo $random_formulir_lamaran . '<br>';
+        // echo $random_cv . '<br>';
+        // echo $random_ktp . '<br>';
+        // echo $random_akta_kelahiran . '<br>';
+        // echo $random_kartu_keluarga . '<br>';
+        // echo $random_ijazah . '<br>';
+        // echo $random_skpk . '<br>';
+        // echo $random_pas_foto . '<br>';
+        // echo $id_calon_karyawan_fore . '<br>';
+        // echo $id_recruitment_fore;
 
         $sql1 = mysqli_query($koneksi, "INSERT INTO `file_calon_karyawan`(`id_rekrutmen`, 
         `id_calon_karyawan`, 

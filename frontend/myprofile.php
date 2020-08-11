@@ -53,7 +53,7 @@ $getdata = mysqli_fetch_assoc($query);
 endif ?>
 
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="index.php"><span>Home</span></a></li>
+    <li class="breadcrumb-item"><a href="index.php"><span>Beranda</span></a></li>
     <li class="breadcrumb-item active"><span>My Profile</span></li>
 </ol>
 <section id="content-section">
@@ -68,42 +68,42 @@ endif ?>
 
                                 <div class="form-group has-feedback">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" value="<?= $email ?>" readonly required>
+                                    <input type="email" class="form-control" id="email" name="email" value="<?= $email ?>" readonly data-required-error="Data tidak boleh kosong" required>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <span class="help-block with-errors"></span>
                                 </div>
 
                                 <div class="form-group has-feedback">
                                     <label for="nama_calon_karyawan">Nama</label>
-                                    <input type="nama_calon_karyawan" value="<?= $getdata['nama_calon_karyawan'] ?>" class="form-control" id="nama_calon_karyawan" name="nama_calon_karyawan" required>
+                                    <input type="nama_calon_karyawan" value="<?= $getdata['nama_calon_karyawan'] ?>" class="form-control" id="nama_calon_karyawan" name="nama_calon_karyawan" data-required-error="Data tidak boleh kosong" required>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <span class="help-block with-errors"></span>
                                 </div>
 
                                 <div class="form-group has-feedback">
                                     <label for="alamat_calon_karyawan">Alamat Lengkap</label>
-                                    <input type="alamat_calon_karyawan" value="<?= $getdata['alamat_calon_karyawan'] ?>" class="form-control" id="alamat_calon_karyawan" name="alamat_calon_karyawan" required>
+                                    <input type="alamat_calon_karyawan" value="<?= $getdata['alamat_calon_karyawan'] ?>" class="form-control" id="alamat_calon_karyawan" name="alamat_calon_karyawan" data-required-error="Data tidak boleh kosong" required>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <span class="help-block with-errors"></span>
                                 </div>
 
                                 <div class="form-group has-feedback">
                                     <label for="kodepos_calon_karyawan">Kode pos</label>
-                                    <input type="kodepos_calon_karyawan" value="<?= $getdata['kodepos_calon_karyawan'] ?>" class="form-control" id="kodepos_calon_karyawan" name="kodepos_calon_karyawan" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
+                                    <input type="kodepos_calon_karyawan" value="<?= $getdata['kodepos_calon_karyawan'] ?>" class="form-control" id="kodepos_calon_karyawan" name="kodepos_calon_karyawan" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" data-required-error="Data tidak boleh kosong" required>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <span class="help-block with-errors"></span>
                                 </div>
 
                                 <div class="form-group has-feedback">
                                     <label for="telp_calon_karyawan">No telepon</label>
-                                    <input type="telp_calon_karyawan" value="<?= $getdata['telp_calon_karyawan'] ?>" class="form-control" id="telp_calon_karyawan" name="telp_calon_karyawan" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
+                                    <input type="telp_calon_karyawan" value="<?= $getdata['telp_calon_karyawan'] ?>" class="form-control" id="telp_calon_karyawan" name="telp_calon_karyawan" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" data-required-error="Data tidak boleh kosong" required>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <span class="help-block with-errors"></span>
                                 </div>
 
                                 <div class="form-group has-feedback">
                                     <label for="ttl_calon_karyawan">Tempat, tanggal lahir</label>
-                                    <input type="ttl_calon_karyawan" value="<?= $getdata['ttl_calon_karyawan'] ?>" class="form-control" id="ttl_calon_karyawan" name="ttl_calon_karyawan" required>
+                                    <input type="ttl_calon_karyawan" value="<?= $getdata['ttl_calon_karyawan'] ?>" class="form-control" id="ttl_calon_karyawan" name="ttl_calon_karyawan" data-required-error="Data tidak boleh kosong" required>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <span class="help-block with-errors"></span>
                                 </div>
@@ -111,7 +111,7 @@ endif ?>
 
                                 <div class="form-group has-feedback">
                                     <label for="status_pernikahan">Status Pernikahan</label>
-                                    <select required class="form-control" name="status_pernikahan" id="status_pernikahan">
+                                    <select data-required-error="Data tidak boleh kosong" required class="form-control" name="status_pernikahan" id="status_pernikahan">
                                         <option value="">-Pilih Status Pernikahan-</option>
                                         <option value="Menikah" <?php if ($getdata['status_pernikahan'] == 'Menikah') echo 'selected' ?>>Menikah</option>
                                         <option value="Belum menikah" <?php if ($getdata['status_pernikahan'] == 'Belum menikah') echo 'selected' ?>>Belum menikah</option>
@@ -122,7 +122,7 @@ endif ?>
 
                                 <div class="form-group has-feedback">
                                     <label for="status_pendidikan">Status Pendidikan</label>
-                                    <select required class="form-control" name="status_pendidikan" id="status_pendidikan">
+                                    <select data-required-error="Data tidak boleh kosong" required class="form-control" name="status_pendidikan" id="status_pendidikan">
                                         <option value="">-Pilih Status Pendidikan-</option>
                                         <option value="SMU/SMK/SMA" <?php if ($getdata['status_pendidikan'] == 'SMU/SMK/SMA') echo 'selected' ?>>SMU/SMK/SMA</option>
                                         <option value="D1" <?php if ($getdata['status_pendidikan'] == 'D1') echo 'selected' ?>>D1</option>
@@ -136,7 +136,7 @@ endif ?>
 
                                 <div class="form-group has-feedback">
                                     <label for="agama">Agama</label>
-                                    <select required class="form-control" name="agama" id="agama">
+                                    <select data-required-error="Data tidak boleh kosong" required class="form-control" name="agama" id="agama">
                                         <option value="">-Pilih Agama-</option>
                                         <option value="Islam" <?php if ($getdata['agama'] == 'Islam') echo 'selected' ?>>Islam</option>
                                         <option value="Protestan" <?php if ($getdata['agama'] == 'Protestan') echo 'selected' ?>>Protestan</option>

@@ -58,35 +58,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!-- <div class="flash-data" data-flashdata=""></div> -->
 <div class="col-12">
     <div class="card card-accent-success">
-        <div class="card-header"><strong>Edit Data Karyawan</strong></div>
+        <div class="card-header"><strong>Ubah data Karyawan</strong></div>
         <div class="card-body">
             <form action="#" class="form-row" method="post" data-toggle="validator" role="form">
 
                 <div class="col-6">
                     <div class="form-group has-feedback">
                         <label for="nik">NIK (Nomor Induk Karyawan)</label>
-                        <input type="nik" class="form-control" value="<?= $getdata['nik'] ?>" id="nik" name="nik" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
+                        <input type="nik" class="form-control" value="<?= $getdata['nik'] ?>" id="nik" name="nik" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" data-required-error="Data tidak boleh kosong" required>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <span class="help-block with-errors"></span>
                     </div>
 
                     <div class="form-group has-feedback">
                         <label for="nama_karyawan">Nama</label>
-                        <input type="nama_karyawan" class="form-control" value="<?= $getdata['nama_karyawan'] ?>" id="nama_karyawan" name="nama_karyawan" required>
+                        <input type="nama_karyawan" class="form-control" value="<?= $getdata['nama_karyawan'] ?>" id="nama_karyawan" name="nama_karyawan"   data-required-error="Data tidak boleh kosong" required>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <span class="help-block with-errors"></span>
                     </div>
 
                     <div class="form-group has-feedback">
                         <label for="telp_karyawan">No Telepon</label>
-                        <input type="telp_karyawan" class="form-control" value="<?= $getdata['telp_karyawan'] ?>" id="telp_karyawan" name="telp_karyawan" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
+                        <input type="telp_karyawan" class="form-control" value="<?= $getdata['telp_karyawan'] ?>" id="telp_karyawan" name="telp_karyawan" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"   data-required-error="Data tidak boleh kosong" required>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <span class="help-block with-errors"></span>
                     </div>
 
                     <div class="form-group has-feedback">
                         <label for="ttl_karyawan">Tempat, Tanggal Lahir</label>
-                        <input type="ttl_karyawan" class="form-control" value="<?= $getdata['ttl_karyawan'] ?>" id="ttl_karyawan" name="ttl_karyawan" required>
+                        <input type="ttl_karyawan" class="form-control" value="<?= $getdata['ttl_karyawan'] ?>" id="ttl_karyawan" name="ttl_karyawan"   data-required-error="Data tidak boleh kosong" required>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <span class="help-block with-errors"></span>
                     </div>
@@ -96,14 +96,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-6">
                     <div class="form-group has-feedback">
                         <label for="alamat_karyawan">Alamat</label>
-                        <input type="alamat_karyawan" class="form-control" value="<?= $getdata['alamat_karyawan'] ?>" id="alamat_karyawan" name="alamat_karyawan" required>
+                        <input type="alamat_karyawan" class="form-control" value="<?= $getdata['alamat_karyawan'] ?>" id="alamat_karyawan" name="alamat_karyawan"   data-required-error="Data tidak boleh kosong" required>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <span class="help-block with-errors"></span>
                     </div>
 
                     <div class="form-group has-feedback">
                         <label for="jabatan">Jabatan</label>
-                        <select name="jabatan" id="jabatan" class="form-control" required>
+                        <select name="jabatan" id="jabatan" class="form-control"   data-required-error="Data tidak boleh kosong" required>
                             <option value=""">-Pilih Jabatan-</option>
                                 <?php while ($getjabatan = mysqli_fetch_assoc($queryJabatan)) : ?>
                                     <option value=" <?= $getjabatan['id_jabatan'] ?>" <?php if($getdata['id_jabatan'] == $getjabatan['id_jabatan'])echo 'selected' ?>><?= $getjabatan['nama_jabatan'] . ' ' . $getjabatan['nama_divisi'] ?></option>
@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="form-group has-feedback">
                         <label for="email_karyawan">Email</label>
-                        <input type="email_karyawan" class="form-control" value="<?= $getdata['email_karyawan'] ?>" id="email_karyawan" name="email_karyawan" required>
+                        <input type="email_karyawan" class="form-control" value="<?= $getdata['email_karyawan'] ?>" id="email_karyawan" name="email_karyawan"   data-required-error="Data tidak boleh kosong" required>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <span class="help-block with-errors"></span>
                     </div>

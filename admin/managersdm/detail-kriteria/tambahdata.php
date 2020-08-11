@@ -4,14 +4,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $kode_kriteria = strtoupper($_POST['kode_kriteria']);
     $nama_kriteria = ucfirst($_POST['nama_kriteria']);
 
-    $sql = mysqli_query($koneksi, "INSERT INTO `detail_kriteria_rekrutmen`(`id_dt_krt_rekt`, `nama_kriteria_rekrutmen`) VALUES ('$kode_kriteria','$nama_kriteria')");
+    
 
-    if ($sql) {
-        $_SESSION['message'] = 'Data berhasil di tambahkan';
-        $_SESSION['title'] = 'Data Detail Kriteria';
-        $_SESSION['type'] = 'success';
-    } else {
-        $_SESSION['message'] = 'Data gagal di tambahkan';
+    $queryCek = mysqli_query($koneksi, "SELECT * FROM `detail_kriteria_rekrutmen` WHERE nama_kriteria_rekrutmen = '$nama_kriteria'");
+
+    if(mysqli_num_rows($queryCek) == 0){
+        $sql = mysqli_query($koneksi, "INSERT INTO `detail_kriteria_rekrutmen`(`id_dt_krt_rekt`, `nama_kriteria_rekrutmen`) VALUES ('$kode_kriteria','$nama_kriteria')");
+
+        if ($sql) {
+            $_SESSION['message'] = 'Data berhasil di tambahkan';
+            $_SESSION['title'] = 'Data Detail Kriteria';
+            $_SESSION['type'] = 'success';
+        } else {
+            $_SESSION['message'] = 'Data gagal di tambahkan';
+            $_SESSION['title'] = 'Data Detail Kriteria';
+            $_SESSION['type'] = 'error';
+        }
+    }else{
+        $_SESSION['message'] = 'Nama sudah ada, data gagal ditambahkan';
         $_SESSION['title'] = 'Data Detail Kriteria';
         $_SESSION['type'] = 'error';
     }
@@ -28,14 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group has-feedback">
                     <label for="kode_kriteria">Kode</label>
-                    <input type="kode_kriteria" class="form-control" id="kode_kriteria" name="kode_kriteria" required>
+                    <input type="text" class="form-control" id="kode_kriteria" name="kode_kriteria" data-required-error="Data tidak boleh kosong" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>
 
                 <div class="form-group has-feedback">
                     <label for="nama_kriteria">Nama</label>
-                    <input type="nama_kriteria" class="form-control" id="nama_kriteria" name="nama_kriteria" required>
+                    <input type="text" class="form-control" id="nama_kriteria" name="nama_kriteria" data-required-error="Data tidak boleh kosong" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <span class="help-block with-errors"></span>
                 </div>

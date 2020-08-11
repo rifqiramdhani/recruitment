@@ -2,8 +2,7 @@
 require_once("../../../function/koneksi.php");
 
 $id_recruitment = $_GET['id_recruitment'];
-$query = mysqli_query($koneksi, "SELECT calon_karyawan.*, id_rekrutmen, vector_s FROM `penilaian_rekrutmen` JOIN calon_karyawan ON penilaian_rekrutmen.id_calon_karyawan = calon_karyawan.id_calon_karyawan WHERE id_rekrutmen = '$id_recruitment'");
-
+$query = mysqli_query($koneksi, "SELECT calon_karyawan.*, id_rekrutmen, vector_s, hasil FROM `penilaian_rekrutmen` JOIN calon_karyawan ON penilaian_rekrutmen.id_calon_karyawan = calon_karyawan.id_calon_karyawan WHERE id_rekrutmen = '$id_recruitment' ORDER BY hasil DESC");
 ?>
 
 <?php
@@ -25,6 +24,7 @@ if (mysqli_num_rows($query) > 0) :
                     <i class="far fa-check-circle"></i>
                 <?php endif ?>
             </td>
+            <td><?= $getdata['hasil'] == 1 ? '<button class="btn btn-block btn-default col-green font-weight-bold">Diterima</button>' : '' ?></td>
             <td>
                 <a href="?page=penilaian-rekrutmen&action=nilai&calon_karyawan=<?= $getdata['id_calon_karyawan'] ?>&penerimaan=<?= $id_recruitment ?>" class="btn btn-sm btn-primary">Nilai</a>
             </td>

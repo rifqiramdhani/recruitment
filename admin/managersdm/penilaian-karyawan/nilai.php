@@ -9,6 +9,7 @@ $getKar = mysqli_fetch_assoc($queryKar);
 
 <!-- <div class="flash-data" data-flashdata=""></div> -->
 <div class="col-sm-12 col-md-10">
+    <a href="?page=penilaian-karyawan" class="btn btn-warning btn-sm mb-3"><i class="fas fa-reply"></i> Kembali</a>
     <div class="card card-accent-success">
         <div class="card-header">
             <strong>Data Penilaian - <?= $getKar['nama_karyawan'] ?></strong>
@@ -45,24 +46,24 @@ $getKar = mysqli_fetch_assoc($queryKar);
 
                                 ?>
 
-                                <?php while ($getSubkrit = mysqli_fetch_assoc($querySubkrit)) : ?>
+                                <?php
+                                while ($getSubkrit = mysqli_fetch_assoc($querySubkrit)) :
+
+                                    $id_dt_subkriteria_penilaian = $getSubkrit['id_dt_subkriteria_penilaian'];
+
+                                    $queryNilai = mysqli_query($koneksi, "SELECT * FROM `detail_penilaian_kmp` WHERE id_karyawan = '$id_karyawan' AND id_dt_kriteria_penilaian = '$id_dt_krt_penilaian' AND id_dt_subkriteria_penilaian = '$id_dt_subkriteria_penilaian'");
+
+                                    $getNilai = mysqli_fetch_assoc($queryNilai);
+                                ?>
                                     <tr>
                                         <td><?= $getSubkrit['nama_subkriteria_penilaian'] ?></td>
                                         <td>
-                                            <input type="text" class="form-control" name="nilai[]">
+                                            <input type="text" class="form-control" value="<?= $getNilai['nilai'] ?>" readonly>
                                         </td>
                                     </tr>
                                 <?php endwhile ?>
                             <?php endwhile ?>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="3">
-                                    <input type="hidden" value="<?= $id_karyawan ?>" name="id_karyawan">
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
-                                </td>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </form>

@@ -53,7 +53,13 @@ if (isset($_SESSION['login'])) redirect('admin');
         $(document).ready(function() {
 
             $('.btn-forgot-password').click(function() {
-                alert('Silahkan Hubungi Staff SDM')
+                $("#form-forgot-password").show()
+                $("#form-login").hide()
+            })
+
+            $('.btn-login').click(function() {
+                $("#form-forgot-password").hide()
+                $("#form-login").show()
             })
 
             // sweetalert

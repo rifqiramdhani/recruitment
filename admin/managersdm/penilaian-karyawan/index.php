@@ -1,6 +1,6 @@
 <?php
 
-$query = mysqli_query($koneksi, "SELECT * FROM `penilaian_kmp` JOIN karyawan USING(id_karyawan) JOIn jabatan USING(id_jabatan)");
+$query = mysqli_query($koneksi, "SELECT * FROM `penilaian_kmp` JOIN karyawan USING(id_karyawan) JOIN jabatan USING(id_jabatan) JOIN divisi USING(id_divisi)");
 
 ?>
 
@@ -33,6 +33,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM `penilaian_kmp` JOIN karyawan USI
                             <th>No Telepon</th>
                             <th>Tempat, Tanggal Lahir</th>
                             <th>Alamat</th>
+                            <th>Divisi</th>
                             <th>Telah Dinilai</th>
                             <th></th>
                         </tr>
@@ -47,6 +48,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM `penilaian_kmp` JOIN karyawan USI
                                 <td><?= $getdata['telp_karyawan'] ?></td>
                                 <td><?= $getdata['ttl_karyawan'] ?></td>
                                 <td><?= $getdata['alamat_karyawan'] ?></td>
+                                <td><?= $getdata['nama_divisi'] ?></td>
                                 <td>
                                     <?php if ($getdata['nilai'] == 0) : ?>
                                         <i class="far fa-times-circle"></i>
@@ -55,7 +57,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM `penilaian_kmp` JOIN karyawan USI
                                     <?php endif ?>
                                 </td>
                                 <td>
-                                    <a href="?page=penilaian-karyawan&action=nilai&karyawan=<?= $getdata['id_karyawan'] ?>" class="btn btn-sm btn-primary <?php if ($getdata['nilai'] <> 0) echo 'disabled bg-danger' ?>">Nilai</a>
+                                    <a href="?page=penilaian-karyawan&action=nilai&karyawan=<?= $getdata['id_karyawan'] ?>" class="btn btn-sm btn-primary">Data Nilai</a>
                                 </td>
                             </tr>
                         <?php endwhile; ?>

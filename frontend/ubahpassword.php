@@ -15,7 +15,7 @@ if (empty($email) & empty($change)) {
 
 ?>
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="index.php"><span>Home</span></a></li>
+    <li class="breadcrumb-item"><a href="index.php"><span>Beranda</span></a></li>
     <li class="breadcrumb-item active"><span>Ubah Password</span></li>
 </ol>
 <section id="content-section">
@@ -31,7 +31,7 @@ if (empty($email) & empty($change)) {
                                 <!-- email -->
                                 <div class="form-group has-feedback">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" value="<?= $email ?>" required readonly>
+                                    <input type="email" class="form-control" id="email" name="email" value="<?= $email ?>" data-required-error="Data tidak boleh kosong" required readonly>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <span class="help-block with-errors"></span>
                                 </div>
@@ -39,14 +39,14 @@ if (empty($email) & empty($change)) {
                                 <!-- new_pass -->
                                 <div class="form-group has-feedback">
                                     <label for="newpassword">Password Baru</label>
-                                    <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password" data-minlength="8" data-minlength-error="Minimal 8 karakter" required>
+                                    <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password" data-minlength="8" data-minlength-error="Minimal 8 karakter" data-required-error="Data tidak boleh kosong" required>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <span class="help-block with-errors"></span>
                                 </div>
 
                                 <div class="form-group has-feedback">
                                     <label for="newpassword">Konfirmasi Password</label>
-                                    <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Maaf konfirmasi password tidak sama" placeholder="Confirm" required>
+                                    <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Maaf konfirmasi password tidak sama" placeholder="Confirm" data-required-error="Data tidak boleh kosong" required>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <span class="help-block with-errors"></span>
                                 </div>

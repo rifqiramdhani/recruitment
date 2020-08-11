@@ -33,7 +33,7 @@ endif;
 
 </section>
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="index.php"><span>Home</span></a></li>
+    <li class="breadcrumb-item"><a href="index.php"><span>Beranda</span></a></li>
     <li class="breadcrumb-item active"><span>Detail</span></li>
 </ol>
 <section id="content-section">

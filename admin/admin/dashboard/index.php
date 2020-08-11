@@ -1,62 +1,64 @@
 <?php
-
-//jabatan
-$queryjabatan = mysqli_query($koneksi, "SELECT COUNT(id_jabatan) as jumlah FROM `jabatan`");
-$getjabatan = mysqli_fetch_assoc($queryjabatan);
-
-//karyawan
-$queryk = mysqli_query($koneksi, "SELECT COUNT(id_karyawan) as jumlah FROM `karyawan` WHERE status_karyawan = 1 AND id_jabatan <> ''");
-$getk = mysqli_fetch_assoc($queryk);
-
-//divisi
-$querydivisi = mysqli_query($koneksi, "SELECT COUNT(id_divisi) as jumlah FROM `divisi`");
-$getdivisi = mysqli_fetch_assoc($querydivisi);
-
+$query = mysqli_query($koneksi, "SELECT karyawan.*, nama_jabatan, nama_divisi FROM `karyawan` JOIN jabatan USING(id_jabatan) JOIN divisi USING(id_divisi) WHERE status_karyawan = 1 ORDER BY id_karyawan ASC");
 ?>
 
-<div class="container-fluid">
-	<div class="animated fadeIn">
-		<div class="row">
-			<div class="col-lg-4 col-sm-6 col-xs-12  mx-auto">
-				<div class="info-box bg-pink hover-expand-effect">
-					<div class="icon">
-						<i class="fas fa-user"></i>
-					</div>
-					<div class="content">
-						<div class="text text-white">JABATAN</div>
-						<div class="number count-to  text-white" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20"><?= number_format($getjabatan['jumlah']) ?></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-sm-6 col-xs-12  mx-auto">
-				<div class="info-box bg-cyan hover-expand-effect">
-					<div class="icon">
-						<i class="fas fa-users"></i>
-					</div>
-					<div class="content">
-						<div class="text text-white">KARYAWAN</div>
-						<div class="number count-to  text-white" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20"><?= number_format($getk['jumlah']) ?></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-sm-6 col-xs-12  mx-auto">
-				<div class="info-box bg-green hover-expand-effect">
-					<div class="icon">
-						<i class="fas fa-user"></i>
-					</div>
-					<div class="content">
-						<div class="text text-white">DIVISI</div>
-						<div class="number count-to  text-white" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20"><?= $getdivisi['jumlah'] ?></div>
-					</div>
-				</div>
-			</div>
+<!-- <div class="flash-data" data-flashdata=""></div> -->
+<div class="col-12">
+    <a href="<?= BASE_URL . 'admin/index.php?page=karyawan&action=tambahdata' ?>" class="btn btn-success mt-3 mb-3">
+        <i class="fas fa-plus"></i> Tambah
+    </a>
 
+    <!-- show sweet alert -->
+    <?php if (isset($_SESSION['message'])) : ?>
+        <div class="flash-data" data-flashdata="<?= $_SESSION['message'] ?>" data-title="<?= $_SESSION['title'] ?>" data-type="<?= $_SESSION['type'] ?>"></div>
+    <?php
+        unset($_SESSION['message']);
+        unset($_SESSION['title']);
+        unset($_SESSION['type']);
+    endif;
+    ?> 
 
-			<!--/.col-->
-		</div>
-		<!--/.row-->
-
-		<!--/.row-->
-	</div>
-
+    <div class="card card-accent-success">
+        <div class="card-header"><strong>Data User</strong></div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered text-center" style="width:100%" id="datakaryawan">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>NIK</th>
+                            <th>Nama</th>
+                            <th>No Telepon</th>
+                            <th>Tempat, Tanggal Lahir</th>
+                            <th>Alamat</th>
+                            <th>Email</th>
+                            <th>Jabatan</th>
+                            <th>Divisi</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1;
+                        while ($getdata = mysqli_fetch_assoc($query)) : ?>
+                            <tr id="<?= $getdata['id_karyawan'] ?>">
+                                <td><?= $i++ ?></td>
+                                <td><?= $getdata['nik'] ?></td>
+                                <td><?= $getdata['nama_karyawan'] ?></td>
+                                <td><?= $getdata['telp_karyawan'] ?></td>
+                                <td><?= $getdata['ttl_karyawan'] ?></td>
+                                <td><?= $getdata['alamat_karyawan'] ?></td>
+                                <td><?= $getdata['email_karyawan'] ?></td>
+                                <td><?= $getdata['nama_jabatan'] ?></td>
+                                <td><?= $getdata['nama_divisi'] ?></td>
+                                <td>
+                                    <a href="<?= BASE_URL . 'admin/index.php?page=karyawan&action=editdata&id=' . $getdata['id_karyawan'] ?>" class="btn btn-sm btn-primary mt-1"><i class="fas fa-edit"></i></a>
+                                    <button type="button" data-id="<?= $getdata['id_karyawan'] ?>" data-nama="<?= $getdata['nama_karyawan'] ?>" class="btn btn-sm btn-danger remove mt-1"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        <?php endwhile ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

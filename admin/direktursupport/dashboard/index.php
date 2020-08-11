@@ -14,6 +14,26 @@ $getrek = mysqli_fetch_assoc($queryrek);
 
 //monitoring jabatan
 $queryjabatan = mysqli_query($koneksi, "SELECT * FROM `jabatan` JOIN divisi USING(id_divisi) ORDER BY `id_jabatan` ASC");
+
+$queryjabatan2 = mysqli_query($koneksi, "SELECT * FROM `jabatan` JOIN divisi USING(id_divisi) ORDER BY `id_divisi` ASC");
+
+$queryjabatan3 = mysqli_query($koneksi, "SELECT * FROM `jabatan` JOIN divisi USING(id_divisi) ORDER BY `id_jabatan` ASC");
+
+$queryDivisi = mysqli_query($koneksi, "SELECT * FROM `divisi`  ORDER BY `id_divisi` ASC");
+$queryDivisi3 = mysqli_query($koneksi, "SELECT * FROM `divisi`  ORDER BY `id_divisi` ASC");
+
+while ($getdatajabatan = mysqli_fetch_assoc($queryjabatan3)) {
+
+	$id_jabatan = $getdatajabatan['id_jabatan'];
+
+	$queryjumlahkaryawan = mysqli_query($koneksi, "SELECT COUNT(id_jabatan) as jumlah FROM `karyawan` WHERE id_jabatan = '$id_jabatan'");
+
+	$getjumlahkaryawan = mysqli_fetch_assoc($queryjumlahkaryawan);
+
+	$datagrafikjabatan[] = $getdatajabatan['nama_jabatan'] . ' ' . $getdatajabatan['nama_divisi'];
+	$datagrafikkaryawan[] = $getjumlahkaryawan['jumlah'];
+}
+
 ?>
 
 <div class="container-fluid">
@@ -53,53 +73,80 @@ $queryjabatan = mysqli_query($koneksi, "SELECT * FROM `jabatan` JOIN divisi USIN
 				</div>
 			</div>
 
-			<div class="col-md-6">
-				<div class="container-fluid">
-					<div class="block-header">
-						<h2>Monitoring Kekosongan Jabatan</h2>
-					</div>
-					<div class="card">
-						<table class="table table-striped table-hover">
-							<thead>
-								<tr>
-									<th>Jabatan</th>
-									<th>Kekurangan</th>
-								</tr>
-							</thead>
-
-							<tbody>
-								<?php 
-								while ($getdatajabatan = mysqli_fetch_assoc($queryjabatan)) :
-
-									$id_jabatan = $getdatajabatan['id_jabatan'];
-
-									$queryjumlahkaryawan = mysqli_query($koneksi, "SELECT COUNT(id_jabatan) as jumlah FROM `karyawan` WHERE id_jabatan = '$id_jabatan'");
-
-									$getjumlahkaryawan = mysqli_fetch_assoc($queryjumlahkaryawan);
-
-
-									$kekosongan = intval($getdatajabatan['jumlah_jabatan']) - intval($getjumlahkaryawan['jumlah']);
-
-
-								?>
-									<tr>
-										<td><?= $getdatajabatan['nama_jabatan'] . ' ' . $getdatajabatan['nama_divisi'] ?></td>
-										<td>
-											<?php
-											if ($kekosongan <= 0) {
-												echo '-';
-											} else {
-												echo '<span class="text-danger">'. $kekosongan . ' orang</span>';
-											
-											}
-											?>
-										</td>
-
-									</tr>
-
+			<div class="col-md-12">
+				<div class="card card-accent-success">
+					<div class="card-header"><strong>Monitoring Jabatan</strong></div>
+					<div class="card-body">
+						<div class="mb-4">
+							<select name="divisi" id="pilihdivisi" class="form-control col-sm-2">
+								<?php while ($getdivisi = mysqli_fetch_assoc($queryDivisi)) : ?>
+									<option value="<?= $getdivisi['id_divisi'] ?>"><?= $getdivisi['nama_divisi'] ?></option>
 								<?php endwhile ?>
-							</tbody>
-						</table>
+							</select>
+						</div>
+
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered text-center" style="width:100%" id="">
+								<thead>
+									<tr>
+										<th>Jabatan</th>
+										<th>Jumlah Karyawan</th>
+										<th>Kekosongan</th>
+									</tr>
+								</thead>
+
+								<tbody id="newjabatan">
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-12">
+				<div class="card card-accent-success">
+					<div class="card-header"><strong>Monitoring Divisi</strong></div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered text-center" style="width:100%" id="datajabatan">
+								<thead>
+									<tr>
+										<th>Divisi</th>
+										<th>Jumlah Kekosongan</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<?php
+									while ($getdivisi = mysqli_fetch_assoc($queryDivisi3)) :
+
+										$id_divisi = $getdivisi['id_divisi'];
+										$query = mysqli_query($koneksi, "SELECT * FROM jabatan WHERE id_divisi = '$id_divisi'");
+
+										$kekosongandivisi = 0;
+										while ($getdatajabatan = mysqli_fetch_assoc($query)) {
+											$id_jabatan = $getdatajabatan['id_jabatan'];
+
+											$queryjumlahkaryawan = mysqli_query($koneksi, "SELECT COUNT(id_jabatan) as jumlah FROM `karyawan` WHERE id_jabatan = '$id_jabatan'");
+
+											$getjumlahkaryawan = mysqli_fetch_assoc($queryjumlahkaryawan);
+
+
+											$kekosongan = intval($getdatajabatan['jumlah_jabatan']) - intval($getjumlahkaryawan['jumlah']);
+											if ($kekosongan > 0) {
+												$kekosongandivisi += $kekosongan;
+											}
+										}
+									?>
+										<tr>
+											<td><?= $getdivisi['nama_divisi'] ?></td>
+											<td><?= $kekosongandivisi == 0 ? '-' : '<span class="text-danger">'.$kekosongandivisi. ' orang </span>' ?></td>
+										</tr>
+									<?php endwhile ?>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -113,3 +160,168 @@ $queryjabatan = mysqli_query($koneksi, "SELECT * FROM `jabatan` JOIN divisi USIN
 	</div>
 
 </div>
+
+<?php
+$datagrafikkaryawan = array_map('intval', $datagrafikkaryawan);
+?>
+<script>
+	var ctx = document.getElementById('ChartKaryawan');
+	var myChart = new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: <?= json_encode($datagrafikjabatan) ?>,
+			datasets: [{
+				label: 'Grafik Karyawan',
+				data: <?= json_encode($datagrafikkaryawan) ?>,
+				backgroundColor: [
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)',
+				],
+				borderColor: [
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)',
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)',
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)',
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)',
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)',
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)',
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)',
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)',
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)',
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)',
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)',
+				],
+				borderWidth: 1
+			}]
+		},
+		options: {
+			tooltips: {
+				callbacks: {
+					label: function(tooltipItem, data) {
+						var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+						return parseInt(tooltipValue).toLocaleString();
+					}
+				}
+			},
+			responsive: true,
+		}
+	});
+</script>
