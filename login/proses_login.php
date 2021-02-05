@@ -41,6 +41,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 'login' => true,
                                 'email' => $email,
                                 'id_divisi' => $user['id_divisi'],
+                                'id_jabatan' => $user['id_jabatan'],
                                 'level' => str_replace(" ", "", $level),
                                 'id_karyawan' => $user['id_karyawan'],
                                 'nama_karyawan' => $user['nama_karyawan']

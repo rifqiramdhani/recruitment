@@ -17,7 +17,7 @@ $query = mysqli_query($koneksi, "SELECT karyawan.*,nama_divisi, nilai,id_penilai
                             <th>Email</th>
                             <th>Divisi</th>
                             <th>Nilai</th>
-                            <th>Status</th>
+                            <th>Rekomendasi</th>
                             <th></th>
                         </tr>
                     </thead>

@@ -27,13 +27,6 @@ $queryNotifNilaiKmp = mysqli_query($koneksi, "SELECT karyawan.*, nama_divisi, st
                     <i class="nav-icon fas fa-search"></i> Rekrutmen</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link <?php if ($page == 'penilaian-rekrutmen') echo 'active' ?>" href="<?= BASE_URL . 'admin/index.php?page=penilaian-rekrutmen'; ?>">
-                    <i class="nav-icon fas fa-star"></i> Penilaian Rekrutmen
-                    <?= mysqli_num_rows($queryNotifNilaiRekrutmen) > 0 ? '<span class="badge badge-danger">' . mysqli_num_rows($queryNotifNilaiRekrutmen) . '</span>' : '' ?>
-                </a>
-            </li>
-
             <li class="nav-title">PENILAIAN</li>
             <li class="nav-item">
                 <a class="nav-link <?php if ($page == 'penilaian-karyawan') echo 'active' ?>" href="<?= BASE_URL . 'admin/index.php?page=penilaian-karyawan'; ?>">

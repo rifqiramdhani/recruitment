@@ -19,8 +19,8 @@ function configsmtp($mail){
     $mail->Host     = 'smtp.mailtrap.io';
     $mail->Port       = 2525;
     $mail->SMTPAuth   = true;
-    $mail->Username = 'a696f9245fd23e';
-    $mail->Password = '8eb2e795ac1d88';
+    $mail->Username = '430b3cf6903a9e';
+    $mail->Password = '31aa5340c222a9';
 
     $mail->setFrom('bonliciptas@gmail.com', 'PT Bonli Cipta Sejahtera');
     $mail->addReplyTo('bonliciptas@gmail.com', 'PT Bonli Cipta Sejahtera');

@@ -118,12 +118,45 @@ $getdata = mysqli_fetch_assoc($query);
                                                 </div>
 
                                                 <div class="form-group row has-feedback">
+                                                    <label class="col-sm-3 col-form-label" for="umur">Umur<span style="font-family: cursive; color: red">*</span></label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group mb-3">
+                                                            <input type="text" id="umur" name="umur" class="form-control" data-required-error="Data tidak boleh kosong" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text" id="umur">Tahun</span>
+                                                            </div>
+                                                        </div>
+                                                        <span class="help-block with-errors"></span>
+                                                    </div>
+                                                    <div class="col sm-1">
+                                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row has-feedback">
+                                                    <label class="col-sm-3 col-form-label" for="pengalaman_bekerja">Pengalaman Bekerja<span style="font-family: cursive; color: red">*</span></label>
+                                                    <div class="col-sm-8">
+                                                        <select data-required-error="Data tidak boleh kosong" required class="form-control" name="pengalaman_bekerja" id="pengalaman_bekerja">
+                                                            <option value="">-Pilih Pengalaman Bekerja -</option>
+                                                            <option value="0 tahun">0 tahun</option>
+                                                            <option value="1 - 2 tahun">1 - 2 tahun</option>
+                                                            <option value="3 - 4 tahun">3 - 4 tahun</option>
+                                                            <option value="5 tahun keatas">5 tahun keatas</option>
+                                                        </select>
+                                                        <span class="help-block with-errors"></span>
+                                                    </div>
+                                                    <div class="col sm-1">
+                                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row has-feedback">
                                                     <label class="col-sm-3 col-form-label" for="status_pernikahan">Status Pernikahan<span style="font-family: cursive; color: red">*</span></label>
                                                     <div class="col-sm-8">
                                                         <select data-required-error="Data tidak boleh kosong" required class="form-control" name="status_pernikahan" id="status_pernikahan">
                                                             <option value="">-Pilih Status Pernikahan-</option>
                                                             <option value="Menikah">Menikah</option>
-                                                            <option value="Belum menikah">Belum menikah</option>
+                                                            <option value="Belum Menikah">Belum Menikah</option>
                                                         </select>
                                                         <span class="help-block with-errors"></span>
                                                     </div>

@@ -13,6 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $status_pernikahan = htmlspecialchars($_POST['status_pernikahan']);
     $status_pendidikan = htmlspecialchars($_POST['status_pendidikan']);
     $agama = htmlspecialchars($_POST['agama']);
+    $umur = htmlspecialchars($_POST['umur']);
+    $pengalaman_bekerja = htmlspecialchars($_POST['pengalaman_bekerja']);
 
     $email = htmlspecialchars($_POST['email']);
 
@@ -24,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if(mysqli_num_rows($querytelp) == 0){
             $sql = mysqli_query($koneksi, "INSERT INTO `calon_karyawan`(`nama_calon_karyawan`, 
             `email_calon_karyawan`, `telp_calon_karyawan`, 
-            `ttl_calon_karyawan`, `alamat_calon_karyawan`,  `status_calon_karyawan`, `kodepos_calon_karyawan`, `status_pernikahan`, `status_pendidikan`, `agama`) VALUES ('$nama_calon_karyawan','$email','$telp_calon_karyawan','$ttl_calon_karyawan',
-            '$alamat_calon_karyawan', 1, '$kodepos_calon_karyawan','$status_pernikahan','$status_pendidikan','$agama')");
+            `ttl_calon_karyawan`, `alamat_calon_karyawan`,  `status_calon_karyawan`, `kodepos_calon_karyawan`, `status_pernikahan`, `status_pendidikan`, `agama`, `umur`, `pengalaman_bekerja`) VALUES ('$nama_calon_karyawan','$email','$telp_calon_karyawan','$ttl_calon_karyawan',
+            '$alamat_calon_karyawan', 1, '$kodepos_calon_karyawan','$status_pernikahan','$status_pendidikan','$agama', '$umur', '$pengalaman_bekerja')");
 
             $query = mysqli_query($koneksi, "SELECT * FROM `calon_karyawan` ORDER BY id_calon_karyawan DESC LIMIT 1");
             $getdata = mysqli_fetch_assoc($query);

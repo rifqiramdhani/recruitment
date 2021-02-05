@@ -290,7 +290,7 @@
             x++; //text box increment
             $(wrapper).append('<div id="field' + x + '"><div class="form-group"><input type="text" class="form-control" id="deskripsi' + x + '" name="deskripsi[]" data-required-error="Data tidak boleh kosong" required></div></div>'); //add input box
         });
-        
+
         //data jabatan
         var id_divisi = $("#pilihdivisi option:selected").val()
         var page = "<?= BASE_URL . 'admin/' . $level . '/dashboard/datatable.php?id=' ?>" + id_divisi
@@ -323,9 +323,10 @@
         $("#penilaianck").load(page)
 
         //hitung penilaian
+        var counting = 0
         $("#hitungpenilaian").click(() => {
             var id_recruitment = $("#selectrecruitment option:selected").val()
-
+            
             $.ajax({
                 url: "<?= $level ?>/penilaian-rekrutmen/proses-penilaian-v.php",
                 type: "get",
@@ -333,13 +334,24 @@
                     'id_recruitment': id_recruitment
                 },
                 success: function(response) {
-                    $("#tablepenilaian").remove()
-                    $("#tampilkanpenilaian").append(response)
+                    console.log(counting)
+                    if (counting == 1) {
+                        Swal.fire({
+                            title: 'Berhasil',
+                            text: 'Data berhasil dihitung, silahkan klik tombol hitung kembali untuk menampilkan hasil',
+                            icon: 'success'
+                        })
+                    } else {
+                        $("#tablepenilaian").remove()
+                        $("#tampilkanpenilaian").append(response)
+                    }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus, errorThrown);
                 }
             });
+
+            counting++
         })
 
         //tampilan penilaian karyawan

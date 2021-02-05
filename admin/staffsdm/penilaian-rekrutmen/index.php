@@ -7,7 +7,7 @@ $id_recruitment = $getrek['id_rekrutmen'];
 
 $queryck = mysqli_query($koneksi, "SELECT calon_karyawan.*, id_rekrutmen FROM `penilaian_rekrutmen` JOIN calon_karyawan ON penilaian_rekrutmen.id_calon_karyawan = calon_karyawan.id_calon_karyawan WHERE id_rekrutmen = '$id_recruitment'");
 
-?>
+?> 
 
 <!-- <div class="flash-data" data-flashdata=""></div> -->
 <div class="col-12">
@@ -20,6 +20,7 @@ $queryck = mysqli_query($koneksi, "SELECT calon_karyawan.*, id_rekrutmen FROM `p
             endwhile ?>
         </select>
 
+        <!-- <button class="btn ml-1 btn-success" id="hitungpenilaian">Hitung</button> -->
     </div>
 
     <!-- show sweet alert -->
@@ -46,7 +47,6 @@ $queryck = mysqli_query($koneksi, "SELECT calon_karyawan.*, id_rekrutmen FROM `p
                             <th>Tempat, Tanggal Lahir</th>
                             <th>Alamat</th>
                             <th>Telah Dinilai</th>
-                            <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>

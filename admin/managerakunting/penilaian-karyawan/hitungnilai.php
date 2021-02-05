@@ -1,6 +1,6 @@
-<?php
+<?php 
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
+if($_SERVER['REQUEST_METHOD'] == "POST"){
     $id_karyawan = $_POST['id_karyawan'];
     $nilai = $_POST['nilai'];
     $queryKrit = mysqli_query($koneksi, "SELECT * FROM `detail_kriteria_penilaian` ORDER BY `id_dt_kriteria_penilaian` ASC");
@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $total = 0;
     while ($getKrit = mysqli_fetch_assoc($queryKrit)) {
         $id_dt_krt_penilaian = $getKrit['id_dt_kriteria_penilaian'];
-
+        
         $querySub = mysqli_query($koneksi, "SELECT * FROM `detail_subkriteria_penilaian` WHERE id_dt_krt_penilaian = '$id_dt_krt_penilaian'");
 
         while ($getSubKrit = mysqli_fetch_assoc($querySub)) {
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             $nilai_kmp = $nilai[$i];
             $id_dt_subkriteria_penilaian = $getSubKrit['id_dt_subkriteria_penilaian'];
-
+            
             mysqli_query($koneksi, "INSERT INTO `detail_penilaian_kmp`(`id_karyawan` ,`id_dt_kriteria_penilaian`, `id_dt_subkriteria_penilaian`, `nilai`) VALUES ('$id_karyawan', '$id_dt_krt_penilaian', '$id_dt_subkriteria_penilaian', '$nilai_kmp')");
 
             // echo $getSubKrit['nilai_bobot_global']. ' ';

@@ -26,7 +26,7 @@ if (mysqli_num_rows($query) > 0) {
     $length_s = count($vector_s);
 
     for ($i = 0; $i < $length_s; $i++) {
-        $vector_v[] = round($vector_s[$i] / $total_vector_s, 3);
+        $vector_v[] = round($vector_s[$i] / $total_vector_s, 5);
         // echo $vector_v[$i];
 
         $hasil_vektor_v = $vector_v[$i];

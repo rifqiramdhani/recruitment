@@ -2,8 +2,7 @@
 require_once("../../../function/koneksi.php");
 
 $id_recruitment = $_GET['id_recruitment'];
-$query = mysqli_query($koneksi, "SELECT calon_karyawan.*, id_rekrutmen, vector_s FROM `penilaian_rekrutmen` JOIN calon_karyawan ON penilaian_rekrutmen.id_calon_karyawan = calon_karyawan.id_calon_karyawan WHERE id_rekrutmen = '$id_recruitment' ");
-
+$query = mysqli_query($koneksi, "SELECT calon_karyawan.*, id_rekrutmen, vector_s, hasil, status FROM `penilaian_rekrutmen` JOIN calon_karyawan ON penilaian_rekrutmen.id_calon_karyawan = calon_karyawan.id_calon_karyawan WHERE id_rekrutmen = '$id_recruitment' ORDER BY hasil DESC");
 ?>
 
 <?php
@@ -19,14 +18,22 @@ if (mysqli_num_rows($query) > 0) :
             <td><?= $getdata['ttl_calon_karyawan'] ?></td>
             <td><?= $getdata['alamat_calon_karyawan'] ?></td>
             <td>
-                <?php if ($getdata['vector_s'] == 0) : ?>
+                <?php if ($getdata['status'] == 0) : ?>
                     <i class="far fa-times-circle"></i>
-                <?php else : ?>
+                <?php elseif ($getdata['status'] == 1) : ?>
+                    <button class="btn btn-default col-green">Manager SDM</button>
+                <?php elseif ($getdata['status'] == 2) : ?>
+                    <button class="btn btn-default col-green">Manager Divisi</button>
+                <?php elseif ($getdata['status'] == 3) : ?>
                     <i class="far fa-check-circle"></i>
                 <?php endif ?>
             </td>
+            <td><?= $getdata['hasil'] == 1 ? '<button class="btn btn-block btn-default col-green font-weight-bold">Diterima</button>' : '' ?></td>
             <td>
-                <a href="?page=penilaian-rekrutmen&action=nilai&calon_karyawan=<?= $getdata['id_calon_karyawan'] ?>&penerimaan=<?= $id_recruitment ?>" class="btn btn-sm btn-primary">Data Nilai</a>
+                <a href="?page=penilaian-rekrutmen&action=nilai&calon_karyawan=<?= $getdata['id_calon_karyawan'] ?>&penerimaan=<?= $id_recruitment ?>" class="btn btn-sm btn-primary <?= $getdata['status'] == 1 || $getdata['status'] == 3 ? 'disabled' : '' ?>">Nilai</a>
+            </td>
+            <td>
+                <a href="?page=penilaian-rekrutmen&action=datanilai&calon_karyawan=<?= $getdata['id_calon_karyawan'] ?>&penerimaan=<?= $id_recruitment ?>" class="btn btn-sm btn-warning">Data Nilai</a>
             </td>
         </tr>
     <?php endwhile;

@@ -163,3 +163,10 @@ pas nambah kriteria yang namanya udah ada tetep bisa harusnya ga, menampilkan pe
 
 Data Subkriteria Penilaian
 pas nambah subkriteria yang namanya udah ada tetep bisa harusnya ga, menampilkan pesan data sudah ada, gagal menambahkan data*
+
+------------------------------------Revisi Sidang-------------------------------------------------
+otomatis keterima*
+otomatis nambah pegawai*
+penilaian rekrutmen sama manager sdm dan maanger divisi lalu hasil di bagi 2 *
+nambahin pengalaman kerja, dan umur di pengisianan form lamaran lalu otomatis nge get *
+

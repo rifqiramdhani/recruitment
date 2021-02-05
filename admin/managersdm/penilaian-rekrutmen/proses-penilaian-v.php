@@ -7,7 +7,7 @@ $level = $_SESSION['level'];
 
 $id_recruitment = $_GET['id_recruitment'];
 
-$query = mysqli_query($koneksi, "SELECT * FROM `penilaian_rekrutmen` WHERE id_rekrutmen = '$id_recruitment' AND vector_s > 0");
+$query = mysqli_query($koneksi, "SELECT * FROM `penilaian_rekrutmen` WHERE id_rekrutmen = '$id_recruitment' AND status = '3'");
 
 if (isset($_GET['disetujui'])) {
     $id_penilaian_rekrutmen = $_GET['id_penilaian_rekrutmen'];
@@ -37,9 +37,63 @@ if (mysqli_num_rows($query) > 0) {
 
 $queryhasil_vektor_v = mysqli_query($koneksi, "SELECT penilaian_rekrutmen.*, nama_calon_karyawan,email_calon_karyawan,telp_calon_karyawan FROM `penilaian_rekrutmen` JOIN calon_karyawan ON calon_karyawan.id_calon_karyawan = penilaian_rekrutmen.id_calon_karyawan WHERE id_rekrutmen = '$id_recruitment' AND vector_v > 0 ORDER BY `penilaian_rekrutmen`.`vector_v`  DESC");
 
+$queryhasil_vektor_v_2 = mysqli_query($koneksi, "SELECT penilaian_rekrutmen.*, nama_calon_karyawan,email_calon_karyawan,telp_calon_karyawan FROM `penilaian_rekrutmen` JOIN calon_karyawan ON calon_karyawan.id_calon_karyawan = penilaian_rekrutmen.id_calon_karyawan WHERE id_rekrutmen = '$id_recruitment' AND vector_v > 0 ORDER BY `penilaian_rekrutmen`.`vector_v`  DESC");
+
+
+$queryRek = mysqli_query($koneksi, "SELECT * FROM rekrutmen WHERE id_rekrutmen = '$id_recruitment'");
+$getRek = mysqli_fetch_assoc($queryRek);
+$id_fpkb = $getRek['id_fpkb'];
+
+$queryFpkb = mysqli_query($koneksi, "SELECT * FROM `fpkb` WHERE `id_fpkb` = '$id_fpkb'");
+$getFpkb = mysqli_fetch_assoc($queryFpkb);
+$jumlah_dibutuhkan = $getFpkb['jumlah_dibutuhkan'];
+
+$terima = [];
+if (mysqli_num_rows($queryhasil_vektor_v_2) > 0) {
+    $j = 1;
+    while ($getdatav = mysqli_fetch_assoc($queryhasil_vektor_v_2)) {
+        if ($j <= $jumlah_dibutuhkan) {
+            array_push($terima, $getdatav['id_calon_karyawan']);
+        }
+        $j++;
+    }
+}
+
+$queryDivisi = mysqli_query($koneksi, "SELECT id_divisi FROM `rekrutmen` JOIN fpkb USING(id_fpkb) JOIN jabatan USING(id_jabatan) WHERE id_rekrutmen = '$id_recruitment'");
+$getDivisi = mysqli_fetch_assoc($queryDivisi);
+$id_divisi = $getDivisi['id_divisi'];
+
+$queryJabatan = mysqli_query($koneksi, "SELECT id_jabatan FROM `jabatan` WHERE nama_jabatan = 'Karyawan Masa Percobaan' AND id_divisi = '$id_divisi'");
+$getJabatan = mysqli_fetch_assoc($queryJabatan);
+$id_jabatan = $getJabatan['id_jabatan'];
+
+foreach ($terima as $key => $value) {
+    mysqli_query($koneksi, "UPDATE `penilaian_rekrutmen` SET `hasil` = '1' WHERE `penilaian_rekrutmen`.`id_calon_karyawan` = '$value' AND id_rekrutmen = '$id_recruitment';");
+
+    $query = mysqli_query($koneksi, "SELECT * FROM calon_karyawan WHERE id_calon_karyawan = '$value'");
+    $getdata = mysqli_fetch_assoc($query);
+
+    $nik = rand(0000000, 9999999);
+    $password = password_hash($nik, PASSWORD_DEFAULT);
+    $nama = $getdata['nama_calon_karyawan'];
+    $email = $getdata['email_calon_karyawan'];
+    $telp = $getdata['telp_calon_karyawan'];
+    $ttl = $getdata['ttl_calon_karyawan'];
+    $alamat = $getdata['alamat_calon_karyawan'];
+
+    $queryCek = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE email_karyawan = '$email'");
+
+    if(mysqli_num_rows($queryCek) == 0){
+        mysqli_query($koneksi, "INSERT INTO `karyawan`(`id_jabatan`, `email_karyawan`, `password_karyawan`, `nama_karyawan`, `nik`, `telp_karyawan`, `ttl_karyawan`, `alamat_karyawan`, `level`) VALUES ('$id_jabatan', '$email', '$password', '$nama', '$nik', '$telp', '$ttl', '$alamat', 'karyawan')");
+
+        $queryKaryawan = mysqli_query($koneksi, "SELECT * FROM `karyawan` ORDER BY id_karyawan DESC LIMIT 1");
+        $getKaryawan = mysqli_fetch_assoc($queryKaryawan);
+        $id_karyawan = $getKaryawan['id_karyawan'];
+
+        mysqli_query($koneksi, "INSERT INTO `penilaian_kmp`(`id_karyawan`) VALUES ('$id_karyawan')");
+    }
+}
 ?>
-
-
 
 <div class="card card-accent-success" id="tablepenilaian">
     <div class="card-header"><strong>Data Penilaian Rekrutmen</strong></div>
@@ -54,7 +108,6 @@ $queryhasil_vektor_v = mysqli_query($koneksi, "SELECT penilaian_rekrutmen.*, nam
                         <th>No Telepon</th>
                         <th>Nilai Vector V</th>
                         <th>Hasil Rekrutmen</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,9 +127,7 @@ $queryhasil_vektor_v = mysqli_query($koneksi, "SELECT penilaian_rekrutmen.*, nam
                                         <i class="far fa-check-circle"></i>
                                     <?php endif ?>
                                 </td>
-                                <td>
-                                    <button class="btn btn-success btn-sm penerimaannilai" data-id="<?= $getdatav['id_penilaian_rekrutmen'] ?>" data-nama="<?= $getdatav['nama_calon_karyawan'] ?>"><i class="fas fa-check"></i></button>
-                                </td>
+
                             </tr>
                         <?php endwhile ?>
                     <?php else : ?>
@@ -89,6 +140,7 @@ $queryhasil_vektor_v = mysqli_query($koneksi, "SELECT penilaian_rekrutmen.*, nam
         </div>
     </div>
 </div>
+
 
 <script>
     $("#hasilpenilaianv").on('click', '.penerimaannilai', function() {

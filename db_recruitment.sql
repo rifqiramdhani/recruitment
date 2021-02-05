@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2020 at 06:34 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.2.12
+-- Generation Time: Feb 05, 2021 at 02:20 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -36,24 +35,28 @@ CREATE TABLE `calon_karyawan` (
   `ttl_calon_karyawan` varchar(50) NOT NULL,
   `alamat_calon_karyawan` varchar(128) NOT NULL,
   `kodepos_calon_karyawan` varchar(50) NOT NULL,
+  `umur` int(11) NOT NULL,
+  `pengalaman_bekerja` varchar(50) NOT NULL,
   `status_pernikahan` varchar(128) NOT NULL,
   `status_pendidikan` varchar(128) NOT NULL,
   `agama` varchar(128) NOT NULL,
-  `status_calon_karyawan` tinyint(1) NOT NULL DEFAULT '1'
+  `status_calon_karyawan` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `calon_karyawan`
 --
 
-INSERT INTO `calon_karyawan` (`id_calon_karyawan`, `nama_calon_karyawan`, `email_calon_karyawan`, `telp_calon_karyawan`, `ttl_calon_karyawan`, `alamat_calon_karyawan`, `kodepos_calon_karyawan`, `status_pernikahan`, `status_pendidikan`, `agama`, `status_calon_karyawan`) VALUES
-(26, 'Rujhan Fidiplilah', 'rujhan@gmail.com', '081153662547', 'Bandung, 7 Juli 2020', 'Jl Sukasasri No 22', '40553', 'Belum menikah', 'S1', 'Islam', 1),
-(27, 'Rifqi Ramdhani', 'rifqiramdhani8@gmail.com', '08139300312930', 'Bandung, 21 Desember 1998', 'Perum Bukit Berlian C72', '40553', 'Belum menikah', 'S1', 'Islam', 1),
-(28, 'Saeful Apriana', 'saeful@gmail.com', '0813242432424', 'Bandung, 21 Desember 1998', 'Perum Bukit Berlian C72', '301122', 'Belum menikah', 'D3', 'Islam', 1),
-(29, 'Ruyatsyah', 'ruyatsy@gmail.com', '081323333329', 'Bandung, 21 Desember 1998', 'Garut, Jl Bukit Mawar No 10', '40877', 'Belum menikah', 'D3', 'Islam', 1),
-(30, 'Ahmad Sholihin', 'ahmad@gmail.com', '0811110312930', 'Bandung, 21 Desember 1998', 'Garut, Jl Bukit Mawar No 10', '40877', 'Menikah', 'D1', 'Hindu', 1),
-(31, 'Gugun Gunawan', 'gugun@gmail.com', '081444403329', 'Cianjur, 22 Desember 1999', 'Garut, Jl Bukit Mawar No 10', '40877', 'Belum menikah', 'D1', 'Khatolik', 1),
-(32, 'Junaedi', 'junaedi@gmail.com', '081391156329', 'Bandung, 21 Desember 1998', 'Jl Turangga No 30', '40877', 'Menikah', 'D1', 'Khatolik', 1);
+INSERT INTO `calon_karyawan` (`id_calon_karyawan`, `nama_calon_karyawan`, `email_calon_karyawan`, `telp_calon_karyawan`, `ttl_calon_karyawan`, `alamat_calon_karyawan`, `kodepos_calon_karyawan`, `umur`, `pengalaman_bekerja`, `status_pernikahan`, `status_pendidikan`, `agama`, `status_calon_karyawan`) VALUES
+(26, 'Rujhan Fidiplilah', 'rujhan@gmail.com', '081153662547', 'Bandung, 7 Juli 2020', 'Jl Sukasasri No 22', '40553', 24, '1 - 2 tahun', 'Belum Menikah', 'S1', 'Islam', 1),
+(27, 'Rifqi Ramdhani', 'rifqiramdhani8@gmail.com', '08139300312930', 'Bandung, 21 Desember 1998', 'Perum Bukit Berlian C72', '40553', 24, '1 - 2 tahun', 'Belum Menikah', 'S1', 'Islam', 1),
+(28, 'Saeful Apriana', 'saeful@gmail.com', '0813242432424', 'Bandung, 21 Desember 1998', 'Perum Bukit Berlian C72', '301122', 24, '1 - 2 tahun', 'Belum Menikah', 'D3', 'Islam', 1),
+(29, 'Ruyatsyah', 'ruyatsy@gmail.com', '081323333329', 'Bandung, 21 Desember 1998', 'Garut, Jl Bukit Mawar No 10', '40877', 24, '1 - 2 tahun', 'Belum Menikah', 'D3', 'Islam', 1),
+(30, 'Ahmad Sholihin', 'ahmad@gmail.com', '0811110312930', 'Bandung, 21 Desember 1998', 'Garut, Jl Bukit Mawar No 10', '40877', 24, '1 - 2 tahun', 'Menikah', 'D1', 'Hindu', 1),
+(31, 'Gugun Gunawan', 'gugun@gmail.com', '081444403329', 'Cianjur, 22 Desember 1999', 'Garut, Jl Bukit Mawar No 10', '40877', 24, '1 - 2 tahun', 'Belum Menikah', 'D1', 'Khatolik', 1),
+(32, 'Junaedi', 'junaedi@gmail.com', '081391156329', 'Bandung, 21 Desember 1998', 'Jl Turangga No 30', '40877', 24, '1 - 2 tahun', 'Menikah', 'D1', 'Khatolik', 1),
+(33, 'Rifqi Ramdhani', 'rifqiramdhani71@yahoo.co.id', '081393045532', 'Bandung, 21 Desember 1998', 'Perum Bukit Berlian C72', '40553', 24, '1 - 2 tahun', 'Menikah', 'D1', 'Khatolik', 1),
+(34, 'Yolanda Patricia', 'yolandapatriciaaa@gmail.com', '0813930111', 'Cianjur, 22 Desember 1999', 'Jl Turangga No 30', '301122', 27, '1 - 2 tahun', 'Menikah', 'S1', 'Hindu', 1);
 
 -- --------------------------------------------------------
 
@@ -95,8 +98,8 @@ INSERT INTO `desk_rekrutmen` (`id_desk_rekrutmen`, `id_rekrutmen`, `deskripsi`, 
 CREATE TABLE `detail_kriteria_penilaian` (
   `id_dt_kriteria_penilaian` varchar(2) NOT NULL,
   `nama_kriteria_penilaian` varchar(128) NOT NULL,
-  `jumlah_kriteria_penilaian` double NOT NULL DEFAULT '0',
-  `nilai_prioritas_kriteria` double NOT NULL DEFAULT '0'
+  `jumlah_kriteria_penilaian` double NOT NULL DEFAULT 0,
+  `nilai_prioritas_kriteria` double NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -151,60 +154,6 @@ CREATE TABLE `detail_penilaian_kmp` (
   `nilai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `detail_penilaian_kmp`
---
-
-INSERT INTO `detail_penilaian_kmp` (`id_dt_penilaian_kmp`, `id_karyawan`, `id_dt_kriteria_penilaian`, `id_dt_subkriteria_penilaian`, `nilai`) VALUES
-(1, 109, 'C1', 1, 60),
-(2, 109, 'C1', 2, 50),
-(3, 109, 'C1', 3, 70),
-(4, 109, 'C1', 4, 78),
-(5, 109, 'C1', 5, 70),
-(6, 109, 'C1', 6, 70),
-(7, 109, 'C1', 7, 70),
-(8, 109, 'C2', 8, 70),
-(9, 109, 'C2', 9, 75),
-(10, 109, 'C2', 10, 57),
-(11, 109, 'C2', 11, 50),
-(12, 109, 'C3', 12, 40),
-(13, 109, 'C3', 13, 56),
-(14, 109, 'C3', 14, 56),
-(15, 109, 'C3', 15, 56),
-(16, 109, 'C3', 16, 58),
-(17, 106, 'C1', 1, 80),
-(18, 106, 'C1', 2, 84),
-(19, 106, 'C1', 3, 85),
-(20, 106, 'C1', 4, 86),
-(21, 106, 'C1', 5, 85),
-(22, 106, 'C1', 6, 80),
-(23, 106, 'C1', 7, 83),
-(24, 106, 'C2', 8, 85),
-(25, 106, 'C2', 9, 70),
-(26, 106, 'C2', 10, 70),
-(27, 106, 'C2', 11, 75),
-(28, 106, 'C3', 12, 79),
-(29, 106, 'C3', 13, 76),
-(30, 106, 'C3', 14, 90),
-(31, 106, 'C3', 15, 99),
-(32, 106, 'C3', 16, 89),
-(33, 107, 'C1', 1, 70),
-(34, 107, 'C1', 2, 80),
-(35, 107, 'C1', 3, 90),
-(36, 107, 'C1', 4, 50),
-(37, 107, 'C1', 5, 60),
-(38, 107, 'C1', 6, 70),
-(39, 107, 'C1', 7, 80),
-(40, 107, 'C2', 8, 80),
-(41, 107, 'C2', 9, 85),
-(42, 107, 'C2', 10, 86),
-(43, 107, 'C2', 11, 86),
-(44, 107, 'C3', 12, 87),
-(45, 107, 'C3', 13, 84),
-(46, 107, 'C3', 14, 88),
-(47, 107, 'C3', 15, 45),
-(48, 107, 'C3', 16, 90);
-
 -- --------------------------------------------------------
 
 --
@@ -223,39 +172,17 @@ CREATE TABLE `detail_penilaian_rekrutmen` (
 --
 
 INSERT INTO `detail_penilaian_rekrutmen` (`id_dt_penilaian_rekrutmen`, `id_penilaian_rekrutmen`, `id_kriteria_rekrutmen`, `id_subkriteria_rekrutmen`) VALUES
-(100, 34, 214, 223),
-(101, 34, 215, 226),
-(102, 34, 216, 230),
-(103, 34, 217, 232),
-(104, 34, 218, 3),
-(105, 34, 219, 2),
-(106, 34, 220, 4),
-(107, 34, 221, 5),
-(108, 34, 222, 3),
-(109, 34, 223, 70),
-(110, 34, 224, 236),
-(111, 36, 214, 222),
-(112, 36, 215, 227),
-(113, 36, 216, 230),
-(114, 36, 217, 231),
-(115, 36, 218, 4),
-(116, 36, 219, 3),
-(117, 36, 220, 3),
-(118, 36, 221, 4),
-(119, 36, 222, 2),
-(120, 36, 223, 80),
-(121, 36, 224, 236),
-(122, 35, 214, 224),
-(123, 35, 215, 225),
-(124, 35, 216, 229),
-(125, 35, 217, 234),
-(126, 35, 218, 3),
-(127, 35, 219, 4),
-(128, 35, 220, 5),
-(129, 35, 221, 2),
-(130, 35, 222, 3),
-(131, 35, 223, 77),
-(132, 35, 224, 236);
+(1, 34, 214, 223),
+(2, 34, 215, 226),
+(3, 34, 216, 230),
+(4, 34, 217, 234),
+(5, 34, 218, 3),
+(6, 34, 219, 4),
+(7, 34, 220, 5),
+(8, 34, 221, 3),
+(9, 34, 222, 4),
+(10, 34, 223, 80),
+(11, 34, 224, 236);
 
 -- --------------------------------------------------------
 
@@ -267,9 +194,9 @@ CREATE TABLE `detail_subkriteria_penilaian` (
   `id_dt_subkriteria_penilaian` int(11) NOT NULL,
   `id_dt_krt_penilaian` varchar(2) NOT NULL,
   `nama_subkriteria_penilaian` varchar(128) NOT NULL,
-  `jumlah_subkriteria_penilaian` double NOT NULL DEFAULT '0',
-  `nilai_prioritas_subkriteria` double NOT NULL DEFAULT '0',
-  `nilai_bobot_global` double NOT NULL DEFAULT '0'
+  `jumlah_subkriteria_penilaian` double NOT NULL DEFAULT 0,
+  `nilai_prioritas_subkriteria` double NOT NULL DEFAULT 0,
+  `nilai_bobot_global` double NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -359,7 +286,9 @@ INSERT INTO `file_calon_karyawan` (`id_file_calon_karyawan`, `id_rekrutmen`, `id
 (32, 31, 29, '38634323.pdf', '89542879.pdf', '50398250.JPG', '50318436.pdf', '40735270.jpg', '8723455.jpg', '99546895.jpg', '11250945.jpg'),
 (34, NULL, 30, '9459475.pdf', '24275493.pdf', '99971445.JPG', '80357155.pdf', '99619697.jpg', '1354048.jpg', '75627392.jpg', '21131228.jpg'),
 (35, NULL, 31, '85404849.pdf', '28014195.pdf', '52040947.JPG', '16638788.pdf', '97848569.jpg', '59902908.jpg', '91349209.jpg', '15710480.jpg'),
-(36, NULL, 32, '35023658.pdf', '29410633.pdf', '92473465.JPG', '83251979.pdf', '15207863.jpg', '30390522.jpg', '57913409.jpg', '69290822.jpg');
+(36, NULL, 32, '35023658.pdf', '29410633.pdf', '92473465.JPG', '83251979.pdf', '15207863.jpg', '30390522.jpg', '57913409.jpg', '69290822.jpg'),
+(37, 40, 33, '75242181.pdf', '27498587.pdf', '5278118.pdf', '45539892.jpg', '98415347.jpg', '51331461.JPG', '51487329.jpg', '16660135.jpg'),
+(38, 31, 34, '23720663.pdf', '88525793.pdf', '39134077.JPG', '35703020.pdf', '19921748.jpg', '72673379.jpg', '88250849.jpg', '11250901.jpg');
 
 -- --------------------------------------------------------
 
@@ -381,7 +310,7 @@ CREATE TABLE `fpkb` (
   `kompetensi` varchar(128) NOT NULL,
   `usia` varchar(50) NOT NULL,
   `job_desc` varchar(256) NOT NULL,
-  `status_fpkb` tinyint(1) NOT NULL DEFAULT '1'
+  `status_fpkb` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -406,7 +335,7 @@ CREATE TABLE `jabatan` (
   `nama_jabatan` varchar(50) NOT NULL,
   `id_divisi` int(11) NOT NULL,
   `jumlah_jabatan` int(11) NOT NULL,
-  `status_jabatan` int(11) NOT NULL DEFAULT '1'
+  `status_jabatan` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -500,7 +429,7 @@ CREATE TABLE `karyawan` (
   `ttl_karyawan` varchar(128) NOT NULL,
   `alamat_karyawan` varchar(128) NOT NULL,
   `tanggal_masuk` date NOT NULL,
-  `status_karyawan` tinyint(1) NOT NULL DEFAULT '1',
+  `status_karyawan` tinyint(1) NOT NULL DEFAULT 1,
   `level` enum('admin','karyawan','') NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -595,9 +524,8 @@ INSERT INTO `karyawan` (`id_karyawan`, `id_jabatan`, `email_karyawan`, `password
 (100, 46, 'sumarni@gmail.com', '$2y$10$sujjrYz11i8GYgdWPF7RgO73yL6r4aOia.L2KFw.rMip0hJLzWuqK', '', 'Ayi Sumarni', '1011786', '081380523367', 'Garut, 22 April 1999', 'Jl sawarna no 33', '2011-11-20', 1, ''),
 (101, 46, 'yuningsih@gmail.com', '$2y$10$0rtvvaWScvWgw96oY5LxrePcCb1Gkd/hlPW5pLfx//KnLg7UZYaZm', '', 'Nining Yuningsih', '1012087', '081434221161', 'Garut, 22 April 1999', 'Jl sawarna no 33', '2014-09-27', 1, ''),
 (102, 46, 'otih@gmail.com', '$2y$10$1bG.day0R8h.Pcee6FEdTuhEgynOZbNt2g5z0ZnxZBqtA.d2.kwRW', '', 'Otih', '1012218', '081841500846', 'Garut, 22 April 1999', 'Jl sawarna no 33', '2013-09-08', 1, ''),
-(106, 68, 'rifqiramdhani8@gmail.com', '$2y$10$/EvfmH6BsraY4iXIR60Ld.n0e7WWhmPAA/7sP9kcA9okPLSHcxcby', 'vzvEoC+uZqaYIoj9k7lnbQOywkGlJuye0ZgNbAF85Ls=', 'Rifqi Ramdhani', '1055898', '0813930031293', 'Cianjur, 22 Desember 1998', 'jl budhi no 3', '0000-00-00', 1, 'karyawan'),
-(107, 68, 'saeful@gmail.com', '$2y$10$ro21zDs/Xe0qCAY9.Qc6Ku2gKBW7VgQx7VfmKpkxDBZ002EHJVyMq', '', 'Saeful Apriana	', '1066998', '0813242432424', 'Cianjur, 22 Desember 1998', 'Bukit Mawar no 10', '0000-00-00', 1, 'karyawan'),
-(109, 69, 'gugun@gmail.com', '$2y$10$EyMhsfVb0T9QKA4PksTBZOVv/5cnDqvHdfQdHCv7h8WCTlXFUKRi2', '', 'Gugun Gunawan', '1011889', '081444403329', 'Cianjur, 22 Desember 1999', 'Bukit Mawar no 10', '0000-00-00', 1, 'karyawan');
+(123, 68, 'yolandapatriciaaa@gmail.com', '$2y$10$8SV/IoSiM.PA8ZV8.7iNTejhWSqeqx44noAE4pgoYut18gxqXPhTm', '', 'Yolanda Patricia', '308431', '0813930111', 'Cianjur, 22 Desember 1999', 'Jl Turangga No 30', '0000-00-00', 1, 'karyawan'),
+(124, 68, 'rifqiramdhani8@gmail.com', '$2y$10$O7sU6NWSzI5buqGtnk/QPeN3ZpY/Why2HdRVdCFT77g55fYzCstom', '', 'Rifqi Ramdhani', '7554045', '0813930031293', 'Bandung, 21 Desember 1998', 'Perum Bukit Berlian C72', '0000-00-00', 1, 'karyawan');
 
 -- --------------------------------------------------------
 
@@ -609,9 +537,9 @@ CREATE TABLE `kriteria_penilaian` (
   `id_skala_penilaian` int(11) NOT NULL,
   `id_dt_krt_penilaian_1` varchar(2) NOT NULL,
   `nilai_perbandingan` double NOT NULL,
-  `hasil_perbandingan` double NOT NULL DEFAULT '0',
+  `hasil_perbandingan` double NOT NULL DEFAULT 0,
   `id_dt_krt_penilaian_2` varchar(2) NOT NULL,
-  `status_penilaian` tinyint(1) NOT NULL DEFAULT '1'
+  `status_penilaian` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -640,7 +568,7 @@ CREATE TABLE `kriteria_rekrutmen` (
   `id_rekrutmen` int(11) DEFAULT NULL,
   `id_dt_krt_rekt` varchar(128) NOT NULL,
   `bobot_kriteria` int(2) NOT NULL,
-  `status_kriteria` tinyint(1) NOT NULL DEFAULT '1'
+  `status_kriteria` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -685,6 +613,31 @@ INSERT INTO `kriteria_rekrutmen` (`id_krt_rekt`, `id_rekrutmen`, `id_dt_krt_rekt
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `nilai_penilaian_rekrutmen`
+--
+
+CREATE TABLE `nilai_penilaian_rekrutmen` (
+  `id_nilai_penilaian_rekrutmen` int(11) NOT NULL,
+  `id_rekrutmen` int(11) NOT NULL,
+  `id_calon_karyawan` int(11) NOT NULL,
+  `nilai` double NOT NULL,
+  `status` enum('nilaisub','nilairek') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `nilai_penilaian_rekrutmen`
+--
+
+INSERT INTO `nilai_penilaian_rekrutmen` (`id_nilai_penilaian_rekrutmen`, `id_rekrutmen`, `id_calon_karyawan`, `nilai`, `status`) VALUES
+(56, 31, 27, 3, 'nilairek'),
+(57, 31, 27, 4, 'nilairek'),
+(58, 31, 27, 5, 'nilairek'),
+(59, 31, 27, 1, 'nilairek'),
+(60, 31, 27, 5, 'nilairek');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `penilaian_kmp`
 --
 
@@ -692,8 +645,8 @@ CREATE TABLE `penilaian_kmp` (
   `id_penilaian_kmp` int(11) NOT NULL,
   `id_dt_subkriteria_penilaian` int(11) DEFAULT NULL,
   `id_karyawan` int(11) NOT NULL,
-  `nilai` double NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL DEFAULT '0'
+  `nilai` double NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -701,9 +654,8 @@ CREATE TABLE `penilaian_kmp` (
 --
 
 INSERT INTO `penilaian_kmp` (`id_penilaian_kmp`, `id_dt_subkriteria_penilaian`, `id_karyawan`, `nilai`, `status`) VALUES
-(7, NULL, 106, 80.02, 2),
-(8, NULL, 107, 80.51, 1),
-(9, NULL, 109, 65.3, 3);
+(1, NULL, 123, 0, 0),
+(2, NULL, 124, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -715,19 +667,22 @@ CREATE TABLE `penilaian_rekrutmen` (
   `id_penilaian_rekrutmen` int(11) NOT NULL,
   `id_rekrutmen` int(11) DEFAULT NULL,
   `id_calon_karyawan` int(11) DEFAULT NULL,
-  `vector_s` float NOT NULL DEFAULT '0',
-  `vector_v` float NOT NULL DEFAULT '0',
-  `hasil` float NOT NULL DEFAULT '0'
+  `vector_s` float NOT NULL DEFAULT 0,
+  `vector_v` float NOT NULL DEFAULT 0,
+  `hasil` float NOT NULL DEFAULT 0,
+  `status` enum('0','1','2','3') NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `penilaian_rekrutmen`
 --
 
-INSERT INTO `penilaian_rekrutmen` (`id_penilaian_rekrutmen`, `id_rekrutmen`, `id_calon_karyawan`, `vector_s`, `vector_v`, `hasil`) VALUES
-(34, 31, 27, 12.71, 0.334, 1),
-(35, 31, 29, 12.58, 0.331, 0),
-(36, 31, 28, 12.73, 0.335, 1);
+INSERT INTO `penilaian_rekrutmen` (`id_penilaian_rekrutmen`, `id_rekrutmen`, `id_calon_karyawan`, `vector_s`, `vector_v`, `hasil`, `status`) VALUES
+(34, 31, 27, 12.73, 0, 0, '3'),
+(35, 31, 29, 0, 0, 0, '0'),
+(36, 31, 28, 0, 0, 0, '0'),
+(37, 40, 33, 0, 0, 0, '0'),
+(38, 31, 34, 0, 0, 0, '0');
 
 -- --------------------------------------------------------
 
@@ -741,7 +696,7 @@ CREATE TABLE `rekrutmen` (
   `nama_rekrutmen` varchar(128) NOT NULL,
   `tanggal_buka` date NOT NULL,
   `tanggal_tutup` date NOT NULL,
-  `status_rekrutmen` tinyint(1) NOT NULL DEFAULT '0'
+  `status_rekrutmen` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -749,8 +704,8 @@ CREATE TABLE `rekrutmen` (
 --
 
 INSERT INTO `rekrutmen` (`id_rekrutmen`, `id_fpkb`, `nama_rekrutmen`, `tanggal_buka`, `tanggal_tutup`, `status_rekrutmen`) VALUES
-(31, 10, 'Content Writer Sales &amp; Marketing', '2020-07-14', '2020-07-18', 0),
-(40, 12, 'Staff Keuangan Keuangan', '2020-07-19', '2020-07-20', 1);
+(31, 10, 'Content Writer Sales &amp; Marketing', '2020-07-14', '2020-07-18', 1),
+(40, 12, 'Staff Keuangan Keuangan', '2020-07-19', '2020-07-20', 0);
 
 -- --------------------------------------------------------
 
@@ -796,8 +751,8 @@ INSERT INTO `skala_penilaian` (`id_skala_penilaian`, `nilai`, `keterangan`) VALU
 CREATE TABLE `subkriteria_penilaian` (
   `id_skala_penilaian` int(11) NOT NULL,
   `id_dt_subkrt_penilaian_1` int(11) NOT NULL,
-  `nilai_perbandingan` double NOT NULL DEFAULT '0',
-  `hasil_perbandingan` double NOT NULL DEFAULT '0',
+  `nilai_perbandingan` double NOT NULL DEFAULT 0,
+  `hasil_perbandingan` double NOT NULL DEFAULT 0,
   `id_dt_subkrt_penilaian_2` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1079,6 +1034,14 @@ ALTER TABLE `kriteria_rekrutmen`
   ADD KEY `kode_kriteria_fore` (`id_dt_krt_rekt`);
 
 --
+-- Indexes for table `nilai_penilaian_rekrutmen`
+--
+ALTER TABLE `nilai_penilaian_rekrutmen`
+  ADD PRIMARY KEY (`id_nilai_penilaian_rekrutmen`),
+  ADD KEY `id_calon_karyawan` (`id_calon_karyawan`),
+  ADD KEY `id_rekrutmen` (`id_rekrutmen`);
+
+--
 -- Indexes for table `penilaian_kmp`
 --
 ALTER TABLE `penilaian_kmp`
@@ -1130,7 +1093,7 @@ ALTER TABLE `subkriteria_rekrutmen`
 -- AUTO_INCREMENT for table `calon_karyawan`
 --
 ALTER TABLE `calon_karyawan`
-  MODIFY `id_calon_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_calon_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `desk_rekrutmen`
@@ -1142,13 +1105,13 @@ ALTER TABLE `desk_rekrutmen`
 -- AUTO_INCREMENT for table `detail_penilaian_kmp`
 --
 ALTER TABLE `detail_penilaian_kmp`
-  MODIFY `id_dt_penilaian_kmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_dt_penilaian_kmp` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `detail_penilaian_rekrutmen`
 --
 ALTER TABLE `detail_penilaian_rekrutmen`
-  MODIFY `id_dt_penilaian_rekrutmen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `id_dt_penilaian_rekrutmen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `detail_subkriteria_penilaian`
@@ -1166,7 +1129,7 @@ ALTER TABLE `divisi`
 -- AUTO_INCREMENT for table `file_calon_karyawan`
 --
 ALTER TABLE `file_calon_karyawan`
-  MODIFY `id_file_calon_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_file_calon_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `fpkb`
@@ -1184,7 +1147,7 @@ ALTER TABLE `jabatan`
 -- AUTO_INCREMENT for table `karyawan`
 --
 ALTER TABLE `karyawan`
-  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
 -- AUTO_INCREMENT for table `kriteria_rekrutmen`
@@ -1193,16 +1156,22 @@ ALTER TABLE `kriteria_rekrutmen`
   MODIFY `id_krt_rekt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=324;
 
 --
+-- AUTO_INCREMENT for table `nilai_penilaian_rekrutmen`
+--
+ALTER TABLE `nilai_penilaian_rekrutmen`
+  MODIFY `id_nilai_penilaian_rekrutmen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+
+--
 -- AUTO_INCREMENT for table `penilaian_kmp`
 --
 ALTER TABLE `penilaian_kmp`
-  MODIFY `id_penilaian_kmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_penilaian_kmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `penilaian_rekrutmen`
 --
 ALTER TABLE `penilaian_rekrutmen`
-  MODIFY `id_penilaian_rekrutmen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_penilaian_rekrutmen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `rekrutmen`
@@ -1292,6 +1261,13 @@ ALTER TABLE `kriteria_penilaian`
 ALTER TABLE `kriteria_rekrutmen`
   ADD CONSTRAINT `kriteria_rekrutmen_ibfk_1` FOREIGN KEY (`id_rekrutmen`) REFERENCES `rekrutmen` (`id_rekrutmen`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `kriteria_rekrutmen_ibfk_2` FOREIGN KEY (`id_dt_krt_rekt`) REFERENCES `detail_kriteria_rekrutmen` (`id_dt_krt_rekt`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `nilai_penilaian_rekrutmen`
+--
+ALTER TABLE `nilai_penilaian_rekrutmen`
+  ADD CONSTRAINT `nilai_penilaian_rekrutmen_ibfk_1` FOREIGN KEY (`id_calon_karyawan`) REFERENCES `calon_karyawan` (`id_calon_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `nilai_penilaian_rekrutmen_ibfk_2` FOREIGN KEY (`id_rekrutmen`) REFERENCES `rekrutmen` (`id_rekrutmen`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `penilaian_kmp`

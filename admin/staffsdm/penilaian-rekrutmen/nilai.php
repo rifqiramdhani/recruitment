@@ -21,7 +21,6 @@ $getnilai = mysqli_fetch_assoc($querynilai);
     <a href="?page=penilaian-rekrutmen" class="btn btn-warning btn-sm"><i class="fas fa-reply"></i> Kembali</a>
 </div>
 <div class="col-sm-6">
-
     <!-- show sweet alert -->
     <?php if (isset($_SESSION['message'])) : ?>
         <div class="flash-data" data-flashdata="<?= $_SESSION['message'] ?>" data-title="<?= $_SESSION['title'] ?>" data-type="<?= $_SESSION['type'] ?>"></div>
@@ -31,7 +30,6 @@ $getnilai = mysqli_fetch_assoc($querynilai);
         unset($_SESSION['type']);
     endif;
     ?>
-
 
     <div class="card card-accent-success">
         <div class="card-header"><strong>Berkas Calon Karyawan - <?= $getdatack['nama_calon_karyawan'] ?></strong></div>
@@ -125,73 +123,62 @@ $getnilai = mysqli_fetch_assoc($querynilai);
     <div class="card card-accent-success">
         <div class="card-header"><strong>Penilaian - <?= $getdatack['nama_calon_karyawan'] ?></strong></div>
         <div class="card-body">
-            <?php if ($getnilai['vector_s'] == 0) : ?>
-                <form action="<?= $level ?>/penilaian-rekrutmen/proses-penilaian-s.php" method="post" data-toggle="validator" role="form">
-                    <?php while ($getkrit = mysqli_fetch_assoc($querykrit)) : ?>
-                        <div class="form-group row has-feedback">
-                            <label class="col-sm-4 col-form-label"><?= $getkrit['nama_kriteria_rekrutmen'] ?></label>
-                            <input type="hidden" class="col-2" name="id_kriteria[]" value="<?= $getkrit['id_krt_rekt'] ?>">
-                            <div class="col-sm-8">
-                                <?php
-                                $id_kriteria = $getkrit['id_krt_rekt'];
-                                $querysubkrit = mysqli_query($koneksi, "SELECT * FROM `subkriteria_rekrutmen` WHERE id_kriteria_rekrutmen = '$id_kriteria' ORDER BY nama_subkriteria ASC");
-                                ?>
-                                <?php if (mysqli_num_rows($querysubkrit) > 0) : ?>
-                                    <select name="nilaisub[]" class="form-control" data-required-error="Data tidak boleh kosong" required>
-                                        <option value="">-Pilih <?= $getkrit['nama_kriteria_rekrutmen'] ?> -</option>
-                                        <?php while ($getsubkrit = mysqli_fetch_assoc($querysubkrit)) : ?>
-                                            <option value="<?= $getsubkrit['id_subkriteria_rekrutmen'] ?>"><?= $getsubkrit['nama_subkriteria'] ?></option>
-                                        <?php endwhile ?>
-                                    </select>
-                                <?php elseif ($getkrit['id_dt_krt_rekt'] == 'K010') : ?>
-                                    <input type="text" name="nilaipsikotes" class="form-control" placeholder="Masukkan Nilai" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-                                <?php else : ?>
-                                    <select name="nilai[]" class="form-control" data-required-error="Data tidak boleh kosong" required>
-                                        <option value="">-Pilih Nilai-</option>
-                                        <option value="1">Sangat Kurang</option>
-                                        <option value="2">Kurang</option>
-                                        <option value="3">Cukup</option>
-                                        <option value="4">Baik</option>
-                                        <option value="5">Sangat Baik</option>
-                                    </select>
+            <form action="#" method="post">
+                <?php while ($getkrit = mysqli_fetch_assoc($querykrit)) : ?>
+                    <div class="form-group row has-feedback">
+                        <label class="col-sm-4 col-form-label"><?= $getkrit['nama_kriteria_rekrutmen'] ?></label>
+                        <input type="hidden" class="col-2" name="id_kriteria[]" value="<?= $getkrit['id_krt_rekt'] ?>">
+                        <div class="col-sm-8">
+                            <?php
+                            $id_kriteria = $getkrit['id_krt_rekt'];
 
-                                <?php endif ?>
+                            $queryDtNilai = mysqli_query($koneksi, "SELECT * FROM `detail_penilaian_rekrutmen` JOIN penilaian_rekrutmen USING(id_penilaian_rekrutmen) WHERE id_kriteria_rekrutmen = '$id_kriteria' AND id_calon_karyawan = '$id_calon_karyawan'");
+                            $getDtNilai = mysqli_fetch_assoc($queryDtNilai);
 
-                                <span class="glyphicon form-control-feedback mr-3" aria-hidden="true"></span>
-                                <span class="help-block with-errors"></span>
-                            </div>
+                            $querysubkrit = mysqli_query($koneksi, "SELECT * FROM `subkriteria_rekrutmen` WHERE id_kriteria_rekrutmen = '$id_kriteria' ORDER BY nama_subkriteria ASC");
+                            ?>
+                            <?php if (mysqli_num_rows($querysubkrit) > 0) : ?>
+                                <select name="nilaisub[]" class="form-control" data-required-error="Data tidak boleh kosong" required>
+                                    <option value="">-Pilih <?= $getkrit['nama_kriteria_rekrutmen'] ?> -</option>
+                                    <?php while ($getsubkrit = mysqli_fetch_assoc($querysubkrit)) : ?>
+                                        <option value="<?= $getsubkrit['id_subkriteria_rekrutmen'] ?>" <?php if ($getDtNilai['id_subkriteria_rekrutmen'] == $getsubkrit['id_subkriteria_rekrutmen']) echo 'selected' ?>><?= $getsubkrit['nama_subkriteria'] ?></option>
+                                    <?php endwhile ?>
+                                </select>
+                            <?php elseif ($getkrit['id_dt_krt_rekt'] == 'K010') : ?>
+                                <input type="text" name="nilaipsikotes" value="<?= $getDtNilai['id_subkriteria_rekrutmen'] ?>" class="form-control" placeholder="Masukkan Nilai" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                            <?php else : ?>
+                                <select name="nilai[]" class="form-control" data-required-error="Data tidak boleh kosong" required>
+                                    <option value="">-Pilih Nilai-</option>
+                                    <option value="1" <?php if ($getDtNilai['id_subkriteria_rekrutmen'] == '1') echo 'selected' ?>>Sangat Kurang</option>
+                                    <option value="2" <?php if ($getDtNilai['id_subkriteria_rekrutmen'] == '2') echo 'selected' ?>>Kurang</option>
+                                    <option value="3" <?php if ($getDtNilai['id_subkriteria_rekrutmen'] == '3') echo 'selected' ?>>Cukup</option>
+                                    <option value="4" <?php if ($getDtNilai['id_subkriteria_rekrutmen'] == '4') echo 'selected' ?>>Baik</option>
+                                    <option value="5" <?php if ($getDtNilai['id_subkriteria_rekrutmen'] == '5') echo 'selected' ?>>Sangat Baik</option>
+                                </select>
+
+                            <?php endif ?>
+
+                            <span class="glyphicon form-control-feedback mr-3" aria-hidden="true"></span>
+                            <span class="help-block with-errors"></span>
                         </div>
-
-                        <div class="form-group">
-                            <input type="hidden" name="bobot_kriteria[]" value="<?= $getkrit['bobot_kriteria'] ?>">
-                        </div>
-
-                    <?php endwhile ?>
-
-                    <div class="form-group">
-                        <input type="hidden" name="id_calon_karyawan" value="<?= $id_calon_karyawan ?>">
                     </div>
 
                     <div class="form-group">
-                        <input type="hidden" name="id_recruitment" value="<?= $id_recruitment ?>">
+                        <input type="hidden" name="bobot_kriteria[]" value="<?= $getkrit['bobot_kriteria'] ?>">
                     </div>
 
-                    <hr>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-sm btn-success">
-                            <i class="fas fa-save"></i>
-                            Simpan
-                        </button>
-                    </div>
+                <?php endwhile ?>
 
-
-                </form>
-            <?php else : ?>
-                <div class="alert alert-light" role="alert">
-                    Calon karyawan telah dinilai
+                <div class="form-group">
+                    <input type="hidden" name="id_calon_karyawan" value="<?= $id_calon_karyawan ?>">
                 </div>
-            <?php endif ?>
 
+                <div class="form-group">
+                    <input type="hidden" name="id_recruitment" value="<?= $id_recruitment ?>">
+                </div>
+
+                <hr>
+            </form>
         </div>
     </div>
 </div>
